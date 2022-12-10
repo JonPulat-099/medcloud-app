@@ -1,6 +1,6 @@
 <template lang="">
   <div style="background: #fff !important">
-    <!-- <Header /> -->
+    <the-header></the-header>
     <v-container grid-list-xs>
       <v-row xs12 class="my-5 py-5">
         <h3 class="mx-auto text-uppercase display-1 font-weight-bold my-5">
@@ -234,9 +234,9 @@
 export default {
   name: 'HomePage',
   layout: "landing",
-  // components: {
-  //   Header: () => import('@/components/Header.vue'),
-  // },
+  components: {
+    TheHeader: () => import('@/components/TheHeader.vue'),
+  },
   data() {
     return {
       colors: [

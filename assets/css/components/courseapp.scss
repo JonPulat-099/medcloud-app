@@ -1,22 +1,115 @@
 .courseapp {
- --sidebar-bg: #2C364A;
- --sidebar-text: #8996AC;
- --sidebar-active-link: #8996AC;
+  --sidebar-bg: #2c364a;
+  --sidebar-text: #8996ac;
+  --sidebar-active-link: #8996ac;
 
- --navbar-bg: #008DD2;
- --primary: #F5F5F5;
- --chart-grey: #ACB4C0;
- --chart-blue: #008DD2;
- --chart-green: #009846;
- --chart-red: #E31E24;
- --chart-text: #434242;
- --chip-grey: #D9DADA;
- --chip-blue: #A2D9F7;
- --chip-green: #7EC291;
- --statistics-text: #727271;
+  --navbar-bg: #008dd2;
+  --primary: #f5f5f5;
+  --chart-grey: #acb4c0;
+  --chart-blue: #008dd2;
+  --chart-green: #009846;
+  --chart-red: #e31e24;
+  --chart-text: #434242;
+  --chip-grey: #d9dada;
+  --chip-blue: #a2d9f7;
+  --chip-green: #7ec291;
+  --statistics-text: #727271;
+
+  &--logo {
+    width: 130px;
+    display: block;
+    margin: 50px auto;
+  }
+
+  &--info {
+    * {
+      line-height: 1;
+      color: #8996ac;
+    }
+  }
+
+  &__sidebar {
+    background-color: var(--sidebar-bg) !important;
+    * {
+      color: var(--sidebar-text) !important;
+    }
+
+    .v-navigation-drawer__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .v-list {
+      &-item {
+        min-height: 40px !important;
+        height: 40px;
+        padding-left: 30px !important;
+      }
+    }
+
+    &--bottom {
+      .extend--btn {
+        background: var(--sidebar-active-link) !important;
+        .v-btn__content {
+          color: var(--sidebar-bg) !important;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  &__navbar {
+    background: var(--navbar-bg) !important;
+    * {
+      color: #fff !important;
+    }
+    .to--dashboard {
+      background: none !important;
+      i {
+        font-size: 24px !important;
+      }
+    }
+
+    .theme--switch {
+      .v-input__control {
+        height: 20px;
+
+        .v-input--selection-controls__input {
+          height: 22px !important;
+        }
+
+        .v-input--switch__track {
+          height: 23px;
+          opacity: 1;
+          background: #fff !important;
+        }
+
+        .v-input--switch__thumb {
+          height: 16px;
+          width: 16px;
+          background: var(--chart-text);
+        }
+      }
+
+      &.dark {
+        .v-input--switch__track {
+          background: #1E1E1E !important;
+        }
+
+        .v-input--switch__thumb {
+          background: #9D9E9E;
+        }
+      }
+    }
+  }
+
+  &__content {
+    background: var(--primary);
+  }
 }
 
-// #2C364A
+// var(--sidebar-bg)2C364A
 // #8996AC
 // #ACB4C0
 // #727271

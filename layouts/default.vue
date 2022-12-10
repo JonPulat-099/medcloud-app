@@ -10,4 +10,5 @@ export default {
   name: 'DefaultLayout',
 }
 </script>
-<style lang=""></style>
+<style lang="scss">
+</style>

@@ -1,46 +1,79 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-      color="$sidebar-bg"
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+  <v-app dark class="courseapp">
+    <v-navigation-drawer v-model="drawer" fixed app class="courseapp__sidebar">
+      <div class="courseapp__sidebar--top">
+        <img class="courseapp--logo" src="/logo.svg" alt="" />
+        <div class="courseapp--info text-center mb-6">
+          <h2 class="font-weight-bold">USMLE Step 1</h2>
+          <h3 class="font-weight-regular">Question Bank</h3>
+        </div>
+        <v-list class="courseapp__sidebar--list">
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+            multi-line
+            class=""
+          >
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+            <v-list-item-icon class="my-auto mx-0">
+              <v-icon> mdi-chevron-right </v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list>
+      </div>
+      <div class="courseapp__sidebar--bottom text-center">
+        <h4 class="font-weight-regular text-body-2 mt-4">Expire on: May 21, 2022</h4>
+        <v-btn class="extend--btn mt-2 px-6 rounded-lg">Extend</v-btn>
+
+        <div class="d-flex align-center justify-center my-6">
+          <img
+            class="ma-1"
+            width="40px"
+            height="40px"
+            src="/icons/globe.png"
+            alt=""
+          />
+          <dir class="text-left">
+            <p class="text-caption ma-0">www.medclouded.com</p>
+            <p class="text-caption ma-0">All rights reserved</p>
+          </dir>
+        </div>
+      </div>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar fixed app flat height="50" class="courseapp__navbar white--text">
+      <v-toolbar-title>Welcome, Mr. Jon Pulat </v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+
+      <v-btn
+        text
+        nuxt
+        elevation="0"
+        class="to--dashboard text-capitalize rounded-xl"
+      >
+        <v-icon color="white" left>mdi-home-circle</v-icon>
+        Dashboard
+      </v-btn>
+      <v-switch
+        v-model="dark"
+        flat
+        inset
+        :ripple="false"
+        class="theme--switch ml-4"
+        :class="{ dark: dark }"
+      ></v-switch>
+      <v-btn icon plain @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
+      <v-btn icon plain>
+        <v-icon>mdi-power</v-icon>
+      </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="courseapp__content">
       <v-container>
         <Nuxt />
       </v-container>
@@ -55,9 +88,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -66,18 +96,33 @@ export default {
   name: 'DefaultLayout',
   data() {
     return {
+      dark: false,
       clipped: false,
       drawer: false,
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/',
+          to: '/courseapp',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
+          title: 'Create test',
+          to: '/inspire',
+        },
+        {
+          title: 'Previous Test',
+          to: '/inspire',
+        },
+        {
+          title: 'Preformance',
+          to: '/inspire',
+        },
+        {
+          title: 'Feedback',
+          to: '/inspire',
+        },
+        {
+          title: 'Help',
           to: '/inspire',
         },
       ],
@@ -89,3 +134,4 @@ export default {
   },
 }
 </script>
+<style lang="scss" src="@/assets/css/components/courseapp.scss"></style>

@@ -1,130 +1,126 @@
 <template>
-  <v-layout
-    row
-    wrap
-    class="app__header"
-    :class="{ sticky: scrollY, white: isLogin }"
-    v-resize="onResize"
-  >
-    <v-flex xs12 align-center>
-      <v-toolbar elevation="0" class="app__header--toolbar" >
-        <v-toolbar-title>
-          <a href="/" class="to--main link">
-            <img src="/logo-med.png" alt="" width="100" />
-          </a>
-        </v-toolbar-title>
-        <div v-if="windowSize > 1024" class="app__header--desktop">
-          <template v-for="m in menu">
-            <v-menu
-              v-if="m.has_child"
-              open-on-hover
-              bottom
-              offset-y
-              :key="m.name"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <a
-                  href="javascript:void(0)"
-                  v-bind="attrs"
-                  v-on="on"
-                  class="link uppercase"
-                >
-                  {{ String(m.name).toUpperCase() }}
-                </a>
-              </template>
-
-              <v-list class="child--link pa-0" elevation="0" color="#0a5676">
-                <v-list-item
-                  v-for="(item, index) in m.child"
-                  :key="`child__${index}`"
-                  to="#"
-                >
-                  <v-list-item-title nuxt to="#" class="white--text">{{
-                    item.name
-                  }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            <nuxt-link v-else to="" :key="m.name" class="link">
-              {{ String(m.name).toUpperCase() }}
-            </nuxt-link>
-          </template>
-        </div>
-        <div class="app__header--actions">
-          <v-menu open-on-hover bottom offset-y>
+  <v-layout row wrap v-resize="onResize">
+    <v-app-bar app :fixed="!!offsetTop" dense class="app__header px-8">
+      <v-toolbar-title>
+        <img src="/logo.svg" alt="" width="80px" />
+      </v-toolbar-title>
+      <div v-if="windowSize > 1024" class="app__header--desktop">
+        <template v-for="m in menu">
+          <v-menu
+            class="dropdown__menu"
+            v-if="m.has_child"
+            open-on-hover
+            bottom
+            offset-y
+            :key="m.name"
+            rounded="0"
+          >
             <template v-slot:activator="{ on, attrs }">
               <a
                 href="javascript:void(0)"
                 v-bind="attrs"
                 v-on="on"
-                class="link"
+                class="dropdown__menu--title link uppercase"
               >
-                EN
+                {{ String(m.name).toUpperCase() }}
               </a>
             </template>
 
-            <v-list class="child--link" elevation="0" color="#0a5676">
-              <v-list-item>
-                <v-list-item-title nuxt to="#" class="white--text">
-                  UZ
-                </v-list-item-title>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title nuxt to="#" class="white--text">
-                  RU
-                </v-list-item-title>
+            <v-list class="dropdown__menu--items py-0" elevation="0">
+              <v-list-item
+                v-for="(item, index) in m.child"
+                :key="`child__${index}`"
+                to="#"
+              >
+                <v-list-item-title nuxt to="#" class="white--text">{{
+                  item.name
+                }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-btn class="mx-4" color="error" nuxt to="/courseapp">DEMO</v-btn>
-          <v-btn
-            icon
-            nuxt
-            to="/login"
-            :plain="true"
-            width="24"
-            height="24"
-            class="account"
-          >
-            <v-icon>mdi-account-box-outline</v-icon>
-          </v-btn>
-          <v-btn
-            icon
-            nuxt
-            to="/pricing"
-            :plain="true"
-            width="24"
-            height="24"
-            class="shop"
-          >
-            <v-badge v-if="hasCard" color="primary" :content="hasCard">
-              <v-icon>mdi-shopping-outline</v-icon>
-            </v-badge>
-            <v-icon v-else>mdi-shopping-outline</v-icon>
-          </v-btn>
-          <v-btn
-            v-if="windowSize < 1024"
-            icon
-            nuxt
-            to="#"
-            @click="mobile__menu = true"
-            plain
-            width="24"
-            height="24"
-            class="menu"
-          >
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
-        </div>
-      </v-toolbar>
-    </v-flex>
+          <nuxt-link v-else to="" :key="m.name" class="link">
+            {{ String(m.name).toUpperCase() }}
+          </nuxt-link>
+        </template>
+      </div>
+      <div class="app__header--actions d-flex align-center">
+        <v-menu
+          open-on-hover
+          bottom
+          offset-y
+          rounded="0"
+          class="dropdown__menu"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <a
+              href="javascript:void(0)"
+              v-bind="attrs"
+              v-on="on"
+              class="dropdown__menu--title link"
+            >
+              EN
+            </a>
+          </template>
+
+          <v-list class="dropdown__menu--items" elevation="0" color="#0a5676">
+            <v-list-item>
+              <v-list-item-title nuxt to="#" class="white--text">
+                UZ
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title nuxt to="#" class="white--text">
+                RU
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-btn nuxt to="/courseapp" class="to-try rounded-xl white--text mr-6">
+          Demo
+        </v-btn>
+        <v-btn icon nuxt to="/login" width="24" height="24" class="account">
+          <img src="/icons/user.svg" alt="" />
+        </v-btn>
+        <v-btn icon nuxt to="/pricing" width="24" height="24" class="shop mx-2">
+          <img src="/icons/shop.svg" alt="" />
+        </v-btn>
+        <v-btn
+          v-if="windowSize < 1024"
+          icon
+          width="24"
+          height="24"
+          plain
+          @click="drawer = true"
+          class="menu white--text"
+        >
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
+      </div>
+    </v-app-bar>
     <v-navigation-drawer
-      v-model="mobile__menu"
-      right
-      temporary
+      v-if="windowSize < 1024"
+      v-model="drawer"
+      :clipped="true"
       fixed
-      width="330"
+      app
+      right
     >
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in 5"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
     </v-navigation-drawer>
   </v-layout>
 </template>
@@ -132,7 +128,7 @@
 export default {
   name: 'Header',
   props: {
-    scrollY: {
+    offsetTop: {
       type: [String, Number],
       default: 0,
     },
@@ -216,21 +212,8 @@ export default {
         },
       ],
       windowSize: 0,
-      mobile__menu: false,
+      drawer: false,
     }
-  },
-  computed: {
-    isLogin() {
-      return (
-        this.$route.fullPath == '/login' ||
-        this.$route.fullPath.includes('/pricing') ||
-        this.$route.fullPath == '/resources'
-      )
-    },
-    hasCard() {
-    //   const select = this.$store.state.shopping.selected ?? []
-      return 0
-    },
   },
 
   mounted() {
@@ -240,7 +223,6 @@ export default {
   methods: {
     onResize() {
       this.windowSize = window.innerWidth
-      console.log(1)
     },
   },
 }

@@ -1,9 +1,7 @@
 <template>
   <v-app dark>
-    <the-navbar></the-navbar>
-    <v-container>
+    <the-navbar :offsetTop="offsetTop"></the-navbar>
       <Nuxt />
-    </v-container>
     <the-footer></the-footer>
   </v-app>
 </template>
@@ -13,6 +11,15 @@ export default {
   components: {
     TheNavbar: () => import('@/components/TheNavbar.vue'),
     TheFooter: () => import('@/components/TheFooter.vue'),
+  },
+  data: () => ({
+    offsetTop: 0,
+  }),
+
+  mounted() {
+    document.addEventListener('scroll', (e) => {
+      this.offsetTop = window.scrollY
+    })
   },
 }
 </script>
