@@ -1,0 +1,81 @@
+.app__header {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+
+  &.sticky {
+    background-color: rgba(66, 66, 66, 0.9) !important;
+
+    a {
+      color: #ffffff !important;
+      i::before {
+        color: #ffffff !important;
+      }
+    }
+  }
+
+  &.white {
+    a {
+      color: #0a5676;
+      i::before {
+        color: #0a5676;
+      }
+    }
+  }
+  &:not(.white) {
+    a {
+      color: #ffffff;
+    }
+  }
+
+  &--toolbar {
+    a {
+      text-decoration: none;
+
+      &.link {
+        text-transform: capitalize !important;
+        font-weight: 500;
+        margin: 0 20px;
+        padding: 15px 0;
+      }
+
+      i::before {
+        color: #ffffff;
+      }
+    }
+  }
+
+  &--actions {
+    display: flex;
+    align-items: center;
+    a {
+      margin: 0 10px;
+      span {
+        i {
+          font-size: 32px !important;
+        }
+      }
+      &.account {
+        margin: 0 0 -1px 0;
+      }
+    }
+  }
+
+  .v-toolbar {
+    background-color: transparent !important;
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .v-list {
+    background: #0a5676 !important;
+
+    &-item {
+      padding: 0 8px !important;
+    }
+  }
+}
