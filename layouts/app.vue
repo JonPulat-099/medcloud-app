@@ -98,7 +98,7 @@ export default {
     return {
       dark: false,
       clipped: false,
-      drawer: false,
+      drawer: true,
       fixed: false,
       items: [
         {
