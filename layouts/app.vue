@@ -1,6 +1,13 @@
 <template>
-  <v-app dark class="courseapp">
-    <v-navigation-drawer v-model="drawer" fixed app class="courseapp__sidebar">
+  <v-app dark class="courseapp" v-resize="onResize">
+    <v-navigation-drawer
+      v-if="$route.path !== '/courseapp'"
+      v-model="drawer"
+      fixed
+      :permanent="windowSize >= 1140"
+      app
+      class="courseapp__sidebar"
+    >
       <div class="courseapp__sidebar--top">
         <img class="courseapp--logo" src="/logo.svg" alt="" />
         <div class="courseapp--info text-center mb-6">
@@ -27,7 +34,9 @@
         </v-list>
       </div>
       <div class="courseapp__sidebar--bottom text-center">
-        <h4 class="font-weight-regular text-body-2 mt-4">Expire on: May 21, 2022</h4>
+        <h4 class="font-weight-regular text-body-2 mt-4">
+          Expire on: May 21, 2022
+        </h4>
         <v-btn class="extend--btn mt-2 px-6 rounded-lg">Extend</v-btn>
 
         <div class="d-flex align-center justify-center my-6">
@@ -46,10 +55,19 @@
       </div>
     </v-navigation-drawer>
     <v-app-bar fixed app flat height="50" class="courseapp__navbar white--text">
-      <v-toolbar-title>Welcome, Mr. Jon Pulat </v-toolbar-title>
+      <v-btn
+        v-if="$route.path !== '/courseapp' && windowSize <= 1140"
+        icon
+        plain
+        @click.stop="drawer = !drawer"
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+      <v-toolbar-title class="body-1">Welcome, Mr. Jon Pulat </v-toolbar-title>
       <v-spacer />
 
       <v-btn
+        v-if="windowSize > 600"
         text
         nuxt
         elevation="0"
@@ -73,18 +91,37 @@
         <v-icon>mdi-power</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="courseapp__content" :class="dark ? 'dark-theme' : 'light-theme'">
-      <v-container>
+    <v-main
+      class="courseapp__content"
+      :class="dark ? 'dark-theme' : 'light-theme'"
+    >
+      <v-container fluid style="height: 100%">
         <Nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      :right="right"
+      temporary
+      fixed
+      class="courseapp__sidebar--right"
+      :class="dark ? 'dark-theme' : 'light-theme'"
+    >
+      <v-btn icon @click="rightDrawer = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-list style="margin: 40px 0 0">
+        <v-list-item
+          v-for="(item, i) in rigth__menus"
+          :key="i"
+          :to="item.to"
+          router
+          class="right__block"
+          multi-line
+        >
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -103,34 +140,57 @@ export default {
       items: [
         {
           title: 'Welcome',
-          to: '/courseapp',
+          to: '/courseapp/welcome',
         },
         {
           title: 'Create test',
-          to: '/inspire',
+          to: '/courseapp/createtest',
         },
         {
           title: 'Previous Test',
-          to: '/inspire',
+          to: '/courseapp/previoustest',
         },
         {
           title: 'Preformance',
-          to: '/inspire',
+          to: '/courseapp/preformance',
         },
         {
           title: 'Feedback',
-          to: '/inspire',
+          to: '/courseapp/feedback',
         },
         {
           title: 'Help',
-          to: '/inspire',
+          to: '/courseapp/help',
+        },
+      ],
+      rigth__menus: [
+        {
+          title: 'Profile',
+          to: '#',
+        },
+        {
+          title: 'Dashboard',
+          to: '#',
+        },
+        {
+          title: 'Homepage',
+          to: '/',
+        },
+        {
+          title: 'Log Out',
+          to: '/login',
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      windowSize: 0,
     }
+  },
+  methods: {
+    onResize() {
+      this.windowSize = window.innerWidth
+    },
   },
 }
 </script>

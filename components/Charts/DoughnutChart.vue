@@ -1,10 +1,12 @@
 <template>
   <div class="chart">
     <div class="chart--wrapper" :style="{ width: width + 'px' }">
-      <canvas id="doughnut-chart"></canvas>
-      <span v-if="value" id="doughnut-chart-value">{{ value }}%</span>
+      <canvas :id="id"></canvas>
+      <span id="doughnut-chart-value" :style="{fontSize: font_size + 'px'}"
+        >{{ value }}%</span
+      >
     </div>
-    <span class="chart--title"> {{ title }} </span>
+    <span v-if="title" class="chart--title"> {{ title }} </span>
   </div>
 </template>
 <script>
@@ -12,6 +14,10 @@ import Chart from 'chart.js/auto'
 export default {
   name: 'DoughnutChart',
   props: {
+    id: {
+      type: String,
+      default: 'doughnut-chart',
+    },
     width: {
       type: Number,
       default: 170,
@@ -34,25 +40,30 @@ export default {
     },
     title: {
       type: String,
-      default: 'Qbank Used',
+      default: '',
     },
   },
   data() {
     return {
-      value: '',
+      value: "",
       chartInstance: null,
     }
+  },
+  computed: {
+    font_size() {
+      return this.width / 5.6
+    },
   },
   beforeMount() {
     this.value = this.values[0] || 0
   },
   mounted() {
-    var chartjs = document.getElementById('doughnut-chart').getContext('2d')
+    var chartjs = document.getElementById(this.id).getContext('2d')
 
     const data = {
       datasets: [
         {
-          data: this.values,
+          data: this.values.map(x => !x ? 100 : x ),
           backgroundColor: this.background_color,
         },
       ],
@@ -63,7 +74,7 @@ export default {
       data: data,
       options: {
         borderWidth: 0,
-        cutout: 70,
+        cutout: this.width / 2.45,
         responsive: true,
         plugins: {
           tooltip: {
