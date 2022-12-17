@@ -69,6 +69,28 @@
         </div>
       </div>
     </v-flex>
+    <v-footer app outlined>
+      <div class="text-center">
+        <h4 class="font-weight-regular text-body-2 mt-4">
+          Expire on: May 21, 2022
+        </h4>
+        <v-btn class="extend--btn mt-2 px-6 rounded-lg">Extend</v-btn>
+
+        <div class="d-flex align-center justify-center my-6">
+          <img
+            class="ma-1"
+            width="40px"
+            height="40px"
+            src="/icons/globe.png"
+            alt=""
+          />
+          <dir class="text-left">
+            <p class="text-caption ma-0">www.medclouded.com</p>
+            <p class="text-caption ma-0">All rights reserved</p>
+          </dir>
+        </div>
+      </div>
+    </v-footer>
   </v-layout>
 </template>
 <script>
