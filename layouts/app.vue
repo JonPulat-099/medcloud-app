@@ -73,7 +73,7 @@
         <v-icon>mdi-power</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="courseapp__content">
+    <v-main class="courseapp__content" :class="dark ? 'dark-theme' : 'light-theme'">
       <v-container>
         <Nuxt />
       </v-container>
