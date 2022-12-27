@@ -62,13 +62,17 @@
               <b>Exam-like software interface</b>
               <p>Highlighting of relative strengths and weaknesses</p>
               <p>Performance gauging with peer-to-peer comparison</p>
-              <v-btn color="success">READ MORE</v-btn>
-              <v-btn color="success">TRY FOR FREE</v-btn>
+              <v-btn class="product__btn--read" rounded elevation="0"
+                >READ MORE</v-btn
+              >
+              <v-btn class="product__btn--try" rounded elevation="0"
+                >TRY FOR FREE</v-btn
+              >
             </v-flex>
           </v-layout>
         </v-container>
       </article>
-      <article class="product">
+      <article class="product product--reverse">
         <v-container grid-list-xs>
           <v-layout row wrap>
             <v-flex xs12>
@@ -90,8 +94,12 @@
               <b>Exam-like software interface</b>
               <p>Highlighting of relative strengths and weaknesses</p>
               <p>Performance gauging with peer-to-peer comparison</p>
-              <v-btn color="success">READ MORE</v-btn>
-              <v-btn color="success">TRY FOR FREE</v-btn>
+              <v-btn class="product__btn--read" rounded elevation="0"
+                >READ MORE</v-btn
+              >
+              <v-btn class="product__btn--try" rounded elevation="0"
+                >TRY FOR FREE</v-btn
+              >
             </v-flex>
             <v-flex xs12 sm6>
               <video-player :options="video_options"></video-player>
@@ -123,12 +131,97 @@
               <b>Exam-like software interface</b>
               <p>Highlighting of relative strengths and weaknesses</p>
               <p>Performance gauging with peer-to-peer comparison</p>
-              <v-btn color="success">READ MORE</v-btn>
-              <v-btn color="success">TRY FOR FREE</v-btn>
+              <v-btn class="product__btn--read" rounded elevation="0"
+                >READ MORE</v-btn
+              >
+              <v-btn class="product__btn--try" rounded elevation="0"
+                >TRY FOR FREE</v-btn
+              >
             </v-flex>
           </v-layout>
         </v-container>
       </article>
+      <v-container grid-list-xs class="our__products--info text-center">
+        <h2 class="font-weight-medium">Our Mission</h2>
+        <h3 class="font-weight-light mb-4">
+          Deliver High-Quality Studying Materials
+        </h3>
+        <v-layout row wrap class="our__products--stats">
+          <v-flex xs12 sm6 md4>
+            <img src="" alt="" />
+            <p class="caption">
+              Since 2003, nearly all medical students in the
+            </p>
+            <p class="caption">United States have trusted UWorld to p</p>
+            <p class="caption">repare for their licensing exams.</p>
+          </v-flex>
+          <v-flex xs12 sm6 md4>
+            <img src="" alt="" />
+            <p class="caption">
+              Since 2003, nearly all medical students in the
+            </p>
+            <p class="caption">United States have trusted UWorld to p</p>
+            <p class="caption">repare for their licensing exams.</p>
+          </v-flex>
+          <v-flex xs12 sm6 md4>
+            <img src="" alt="" />
+            <p class="caption">
+              Since 2003, nearly all medical students in the
+            </p>
+            <p class="caption">United States have trusted UWorld to p</p>
+            <p class="caption">repare for their licensing exams.</p>
+          </v-flex>
+          <v-flex xs12>
+            <v-btn rounded elevation="0"> LEARN ABOUT US MORE </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
+      <article class="why--choose">
+        <v-container grid-list-xs class="our__products--info text-center">
+          <h2 class="font-weight-medium">Why Choose Us?</h2>
+          <h3 class="font-weight-light mb-8">
+            More Than Hundreds of USMLE-Passed Students Across the World
+          </h3>
+          <v-layout row wrap class="our__products--stats">
+            <v-flex xs12 sm6 md4>
+              <img src="/nazokat.jpg" alt="" />
+              <h3>Nazokat</h3>
+              <p class="caption">
+                Since 2003, nearly all medical students in the
+              </p>
+              <p class="caption">United States have trusted UWorld to p</p>
+              <p class="caption">repare for their licensing exams.</p>
+            </v-flex>
+            <v-flex xs12 sm6 md4>
+              <img src="/timur.jpg" alt="" />
+              <h3>Timur</h3>
+              <p class="caption">
+                Since 2003, nearly all medical students in the
+              </p>
+              <p class="caption">United States have trusted UWorld to p</p>
+              <p class="caption">repare for their licensing exams.</p>
+            </v-flex>
+            <v-flex xs12 sm6 md4>
+              <img src="/nazar.jpg" alt="" />
+              <h3>Nazar</h3>
+              <p class="caption">
+                Since 2003, nearly all medical students in the
+              </p>
+              <p class="caption">United States have trusted UWorld to p</p>
+              <p class="caption">repare for their licensing exams.</p>
+            </v-flex>
+            <v-flex xs12>
+              <v-btn rounded elevation="0"> LEARN ABOUT OUR STUDENTS </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </article>
+      <v-container grid-list-xs class="our__products--info text-center">
+        <h2 class="font-weight-medium">
+          What Customers Say About Our Products?
+        </h2>
+        <home-slider></home-slider>
+      </v-container>
     </section>
   </div>
 </template>
@@ -140,6 +233,8 @@ export default {
     TheHeader: () => import('@/components/TheHeader.vue'),
     VideoPlayer: () =>
       import(/* webpackPrefetch: true */ '@/components/VideoPlayer.vue'),
+    HomeSlider: () =>
+      import(/* webpackPrefetch: true */ '@/components/HomeSlider.vue'),
   },
   data() {
     return {

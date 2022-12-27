@@ -1,132 +1,74 @@
 <template>
   <svg
-    viewBox="120.074 -39.112 702.089 304.031"
-    width="702.089"
-    height="304.031"
+    version="1.1"
+    baseProfile="full"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    viewBox="0 0 700 350"
+    preserveAspectRatio="xMinYMin meet"
+    class="svg-content"
   >
-    <defs>
-      <style data-bx-fonts="Barlow">
-        @import url(https://fonts.googleapis.com/css2?family=Barlow%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900%3B1%2C100%3B1%2C200%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800%3B1%2C900&amp;display=swap);
-      </style>
-    </defs>
-    <path
-      style="
-        stroke: rgb(0, 0, 0);
-        fill: rgb(255, 252, 252);
-        fill-opacity: 0;
-        paint-order: fill;
-        stroke-miterlimit: 1;
-      "
-      d="M 137 219.361 C 137 219.361 144.2486508197968 220.13915336544628 149.066 219.361 C 156.7450469327446 218.1205924666014 168.6016731846314 214.1475759747428 178.166 209.708 C 188.49730535262046 204.91240738625496 197.58157192291418 198.69895320588913 208.685 191.044 C 223.18549016614588 181.04703573692058 239.8972619859939 167.6830576002164 256.947 153.718 C 277.12767747538726 137.18846018398293 301.3345595661349 113.81861356999602 321.534 97.728 C 338.30147931266737 84.37124236869926 352.5162042425002 73.11061853772603 369.088 62.976 C 385.4217534678052 52.98695819017985 404.20665532752054 42.97271439541727 420.189 37.233 C 433.1866532311168 32.56517316444541 444.48542155211913 30.175018284766388 457.096 28.867 C 470.0202307548027 27.526448477031362 484.00770613175564 27.72351920389445 496.84 29.511 C 509.2977962590685 31.246314964223703 519.8198484462932 33.76778080792647 533.038 39.164 C 551.0162713073564 46.50350524586446 575.4845125354518 61.3082163005853 593.367 73.273 C 609.0355018548064 83.75645404733511 620.4184686760267 93.74970544056909 635.243 106.094 C 652.9359736937424 120.82682858896341 673.7868532351947 141.11403109243068 692.022 156.292 C 708.1789532103138 169.7401908278633 723.1661797174876 182.79145979178512 738.865 192.975 C 752.9912581974277 202.1384476830961 768.7475709865 211.1419047180362 781.449 215.5 C 790.7702074880525 218.69827873955853 807 220.005 807 220.005"
-      data-bx-d="M 137 219.361 R 149.066 219.361 R 178.166 209.708 R 208.685 191.044 R 256.947 153.718 R 321.534 97.728 R 369.088 62.976 R 420.189 37.233 R 457.096 28.867 R 496.84 29.511 R 533.038 39.164 R 593.367 73.273 R 635.243 106.094 R 692.022 156.292 R 738.865 192.975 R 781.449 215.5 R 807 220.005 1@94136041"
-    ></path>
-    <line
-      style="
-        fill: rgb(216, 216, 216);
-        stroke-miterlimit: 1;
-        stroke: rgb(162, 162, 162);
-        stroke-width: 2px;
-      "
-      x1="493.715"
-      y1="6.819"
-      x2="493.666"
-      y2="219.842"
-    ></line>
-    <line
-      style="
-        fill: rgb(216, 216, 216);
-        stroke-miterlimit: 1;
-        stroke-width: 2px;
-        stroke: rgb(1, 146, 32);
-      "
-      x1="599.124"
-      y1="4.085"
-      x2="599.075"
-      y2="217.108"
-    ></line>
-    <rect
-      x="588.238"
-      y="-17.254"
-      width="21.926"
-      height="21.404"
-      style="fill: rgb(1, 146, 32); stroke: rgb(1, 146, 32)"
-    ></rect>
-    <text
-      style="
-        fill: rgb(122, 122, 122);
-        font-family: Barlow;
-        font-size: 14px;
-        stroke-width: 0px;
-        white-space: pre;
-      "
-      x="596.119"
-      y="-9.783"
-    >
-      <tspan style="font-size: 14px; word-spacing: 0px"></tspan>
-    </text>
-    <text
-      style="
-        white-space: pre;
-        fill: rgb(51, 51, 51);
-        font-family: Arial, sans-serif;
-        font-size: 8.7px;
-      "
-      x="626.948"
-      y="4.145"
-    ></text>
-    <text
-      style="
-        white-space: pre;
-        fill: rgb(51, 51, 51);
-        font-family: Arial, sans-serif;
-        font-size: 8.7px;
-      "
-      x="635.313"
-      y="16.537"
-    ></text>
-    <text
-      style="
-        fill: rgb(255, 255, 255);
-        font-family: Barlow;
-        font-size: 16px;
-        white-space: pre;
-      "
-      x="590.941"
-      y="-0.768"
-    >
-      83
-    </text>
-    <line
-      style="
-        stroke-dasharray: 2px;
-        fill: rgb(255, 255, 255);
-        stroke: rgb(134, 134, 134);
-        stroke-width: 2px;
-      "
-      x1="123.728"
-      y1="232.984"
-      x2="817"
-      y2="232.1"
-    ></line>
-    <text
-      style="font-family: Barlow; font-size: 16px; white-space: pre"
-      x="483.455"
-      y="249.671"
-    >
-      50
-    </text>
-    <text
-      style="
-        fill: rgb(88, 88, 88);
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        white-space: pre;
-      "
-      x="155.532"
-      y="248.955"
-    >
-      Percentile rank
-    </text>
+    <g>
+      <line
+        x1="350"
+        y1="40"
+        x2="350"
+        y2="280"
+        stroke="#008DD2"
+        fill="transparent"
+        stroke-width="2"
+      />
+    </g>
+    <g>
+      <line
+        x1="450"
+        y1="40"
+        x2="450"
+        y2="280"
+        stroke="#009846"
+        fill="transparent"
+        stroke-width="2"
+      />
+    </g>
+    <g>
+      <path
+        d="M 50 280 S 200 280, 260 130 C 300 30, 400 30, 450 130 S 550 280, 650 280"
+        stroke="#434242"
+        fill="transparent"
+        stroke-width="2"
+        id="line"
+      />
+    </g>
+    <g fill="none">
+      <path
+        d="M 0 290 L 700 290"
+        stroke="#434242"
+        stroke-dasharray="3,3"
+        fill="transparent"
+        stroke-width="2"
+      />
+    </g>
+    <g>
+      <text x="50" y="310">Percentile rank</text>
+      <text x="340" y="310">50</text>
+    </g>
+    <g>
+      <circle cy="25" cx="450" r="15" fill="#009846"></circle>
+      <text x="450" y="30" text-anchor="middle" stroke="#fff" fill="#fff">
+        83
+      </text>
+      <text
+        x="450"
+        y="0"
+        text-anchor="middle"
+        stroke="#000"
+        fill="#000"
+        font-family="Noto Sans, sans-serif"
+      >
+        Your Score
+      </text>
+    </g>
   </svg>
 </template>
 <script>

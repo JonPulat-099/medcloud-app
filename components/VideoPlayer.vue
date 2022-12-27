@@ -39,11 +39,16 @@ export default {
 <style lang="scss">
 .video__container {
     width: inherit;
-    height: 100%;
-    padding: 20px 30px;
+    height: 90%;
+    margin-top: 20px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // padding: 20px 30px;
   .video-js {
     width: inherit !important;
     height: 100%;
+    min-height: 300px;
   }
 }
 </style>
