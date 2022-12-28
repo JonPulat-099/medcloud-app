@@ -227,13 +227,20 @@
   }
 
   .why--choose {
-    background: #CBD5E7;
+    background: #cbd5e7;
     img {
       max-width: 250px;
     }
 
     .v-btn {
-      background: #00A0E3 !important;
+      background: #00a0e3 !important;
+      color: #fff;
+    }
+  }
+
+  .customers {
+    .v-btn {
+      background: #00a0e3 !important;
       color: #fff;
     }
   }

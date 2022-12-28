@@ -216,16 +216,18 @@
           </v-layout>
         </v-container>
       </article>
-      <v-container grid-list-xs class="our__products--info text-center">
-        <h2 class="font-weight-medium">
+      <v-container grid-list-xs class="customers our__products--info text-center">
+        <h2 class="font-weight-medium mb-10">
           What Customers Say About Our Products?
         </h2>
-        <home-slider></home-slider>
+        <HomeSlider />
+        <v-btn rounded elevation="0" class="my-10">LEAVE YOUR FEEDBACK</v-btn>
       </v-container>
     </section>
   </div>
 </template>
 <script>
+import HomeSlider from '@/components/HomeSlider.vue'
 export default {
   name: 'HomePage',
   layout: 'landing',
@@ -233,8 +235,7 @@ export default {
     TheHeader: () => import('@/components/TheHeader.vue'),
     VideoPlayer: () =>
       import(/* webpackPrefetch: true */ '@/components/VideoPlayer.vue'),
-    HomeSlider: () =>
-      import(/* webpackPrefetch: true */ '@/components/HomeSlider.vue'),
+    HomeSlider,
   },
   data() {
     return {
