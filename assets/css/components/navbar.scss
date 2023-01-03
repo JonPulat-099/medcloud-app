@@ -1,8 +1,14 @@
-@import "../../variables.scss";
+@import "../global";
 
 .app__header {
   height: 70px !important;
   background: #12151D !important;
+  padding: 0 32px;
+
+  @include responsive(xs) {
+    padding: 0;
+  }
+
   .v-toolbar {
     &__title {
       align-self: center !important;
@@ -55,6 +61,51 @@
     }
   }
 
+  &--mobile {
+    background-color: #f5f5f5 !important;
+    height: 100%;
+    .v-list {
+      padding: 0;
+      height: 100% !important;
+      &-item {
+        &::before {
+          display: none;
+        }
+        &__title {
+          font-weight: 600;
+        }
+        &__content {
+          cursor: default;
+
+          ul {
+            list-style-type: none;
+            li {
+              padding: 5px 0;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+
+    .link {
+      cursor: pointer;
+      text-decoration: none;
+      color: #12151D;
+      transition: .25s all;
+      &:hover{
+        color: #008dd2;
+      }
+
+      &.demo {
+        padding: 8px;
+        text-align: center;
+        border-radius: 24px;
+        background: #EF7F1A;
+        color: #fff;
+      }
+    }
+  }
 }
 
 .dropdown__menu {

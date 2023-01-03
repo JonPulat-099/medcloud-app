@@ -232,6 +232,7 @@
 
 .dashboard {
   max-width: 1400px;
+  min-height: 100%;
 
   &.layout {
     margin: 0 auto !important;
@@ -275,5 +276,10 @@
       min-width: 100px !important;
       background: #d9dada;
     }
+  }
+
+  &__bottom {
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
   }
 }

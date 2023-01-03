@@ -83,10 +83,8 @@ export default {
   async mounted() {
     await this.$nextTick()
     new Swiper(this.$refs.swiper, {
-      slidesPerView: 3,
-      spaceBetween: 30,
+      slidesPerView: 1,
       loop: true,
-      centeredSlides: true,
       autoplay: {
         delay: 2500,
         disableOnInteraction: false,
@@ -94,6 +92,22 @@ export default {
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        // when window width is >= 480px
+        480: {
+          slidesPerView: 1,
+          spaceBetween: 30,
+        },
+        // when window width is >= 640px
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        900: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
       },
     })
   },

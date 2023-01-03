@@ -22,15 +22,14 @@
       />
     </picture>
     <div class="header__content">
-      <h1 class="header__content--title mb-3">
+      <h1 class="header__content--title">
         Medicine lives here
       </h1>
-      <div class="header__content--subtitle title mb-5">
+      <div class="header__content--subtitle mb-5">
         Learn old facts by the new way
       </div>
       <v-btn
-        color="amber"
-        class="text-uppercase font-weight-medium try__for--free"
+        class="text-uppercase font-weight-medium try__for--free rounded-xl"
         elevation="0"
         large
         >Try For Free</v-btn
@@ -42,7 +41,7 @@
 export default {}
 </script>
 <style lang="scss">
-// @import '../abstracts/global';
+@import '../assets/css/_global.scss';
 
 .header {
   height: auto;
@@ -66,7 +65,7 @@ export default {}
   img {
     max-width: 100%;
     width: 100%;
-    height: 80vh;
+    height: 95vh;
     box-sizing: border-box;
     object-fit: cover;
     object-position: center;
@@ -79,37 +78,38 @@ export default {}
     transform: translateY(-50%);
     color: #fff;
 
-    h1 {
-      color: #0882bb;
-      font-size: 70px;
-    }
-
     &--title {
-      font-size: 40px;
+      font-size: 60px;
+      line-height: 1.2;
+      color: #fff;
     }
 
     &--subtitle {
-      font-size: 34px;
-      line-height: 1.1;
+      font-weight: 200 !important;
+      font-size: 40px !important;
+      line-height: 1.1 !important;
     }
 
     .try__for--free {
       border-radius: 10px;
+      background: #00A0E3 !important;
+      color: #fff;
+      font-weight: 400 !important;
     }
 
-    // @include responsive(xs) {
-    //   h1 {
-    //     font-size: 40px !important;
-    //   }
+    @include responsive(xs) {
+      h1 {
+        font-size: 35px !important;
+      }
 
-    //   &--title {
-    //     font-size: 26px;
-    //   }
+      &--title {
+        font-size: 30px;
+      }
 
-    //   &--subtitle {
-    //     font-size: 22px !important;
-    //   }
-    // }
+      &--subtitle {
+        font-size: 22px !important;
+      }
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-// @import '../abstracts/global';
+@import "mixins";
 
 .what__is {
   background: #f4f4f4;
@@ -162,7 +162,30 @@
 
   &--stats {
     font-weight: 300;
-    padding-bottom: 50px;
+    padding: 20px 0 50px 0;
+
+    &.students {
+      img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    p {
+      font-style: 16px;
+      line-height: 24px;
+      @include responsive(xs) {
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 20px 0;
+    }
 
     .v-btn {
       background: #a2d9f7 !important;
@@ -177,6 +200,7 @@
     padding-bottom: 50px;
     &--reverse {
       text-align: right;
+      
     }
 
     &:nth-child(even) {

@@ -41,14 +41,33 @@ export default {
     width: inherit;
     height: 90%;
     margin-top: 20px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // padding: 20px 30px;
   .video-js {
     width: inherit !important;
     height: 100%;
     min-height: 300px;
+
+    @media only screen and (max-width: 960px) {
+      min-height: 400px;
+    }
+  }
+
+  .vjs-big-play-button {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+
+    .vjs-icon-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        position: relative !important;
+        font-size: 80px;
+      }
+    }
   }
 }
 </style>

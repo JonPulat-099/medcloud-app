@@ -1,97 +1,94 @@
 <template>
-  <v-layout row wrap class="dashboard" justify-space-around>
-    <v-flex xs12>
-      <h2 class="dashboard__title">Dashboard and Active Subscriptions</h2>
-    </v-flex>
-    <v-flex v-for="(item, i) in items" :key="'item_' + i" xs12 sm6 md4>
-      <div class="dashboard__item">
-        <div
-          class="dashboard__item--title font-weight-medium text-center"
-          :style="`background: ${item.color}`"
-        >
-          {{ item.title }}
-        </div>
-        <div
-          class="dashboard__item--subtitle font-weight-medium text-center my-3"
-        >
-          {{ item.subtitle }}
-        </div>
-        <div class="dashboard__item--content">
-          <div>
-            <doughnut-chart
-              :id="`chart-id-${i}`"
-              :width="95"
-              :values="item.values"
-              :background_color="item.background_color"
-            ></doughnut-chart>
-            <div class="text-center my-2 body-2">Completed</div>
+  <section class="dashboard d-flex flex-column justify-space-between">
+    <v-layout row wrap flex-grow-0 justify-space-around>
+      <v-flex xs12>
+        <h2 class="dashboard__title">Dashboard and Active Subscriptions</h2>
+      </v-flex>
+      <v-flex v-for="(item, i) in items" :key="'item_' + i" xs12 sm6 md4>
+        <div class="dashboard__item">
+          <div
+            class="dashboard__item--title font-weight-medium text-center"
+            :style="`background: ${item.color}`"
+          >
+            {{ item.title }}
           </div>
-          <div>
-            <div class="stats-container">
-              <div
-                v-for="(s, k) in item.stats"
-                :key="'stats__' + k"
-                class="stats-row"
-              >
-                <div>{{ s.name }}</div>
-                <div :class="{ 'blue--chip-1': k == 1 }">{{ s.value }}</div>
+          <div
+            class="dashboard__item--subtitle font-weight-medium text-center my-3"
+          >
+            {{ item.subtitle }}
+          </div>
+          <div class="dashboard__item--content">
+            <div>
+              <doughnut-chart
+                :id="`chart-id-${i}`"
+                :width="95"
+                :values="item.values"
+                :background_color="item.background_color"
+              ></doughnut-chart>
+              <div class="text-center my-2 body-2">Completed</div>
+            </div>
+            <div>
+              <div class="stats-container">
+                <div
+                  v-for="(s, k) in item.stats"
+                  :key="'stats__' + k"
+                  class="stats-row"
+                >
+                  <div>{{ s.name }}</div>
+                  <div :class="{ 'blue--chip-1': k == 1 }">{{ s.value }}</div>
+                </div>
               </div>
             </div>
           </div>
+          <div v-if="item.is_demo" class="dashboard__item--actions">
+            <v-btn
+              class="dashboard__item--btn rounded-xl"
+              elevation="0"
+              color="#d9dada"
+              >Buy</v-btn
+            >
+            <v-btn
+              class="dashboard__item--btn rounded-xl"
+              elevation="0"
+              color="#A2D9F7"
+              >Demo</v-btn
+            >
+          </div>
+          <div v-else class="dashboard__item--actions">
+            <v-btn
+              class="dashboard__item--btn rounded-xl"
+              elevation="0"
+              color="#d9dada"
+              >Extend</v-btn
+            >
+            <v-btn
+              class="dashboard__item--btn rounded-xl"
+              elevation="0"
+              :color="item.color"
+              >Resume</v-btn
+            >
+          </div>
         </div>
-        <div v-if="item.is_demo" class="dashboard__item--actions">
-          <v-btn
-            class="dashboard__item--btn rounded-xl"
-            elevation="0"
-            color="#d9dada"
-            >Buy</v-btn
-          >
-          <v-btn
-            class="dashboard__item--btn rounded-xl"
-            elevation="0"
-            color="#A2D9F7"
-            >Demo</v-btn
-          >
-        </div>
-        <div v-else class="dashboard__item--actions">
-          <v-btn
-            class="dashboard__item--btn rounded-xl"
-            elevation="0"
-            color="#d9dada"
-            >Extend</v-btn
-          >
-          <v-btn
-            class="dashboard__item--btn rounded-xl"
-            elevation="0"
-            :color="item.color"
-            >Resume</v-btn
-          >
-        </div>
-      </div>
-    </v-flex>
-    <v-footer app outlined>
+      </v-flex>
+    </v-layout>
+    <v-footer class="pa-0 dashboard__bottom">
       <div class="text-center">
-        <h4 class="font-weight-regular text-body-2 mt-4">
-          Expire on: May 21, 2022
-        </h4>
-        <v-btn class="extend--btn mt-2 px-6 rounded-lg">Extend</v-btn>
-
-        <div class="d-flex align-center justify-center my-6">
+        <div class="d-flex align-center justify-center">
           <img
-            class="ma-1"
+            class="ma-0 mr-1"
             width="40px"
             height="40px"
             src="/icons/globe.png"
             alt=""
           />
           <dir class="text-left">
-            <p class="text-caption ma-0">www.medclouded.com</p>
-            <p class="text-caption ma-0">All rights reserved</p>
+            <p class="caption ma-0">www.medclouded.com</p>
+            <p class="caption ma-0">All rights reserved</p>
           </dir>
         </div>
       </div>
     </v-footer>
-  </v-layout>
+  </section>
 </template>
 <script>
 export default {

@@ -23,4 +23,4 @@ export default {
   },
 }
 </script>
-<style lang="scss" src="@/assets/css/pages/landing.scss"></style>
+<style lang="scss" src="@/assets/css/landing.scss"></style>

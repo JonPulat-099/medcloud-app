@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap v-resize="onResize">
-    <v-app-bar app :fixed="!!offsetTop" dense class="app__header px-8">
+    <v-app-bar app :fixed="!!offsetTop" dense class="app__header">
       <v-toolbar-title>
         <img src="/logo.svg" alt="" width="80px" />
       </v-toolbar-title>
@@ -75,7 +75,12 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn nuxt to="/courseapp" class="to-try rounded-xl white--text mr-6">
+        <v-btn
+          v-if="windowSize > 480"
+          nuxt
+          to="/courseapp"
+          class="to-try rounded-xl white--text mr-6"
+        >
           Demo
         </v-btn>
         <v-btn icon nuxt to="/login" width="24" height="24" class="account">
@@ -104,20 +109,40 @@
       fixed
       app
       right
+      class="app__header--mobile"
     >
+      <v-btn icon @click="drawer = false" class="ml-1">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
       <v-list>
         <v-list-item
-          v-for="(item, i) in 5"
+          v-for="(item, i) in menu"
           :key="i"
           :to="item.to"
           router
           exact
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title v-if="item.has_child">
+              {{ item.name }}
+              <ul>
+                <li v-for="(submenu, k) in item.child" :key="`child_menu-${k}`">
+                  <nuxt-link :to="submenu.to" class="link">{{
+                    submenu.name
+                  }}</nuxt-link>
+                </li>
+              </ul>
+            </v-list-item-title>
+            <v-list-item-title v-else nuxt :to="item.to" class="link">
+              {{ item.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-if="windowSize <= 480">
+          <v-list-item-content>
+            <v-list-item-title nuxt to="/courseapp" class="link demo">
+              Demo
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

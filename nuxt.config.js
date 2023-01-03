@@ -19,7 +19,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '@/plugins/vuetify.js'
+    '@/plugins/mixins.js',
+    { src: '@/plugins/countdown-timer.js', ssr: false },
     // { src: '@/plugins/chart.js', mode: "client"}
   ],
 
@@ -27,8 +28,8 @@ export default {
   components: false,
 
   server: {
-    host: "0.0.0.0",
-    port: "8080"
+    host: '0.0.0.0',
+    port: '8080',
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -61,7 +62,7 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     treeShake: true,
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/css/variables.scss'],
     theme: {
       dark: false,
       themes: {
