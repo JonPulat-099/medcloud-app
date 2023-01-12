@@ -8,11 +8,18 @@
       width="60"
       :permanent="true"
       class="left-navigator"
+      floating
     >
-      <table>
+      <table class="question">
         <tbody>
-          <tr v-for="i in 20" :key="`test_${i}`">
-            <td>{{ i }}</td>
+          <tr v-for="i in 20" :key="`test_${i}`" :class="{ active: i == 5 }">
+            <td>
+              <span data-v-4f40f054="" class="question__status"
+                ><span data-v-4f40f054=""> . </span></span
+              >
+              <span data-v-4f40f054="" class="question__index"> {{ i }} </span>
+              <span data-v-4f40f054="" class="question__marked"></span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -62,7 +69,88 @@
       fixed
       class="right-navigator"
     >
-      right side bar
+      <div class="user__settings">
+        <v-btn icon @click="rightDrawer = false">
+          <v-icon class="black--text font-weight-bold">mdi-window-close</v-icon>
+        </v-btn>
+
+        <div class="user__settings--section">
+          <span class="title"> Interface </span>
+          <div class="tools">
+            <div class="tool">
+              <aside>
+                <span>Font Size</span>
+              </aside>
+              <aside>
+                <button>
+                  <span class="minus"></span>
+                </button>
+                <button>
+                  <span class="plus"></span>
+                </button>
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Theme</span>
+              </aside>
+              <aside>
+                <button>
+                  <span>1</span>
+                </button>
+                <button>
+                  <span>2</span>
+                </button>
+                <button>
+                  <span>3</span>
+                </button>
+                <button>
+                  <span>4</span>
+                </button>
+                <button>
+                  <span>5</span>
+                </button>
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Timer</span>
+              </aside>
+              <aside>
+                <v-switch inset v-model="value"></v-switch>
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Screen split</span>
+              </aside>
+              <aside>
+                <v-switch inset v-model="value"></v-switch>
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Confirm answer</span>
+              </aside>
+              <aside>
+                <v-switch inset v-model="value"></v-switch>
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Highlight</span>
+              </aside>
+              <aside>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
     </v-navigation-drawer>
     <v-footer :absolute="true" app height="52" class="footer-nav">
       <v-layout row justify-space-between align-center>

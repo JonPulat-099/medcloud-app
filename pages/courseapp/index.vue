@@ -1,5 +1,5 @@
 <template>
-  <section class="dashboard d-flex flex-column justify-space-between">
+  <section class="dashboard d-flex flex-column justify-space-between mx-auto">
     <v-layout row wrap flex-grow-0 justify-space-around>
       <v-flex xs12>
         <h2 class="dashboard__title">Dashboard and Active Subscriptions</h2>

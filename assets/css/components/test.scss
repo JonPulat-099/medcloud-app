@@ -51,6 +51,85 @@
   // font-family: 'PT Sans', sans-serif;
   .left-navigator {
   }
+
+  .right-navigator {
+    background: #f5f5f5;
+
+    .user__settings {
+      padding: 8px 10px;
+      .v-btn {
+        width: 20px;
+        height: 20px;
+      }
+
+      &--section {
+        margin: 20px 0;
+
+        .title {
+          display: block;
+          padding-left: 8px;
+          margin-bottom: 10px;
+          color: #5b5b5b;
+          font-weight: 500;
+        }
+
+        .tools {
+          border-radius: 5px;
+          background: #fff;
+          padding: 10px 15px 10px 8px;
+
+          .tool {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #5b5b5b;
+            font-weight: 500;
+            &:not(:last-child) {
+              border-bottom: 1.5px dotted #000;
+            }
+
+            button {
+              span {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #000;
+                &.plus,
+                &.minus {
+                  background: #c5c6c6;
+                  position: relative;
+
+                  &::after {
+                    content: '';
+                    position: absolute;
+                    width: 14px;
+                    height: 2px;
+                    background: #fff;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 10px;
+                  }
+                }
+                &.plus::before {
+                  content: '';
+                  position: absolute;
+                  width: 2px;
+                  height: 14px;
+                  background: #fff;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  border-radius: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   .header-nav,
   .footer-nav {
     background: var(--primary) !important;
@@ -99,22 +178,22 @@
     transition: all 0.25s;
     tr {
       cursor: pointer;
-      color: var(--font);
+      color: var(--left-nav-text);
       transition: all 0.25s;
       td {
-        padding: 0 0 0 5px;
+        padding: 2px 0 2px 5px;
       }
       &:nth-child(even) {
-        background: var(--nav-row-alternate);
+        background: var(--nav-row-odd);
         transition: all 0.25s;
       }
       &:nth-child(odd) {
         background: inherit;
+        background: var(--nav-row-even);
       }
 
       &.active {
-        background: var(--left-nav-selected-bg);
-        color: var(--left-nav-selected-text);
+        background: var(--left-nav-selected-text);
         transition: all 0.25s;
       }
     }
@@ -123,7 +202,7 @@
       width: 5px;
       height: 100%;
       font-weight: 600;
-      color: var(--font);
+      color: var(--left-nav-text);
       transition: all 0.25s;
       span {
         transform: translateY(-5px);
