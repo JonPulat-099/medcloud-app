@@ -1,8 +1,8 @@
 import { tests } from './mock_data'
 export const state = () => ({
   theme: 'theme-light',
-  highlight: ['#ffff67', '#b2ff59', '#85feff', '#fcb1cb', '#ffac00'],
-  current_color: '#ffff67',
+  highlight: ['#FFFF67', '#B2FF59', '#85FEFF', '#F5B2B6', '#FFAC00'],
+  current_color: '#FFFF67',
   font_size: 16,
   test_count: 10,
   test_numb: 1,

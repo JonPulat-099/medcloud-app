@@ -90,25 +90,14 @@
                 </button>
               </aside>
             </div>
-            <div class="tool">
+            <div class="tool theme">
               <aside>
                 <span>Theme</span>
               </aside>
               <aside>
-                <button>
-                  <span>1</span>
-                </button>
-                <button>
-                  <span>2</span>
-                </button>
-                <button>
-                  <span>3</span>
-                </button>
-                <button>
-                  <span>4</span>
-                </button>
-                <button>
-                  <span>5</span>
+                <button v-for="(t,i) in themes" :key="t.name" :class="{ active: i ==2 }">
+                  <v-icon :color="t.color">mdi-circle</v-icon>
+                  <v-icon v-if="i == 2" color="#fff" class="current">mdi-check</v-icon>
                 </button>
               </aside>
             </div>
@@ -117,7 +106,8 @@
                 <span>Timer</span>
               </aside>
               <aside>
-                <v-switch inset v-model="value"></v-switch>
+                <input v-model="isTimer" type="checkbox" id="switch" />
+                <label for="switch"></label>
               </aside>
             </div>
             <div class="tool">
@@ -125,7 +115,8 @@
                 <span>Screen split</span>
               </aside>
               <aside>
-                <v-switch inset v-model="value"></v-switch>
+                <input v-model="isTimer" type="checkbox" id="switch" />
+                <label for="switch"></label>
               </aside>
             </div>
             <div class="tool">
@@ -133,19 +124,80 @@
                 <span>Confirm answer</span>
               </aside>
               <aside>
-                <v-switch inset v-model="value"></v-switch>
+                <input v-model="isTimer" type="checkbox" id="switch" />
+                <label for="switch"></label>
               </aside>
             </div>
-            <div class="tool">
+            <div class="tool theme">
               <aside>
                 <span>Highlight</span>
               </aside>
               <aside>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
+                <button v-for="(t,i) in highlights" :key="t" :class="{ active: i ==2 }">
+                  <v-icon :color="t">mdi-circle</v-icon>
+                  <v-icon v-if="i == 2" color="#000" class="current">mdi-check</v-icon>
+                </button>
+              </aside>
+            </div>
+          </div>
+        </div>
+        <div class="user__settings--section shortcuts">
+          <span class="title"> Shortcuts </span>
+          <div class="tools">
+            <div class="tool">
+              <aside>
+                <span>A,B,C,D</span>
+              </aside>
+              <aside>
+                Answer Choice
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Alt + M</span>
+              </aside>
+              <aside>
+                Mark
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Alt + P</span>
+              </aside>
+              <aside>
+                Previous Question
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Alt + N</span>
+              </aside>
+              <aside>
+                Next Question
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Alt + L</span>
+              </aside>
+              <aside>
+                Lab Values
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>F11</span>
+              </aside>
+              <aside>
+                Full Screen
+              </aside>
+            </div>
+            <div class="tool">
+              <aside>
+                <span>Alt + C</span>
+              </aside>
+              <aside>
+                Close Window
               </aside>
             </div>
           </div>
@@ -207,12 +259,43 @@ export default {
     return {
       drawer: true,
       rightDrawer: false,
+      isTimer: false,
+      isScreenSplit: false,
+      isConfirmAnswer: false,
+      themes: [
+        {
+          name: "theme-light",
+          color: "#0E4687"
+        },
+        {
+          name: "theme-blue",
+          color: "#2B2A29"
+        },
+        {
+          name: "theme-sepia",
+          color: "#E6DAC1"
+        },
+        {
+          name: "theme-dark",
+          color: "#1E1E1E"
+        },
+        {
+          name: "theme-brown",
+          color: "#3D4A5E"
+        },
+      ]
     }
   },
   computed: {
     parent__class() {
       return this.$store.state.tests.theme
     },
+    highlights() {
+      return this.$store.state.tests.highlight
+    },
+    current_highlight() {
+      return this.$store.state.tests.current_color
+    }
   },
   methods: {
     startCallBack: function (x) {
