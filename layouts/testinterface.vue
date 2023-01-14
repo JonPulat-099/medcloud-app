@@ -36,8 +36,9 @@
         <span class="flag"></span>
       </div>
       <v-spacer />
-      <v-btn class="header-nav__actions" icon>
-        <img src="/icons/fullscreen.svg" alt="" />
+      <v-btn id="toggle-fullscreen" class="header-nav__actions" icon>
+        <img v-if="!isFullscreen" src="/icons/fullscreen.svg" alt="" />
+        <v-icon v-else>mdi-fullscreen-exit</v-icon>
       </v-btn>
       <v-btn class="header-nav__actions" icon>
         <img class="lab" src="/icons/lab.png" alt="" />
@@ -233,13 +234,14 @@
             <img class="lab" src="/icons/pause.png" alt="" />
           </v-btn>
         </v-flex>
-        <v-flex xs4 class="text-center">
-          <v-btn class="d-block mx-auto" mx-auto>
+        <v-flex xs4 class="center--tools">
+          <v-btn class="feedback__btn elevation-0 rounded-0" tile text mx-auto>
             <img class="lab" src="/icons/feedback.png" alt="" />
             Feedback
           </v-btn>
         </v-flex>
-        <v-flex xs4 class="text-right">
+        <v-flex xs4 class="right--tools">
+          <v-spacer></v-spacer>
           <v-btn icon class="ml-auto">
             <img class="lab" src="/icons/previous.svg" alt="" />
           </v-btn>
@@ -283,7 +285,8 @@ export default {
           name: "theme-brown",
           color: "#3D4A5E"
         },
-      ]
+      ],
+      isFullscreen: false,
     }
   },
   computed: {
@@ -296,6 +299,32 @@ export default {
     current_highlight() {
       return this.$store.state.tests.current_color
     }
+  },
+  mounted() {
+    document.getElementById('toggle-fullscreen').addEventListener('click', (event) => {
+        const el = document.documentElement
+        if (document.fullscreenElement) {
+          document.exitFullscreen()
+        } else {
+          el.requestFullscreen()
+        }
+      })
+
+      // [
+      //   'fullscreenchange',
+      //   'webkitfullscreenchange',
+      //   'mozfullscreenchange',
+      //   'msfullscreenchange'
+      // ].forEach((eventType) =>
+      //   document.addEventListener(
+      //     eventType,
+      //     () => {
+      //       console.log(1)
+      //       this.isFullscreen = document.fullscreenElement ? true : false
+      //     },
+      //     false
+      //   )
+      // )
   },
   methods: {
     startCallBack: function (x) {

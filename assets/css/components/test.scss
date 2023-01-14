@@ -243,6 +243,25 @@
         }
       }
     }
+
+    .center--tools {
+      button {
+        display: block;
+        margin: 0 auto;
+        text-transform: capitalize;
+        .v-btn__content {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .right--tools {
+      display: flex;
+      button {
+        align-self: flex-end;
+      }
+    }
   }
 
   .question {
