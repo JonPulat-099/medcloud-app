@@ -66,14 +66,14 @@
     </div>
     <div class="resize" id="mouse-resize"></div>
     <div class="section__dialog">
-      <LabValues v-if="true" />
+      <LabValues v-if="show_lab_values" />
     </div>
   </section>
 </template>
 <script>
 export default {
   name: 'LaunchTest',
-  layout: "testinterface",
+  layout: 'testinterface',
   components: {
     LabValues: () =>
       import(/* webpackPrefetchL true */ '@/components/LaunchTest/LabValues'),
@@ -86,6 +86,9 @@ export default {
     }
   },
   computed: {
+    show_lab_values() {
+      return this.$attrs
+    },
     question() {
       return this.$store.getters['tests/get_question']
     },
@@ -96,8 +99,7 @@ export default {
       return this.$store.getters['tests/get_answers_title'] ?? false
     },
     seleted() {
-      const answer =
-        this.$store.getters['tests/get_selected_variant'] ?? ''
+      const answer = this.$store.getters['tests/get_selected_variant'] ?? ''
       this.variant_id = answer
       return answer
     },
@@ -149,73 +151,6 @@ export default {
         range.pasteHTML(html)
       }
     })
-
-      // Query the element
-  const resizer = document.getElementById('mouse-resize');
-  const leftSide = resizer.previousElementSibling;
-  const rightSide = resizer.nextElementSibling;
-
-  // The current position of mouse
-  let x = 0;
-  let y = 0;
-
-  // Width of left side
-  let leftWidth = 0;
-
-  // Handle the mousedown event
-  // that's triggered when user drags the resizer
-  const mouseDownHandler = function (e) {
-    // Get the current mouse position
-    x = e.clientX;
-    y = e.clientY;
-    leftWidth = leftSide.getBoundingClientRect().width;
-
-    // Attach the listeners to `document`
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-  };
-
-  // Attach the handler
-  resizer.addEventListener('mousedown', mouseDownHandler);
-
-  const mouseMoveHandler = function (e) {
-    document.body.style.cursor = 'col-resize';
-    leftSide.style.userSelect = 'none';
-    leftSide.style.pointerEvents = 'none';
-
-    rightSide.style.userSelect = 'none';
-    rightSide.style.pointerEvents = 'none';
-    // How far the mouse has been moved
-    const dx = e.clientX - x;
-    const dy = e.clientY - y;
-
-    const container = resizer.parentNode.getBoundingClientRect().width
-    // if (leftWidth > 500) {
-      const newLeftWidth = ((leftWidth + dx));
-      if (newLeftWidth <= 390) {
-        leftSide.style.width = '390px'
-      } else {
-        leftSide.style.width = `${newLeftWidth}px`;
-      }
-  
-      console.log(leftWidth, dx, newLeftWidth, container);
-    // }
-  };
-
-  const mouseUpHandler = function () {
-    resizer.style.removeProperty('cursor');
-    document.body.style.removeProperty('cursor');
-
-    leftSide.style.removeProperty('user-select');
-    leftSide.style.removeProperty('pointer-events');
-
-    rightSide.style.removeProperty('user-select');
-    rightSide.style.removeProperty('pointer-events');
-
-    // Remove the handlers of `mousemove` and `mouseup`
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-  };
   },
   methods: {
     submitAnswer() {

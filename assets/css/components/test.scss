@@ -419,7 +419,7 @@
   }
 }
 
-// .test__interface {
+// .test__interface {f
 //   overflow: hidden !important;
 // }
 // .theme-light {
@@ -938,9 +938,18 @@
 
 #question {
   &__information {
+    scrollbar-width: thin;
     padding: 22px 20px 20px 30px !important;
     overflow-y: scroll;
     height: calc(100vh - 104px);
+
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+    }
 
     .submit__btn {
       width: 100px;

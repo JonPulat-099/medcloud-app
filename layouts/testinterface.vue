@@ -49,27 +49,27 @@
           <img v-if="!isFullscreen" src="/icons/fullscreen.svg" alt="" />
           <v-icon v-else>mdi-fullscreen-exit</v-icon>
         </v-btn>
-        <v-btn class="header-nav__actions" icon>
+        <v-btn class="header-nav__actions" icon @click="labValue = !labValue">
           <img class="lab" src="/icons/lab.png" alt="" />
         </v-btn>
         <v-btn
           class="header-nav__actions"
           icon
-          @click.stop="rightDrawer = !rightDrawer"
+          @click="calculator = !calculator"
         >
           <img class="lab" src="/icons/calc.svg" alt="" />
         </v-btn>
         <v-btn
           class="header-nav__actions"
           icon
-          @click.stop="rightDrawer = !rightDrawer"
+          @click="labValue = !labValue"
         >
           <img class="lab" src="/icons/settings.png" alt="" />
         </v-btn>
       </v-app-bar>
       <v-main class="test-content">
         <v-container>
-          <Nuxt />
+          <Nuxt :labvalues="labValue" />
         </v-container>
       </v-main>
       <v-navigation-drawer
@@ -272,12 +272,25 @@
         </v-layout>
       </v-footer>
     </div>
+    <v-dialog
+      v-model="calculator"
+      persistent
+      hide-overlay
+      max-width="160"
+      transition="dialog-transition"
+    >
+      <calculator @close="calculator = false"></calculator>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
 export default {
   name: 'TestInterface',
+  components: {
+    Calculator: () =>
+      import(/* webpackPrefetchL true */ '@/components/LaunchTest/Calculator'),
+  },
   data() {
     return {
       drawer: true,
@@ -308,6 +321,8 @@ export default {
         },
       ],
       isFullscreen: false,
+      labValue: false,
+      calculator: false,
     }
   },
   computed: {
@@ -357,6 +372,73 @@ export default {
       } else {
         this.isFullscreen = false
       }
+    }
+
+    // Query the element
+    const resizer = document.getElementById('mouse-resize')
+    const leftSide = resizer.previousElementSibling
+    const rightSide = resizer.nextElementSibling
+
+    // The current position of mouse
+    let x = 0
+    let y = 0
+
+    // Width of left side
+    let leftWidth = 0
+
+    // Handle the mousedown event
+    // that's triggered when user drags the resizer
+    const mouseDownHandler = function (e) {
+      // Get the current mouse position
+      x = e.clientX
+      y = e.clientY
+      leftWidth = leftSide.getBoundingClientRect().width
+
+      // Attach the listeners to `document`
+      document.addEventListener('mousemove', mouseMoveHandler)
+      document.addEventListener('mouseup', mouseUpHandler)
+    }
+
+    // Attach the handler
+    resizer.addEventListener('mousedown', mouseDownHandler)
+
+    const mouseMoveHandler = function (e) {
+      document.body.style.cursor = 'col-resize'
+      leftSide.style.userSelect = 'none'
+      leftSide.style.pointerEvents = 'none'
+
+      rightSide.style.userSelect = 'none'
+      rightSide.style.pointerEvents = 'none'
+      // How far the mouse has been moved
+      const dx = e.clientX - x
+      const dy = e.clientY - y
+
+      const container = resizer.parentNode.getBoundingClientRect().width
+      // if (leftWidth > 500) {
+      const newLeftWidth = leftWidth + dx
+      if (newLeftWidth <= 390) {
+        leftSide.style.width = '390px'
+      } else {
+        leftSide.style.width = `${newLeftWidth}px`
+      }
+
+      console.log(leftWidth, dx, newLeftWidth, container)
+      // }
+    }
+
+    const mouseUpHandler = function () {
+      resizer.style.removeProperty('cursor')
+      document.body.style.removeProperty('cursor')
+
+      leftSide.style.removeProperty('user-select')
+      leftSide.style.removeProperty('pointer-events')
+
+      rightSide.style.removeProperty('user-select')
+      rightSide.style.removeProperty('pointer-events')
+
+      // Remove the handlers of `mousemove` and `mouseup`
+      document.removeEventListener('mousemove', mouseMoveHandler)
+      document.removeEventListener('mouseup', mouseUpHandler)
     }
   },
   methods: {
