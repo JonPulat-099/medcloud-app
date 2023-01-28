@@ -8,6 +8,7 @@ export const state = () => ({
   test_numb: 1,
   test_id: 12343,
   tests: tests,
+  labvalues: false,
 })
 
 export const mutations = {
@@ -64,6 +65,10 @@ export const mutations = {
   setHighlightColor(state, color) {
     state.current_color = color
   },
+
+  setLabvaluesStatus(state, status) {
+    state.labvalues = status
+  }
 }
 
 export const actions = {

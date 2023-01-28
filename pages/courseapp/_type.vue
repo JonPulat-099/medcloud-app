@@ -64,9 +64,9 @@
         <button class="submit__btn" @click="submitAnswer">Submit</button>
       </div>
     </div>
-    <div class="resize" id="mouse-resize"></div>
-    <div class="section__dialog">
-      <LabValues v-if="show_lab_values" />
+    <div v-show="show_lab_values" class="resize" id="mouse-resize"></div>
+    <div v-show="show_lab_values" class="section__dialog">
+      <LabValues />
     </div>
   </section>
 </template>
@@ -87,7 +87,8 @@ export default {
   },
   computed: {
     show_lab_values() {
-      return this.$attrs
+      console.log(this.$attrs.labvalues);
+      return this.$store.state.tests.labvalues
     },
     question() {
       return this.$store.getters['tests/get_question']

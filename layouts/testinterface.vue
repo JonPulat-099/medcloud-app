@@ -49,7 +49,7 @@
           <img v-if="!isFullscreen" src="/icons/fullscreen.svg" alt="" />
           <v-icon v-else>mdi-fullscreen-exit</v-icon>
         </v-btn>
-        <v-btn class="header-nav__actions" icon @click="labValue = !labValue">
+        <v-btn class="header-nav__actions" icon @click="toggleLabValues">
           <img class="lab" src="/icons/lab.png" alt="" />
         </v-btn>
         <v-btn
@@ -62,7 +62,7 @@
         <v-btn
           class="header-nav__actions"
           icon
-          @click="labValue = !labValue"
+          @click="rightDrawer = !rightDrawer"
         >
           <img class="lab" src="/icons/settings.png" alt="" />
         </v-btn>
@@ -321,7 +321,6 @@ export default {
         },
       ],
       isFullscreen: false,
-      labValue: false,
       calculator: false,
     }
   },
@@ -353,6 +352,9 @@ export default {
     current_highlight() {
       return this.$store.state.tests.current_color
     },
+    labValue() {
+      return this.$store.state.tests.labvalues
+    }
   },
   mounted() {
     document
@@ -454,6 +456,9 @@ export default {
     setIsMarkTest(val) {
       this.$store.commit('tests/setIsMarkTest', val)
     },
+    toggleLabValues() {
+      this.$store.commit("tests/setLabvaluesStatus", !this.labValue)
+    }
   },
 }
 </script>
