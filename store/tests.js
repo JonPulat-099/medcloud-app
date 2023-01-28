@@ -9,6 +9,7 @@ export const state = () => ({
   test_id: 12343,
   tests: tests,
   labvalues: false,
+  is_split_screen: false,
 })
 
 export const mutations = {
@@ -68,7 +69,11 @@ export const mutations = {
 
   setLabvaluesStatus(state, status) {
     state.labvalues = status
-  }
+  },
+
+  setSplitScreen(state, status) {
+    state.is_split_screen = status
+  },
 }
 
 export const actions = {

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-resize="onResize">
     <div :class="`test__interface ${parent__class}`">
       <v-navigation-drawer
         v-model="drawer"
@@ -7,9 +7,10 @@
         absolute
         app
         width="60"
-        :permanent="true"
+        :permanent="windowSize >= 960"
         class="left-navigator"
         floating
+        hide-overlay
       >
         <table class="question">
           <tbody>
@@ -31,7 +32,10 @@
         </table>
       </v-navigation-drawer>
       <v-app-bar clipped-left fixed app height="52" class="header-nav">
-        <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+        <v-app-bar-nav-icon
+          v-if="windowSize < 960"
+          @click.stop="drawer = !drawer"
+        />
         <div class="question__details">
           Item {{ 10 }} of {{ 10 }}
           <br />
@@ -77,6 +81,7 @@
         right
         temporary
         fixed
+        hide-overlay
         class="right-navigator"
       >
         <div class="user__settings">
@@ -94,10 +99,10 @@
                   <span>Font Size</span>
                 </aside>
                 <aside>
-                  <button>
+                  <button :disabled="font_size <= 16" @click="lowerText">
                     <span class="minus"></span>
                   </button>
-                  <button>
+                  <button :disabled="font_size >= 22" @click="upperText">
                     <span class="plus"></span>
                   </button>
                 </aside>
@@ -110,10 +115,14 @@
                   <button
                     v-for="(t, i) in themes"
                     :key="t.name"
-                    :class="{ active: i == 0 }"
+                    :class="{ active: t.name == parent__class }"
+                    @click="changeTheme(t.name)"
                   >
                     <v-icon :color="t.color">mdi-circle</v-icon>
-                    <v-icon v-if="i == 0" color="#fff" class="current"
+                    <v-icon
+                      v-if="t.name == parent__class"
+                      color="#fff"
+                      class="current"
                       >mdi-check</v-icon
                     >
                   </button>
@@ -124,7 +133,7 @@
                   <span>Timer</span>
                 </aside>
                 <aside>
-                  <input v-model="isTimer" type="checkbox" id="switch" />
+                  <input v-model="showTimer" type="checkbox" id="switch" />
                   <label for="switch"></label>
                 </aside>
               </div>
@@ -133,8 +142,13 @@
                   <span>Screen split</span>
                 </aside>
                 <aside>
-                  <input v-model="isTimer" type="checkbox" id="switch" />
-                  <label for="switch"></label>
+                  <input
+                    v-model="screen_split"
+                    type="checkbox"
+                    id="split"
+                    @change="changeSplitScreen"
+                  />
+                  <label for="split"></label>
                 </aside>
               </div>
               <div class="tool">
@@ -142,7 +156,7 @@
                   <span>Confirm answer</span>
                 </aside>
                 <aside>
-                  <input v-model="isTimer" type="checkbox" id="switch" />
+                  <input type="checkbox" id="switch" />
                   <label for="switch"></label>
                 </aside>
               </div>
@@ -154,10 +168,11 @@
                   <button
                     v-for="(t, i) in highlights"
                     :key="t"
-                    :class="{ active: i == 0 }"
+                    :class="{ active: t == current_highlight }"
+                    @click="changeHighlight(t)"
                   >
                     <v-icon :color="t">mdi-circle</v-icon>
-                    <v-icon v-if="i == 0" color="#000" class="current"
+                    <v-icon v-if="t == current_highlight" color="#000" class="current"
                       >mdi-check</v-icon
                     >
                   </button>
@@ -223,8 +238,11 @@
       >
         <v-layout row justify-space-between align-center>
           <v-flex xs4 class="left--tools">
-            <v-icon color="white">mdi-timer-outline</v-icon>
+            <v-icon :style="`opacity: ${showTimer ? 1 : 0};`" color="white"
+              >mdi-timer-outline</v-icon
+            >
             <vue-countdown-timer
+              :style="`opacity: ${showTimer ? 1 : 0};`"
               @start_callback="startCallBack('event started')"
               @end_callback="endCallBack('event ended')"
               :start-time="new Date()"
@@ -295,7 +313,6 @@ export default {
     return {
       drawer: true,
       rightDrawer: false,
-      isTimer: false,
       isScreenSplit: false,
       isConfirmAnswer: false,
       themes: [
@@ -322,6 +339,9 @@ export default {
       ],
       isFullscreen: false,
       calculator: false,
+      windowSize: 0,
+      showTimer: true,
+      screen_split: false
     }
   },
   computed: {
@@ -354,7 +374,10 @@ export default {
     },
     labValue() {
       return this.$store.state.tests.labvalues
-    }
+    },
+    isSplitScreen() {
+      return this.$store.state.tests.is_split_screen
+    },
   },
   mounted() {
     document
@@ -442,8 +465,12 @@ export default {
       document.removeEventListener('mousemove', mouseMoveHandler)
       document.removeEventListener('mouseup', mouseUpHandler)
     }
+    this.onResize()
   },
   methods: {
+    onResize() {
+      this.windowSize = window.innerWidth
+    },
     startCallBack: function (x) {
       console.log(x)
     },
@@ -457,8 +484,25 @@ export default {
       this.$store.commit('tests/setIsMarkTest', val)
     },
     toggleLabValues() {
-      this.$store.commit("tests/setLabvaluesStatus", !this.labValue)
-    }
+      this.$store.commit('tests/setLabvaluesStatus', !this.labValue)
+    },
+    changeTheme(theme) {
+      this.$store.commit('tests/setTheme', theme)
+    },
+    upperText() {
+      this.$store.commit('tests/setFontSize', this.font_size + 1)
+    },
+    lowerText() {
+      this.$store.commit('tests/setFontSize', this.font_size - 1)
+    },
+    changeSplitScreen() {
+      this.$store.commit('tests/setSplitScreen', this.screen_split)
+    },
+    changeHighlight(color) {
+      if (this.current_highlight !== color) {
+        this.$store.commit('tests/setHighlightColor', color)
+      }
+    },
   },
 }
 </script>

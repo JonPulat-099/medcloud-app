@@ -178,11 +178,11 @@ export default {
 
 <style lang="scss">
 .lab__values {
-  background: #f5f5f5;
+  background: var(--labv-bg);
   padding: 15px;
   height: 100%;
   &--body {
-    background: #fff;
+    background: var(--labv-table-bg);
     border-radius: 10px;
     overflow: hidden;
 
@@ -207,19 +207,30 @@ export default {
     }
 
     .v-tab:not(.v-tab--active) {
-      background: #ebebeb !important;
+      background: var(--nav-row-even) !important;
       border: 1px solid #d9dada;
     }
-
+    
     .v-tab,
     .v-tab--active {
       text-transform: none !important;
-      color: #000 !important;
+      color:  var(--labv-text) !important;
+    }
+
+    .v-card {
+      background: var(--labv-table-bg);
     }
 
     table {
+      background: var(--labv-table-bg);
+      color:  var(--labv-text);
+      tr:not(thead tr):hover {
+        background: var(--nav-row-odd) !important;
+      }
+
       th {
         font-size: 16px !important;
+        color: #6a6a6a !important;
       }
       th, td {
         border-bottom-style: dashed !important;
