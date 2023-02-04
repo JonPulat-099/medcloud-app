@@ -1,5 +1,5 @@
 <template>
-  <v-app v-resize="onResize">
+  <v-app v-resize="onResize" :class="parent__class">
     <div :class="`test__interface ${parent__class}`">
       <v-navigation-drawer
         v-model="drawer"
@@ -275,7 +275,7 @@
                   <img class="lab" src="/icons/stop.png" alt="" />
                 </v-btn>
               </template>
-              <span>Suspend</span>
+              <span>End Block</span>
             </v-tooltip>
             <v-tooltip top>
               <template v-slot:activator="{ on, attrs }">
@@ -288,7 +288,7 @@
                   <img class="lab" src="/icons/pause.png" alt="" />
                 </v-btn>
               </template>
-              <span>End Block</span>
+              <span>Suspend</span>
             </v-tooltip>
           </v-flex>
           <v-flex xs4 class="center--tools">
@@ -297,6 +297,7 @@
               tile
               text
               mx-auto
+              @click="feedbackModal = true"
             >
               <img class="lab" src="/icons/feedback.png" alt="" />
               Feedback
@@ -304,29 +305,22 @@
           </v-flex>
           <v-flex xs4 class="right--tools">
             <v-spacer></v-spacer>
-            <v-btn icon class="ml-auto">
+            <v-btn icon class="ml-auto" @click="prevTest">
               <img class="lab" src="/icons/previous.svg" alt="" />
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="nextTest">
               <img class="lab" src="/icons/next.svg" alt="" />
             </v-btn>
           </v-flex>
         </v-layout>
       </v-footer>
     </div>
-    <v-dialog
-      v-model="calculator"
-      persistent
-      hide-overlay
-      max-width="160"
-      transition="dialog-transition"
-    >
-      <calculator @close="calculator = false"></calculator>
-    </v-dialog>
+
+    <calculator v-if="calculator" @close="calculator = false"></calculator>
     <launch-dialog
       v-if="suspendModal"
       @cancelAction="suspendModal = false"
-      @confirmAction="suspendModal = false"
+      @confirmAction="suspendTest"
       title="SUSPEND TEST"
       text="Do you want to suspend this block?"
       color="#0E4687"
@@ -334,7 +328,7 @@
     <launch-dialog
       v-if="endBlockModal"
       @cancelAction="endBlockModal = false"
-      @confirmAction="endBlockModal = false"
+      @confirmAction="endTest"
     ></launch-dialog>
     <v-dialog
       v-model="feedbackModal"
@@ -342,8 +336,9 @@
       :overlay="false"
       max-width="500px"
       transition="dialog-transition"
+      content-class="send--feedback"
     >
-      <send-feedback></send-feedback>
+      <send-feedback @close="feedbackModal = false"></send-feedback>
     </v-dialog>
   </v-app>
 </template>
@@ -398,7 +393,7 @@ export default {
       screen_split: false,
       suspendModal: false,
       endBlockModal: false,
-      feedbackModal: true
+      feedbackModal: false,
     }
   },
   computed: {
@@ -522,6 +517,24 @@ export default {
       document.removeEventListener('mousemove', mouseMoveHandler)
       document.removeEventListener('mouseup', mouseUpHandler)
     }
+
+
+
+    // Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && e.code === 'KeyN') {
+        this.nextTest()
+      } else if (e.altKey && e.code === 'KeyP') {
+        this.prevTest()
+      } else if (e.altKey && e.code === 'KeyM') {
+        this.setIsMarkTest(this.is_mark)
+      } else if (e.altKey && e.code === 'KeyL') {
+        this.toggleLabValues()
+      } else if (e.altKey && e.code === 'KeyC') {
+        console.log(1);
+        close();
+      }
+    })
     this.onResize()
   },
   methods: {
@@ -560,6 +573,18 @@ export default {
         this.$store.commit('tests/setHighlightColor', color)
       }
     },
+    prevTest() {
+      this.$store.commit('tests/prevTest')
+    },
+    nextTest() {
+      this.$store.commit('tests/nextTest')
+    },
+    suspendTest() {
+      this.$router.push('/courseapp/previoustest')
+    },
+    endTest() {
+      this.$router.push('/courseapp/preformance')
+    }
   },
 }
 </script>

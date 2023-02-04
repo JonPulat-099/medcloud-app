@@ -614,20 +614,43 @@
         color: red;
       }
     }
-    
+
     p {
       margin: 0;
       line-height: 1;
-      color: var(--font)
+      color: var(--font);
     }
 
     .v-icon {
       font-size: 34px;
-      color: #6a6a6a
+      color: #6a6a6a;
     }
 
     small {
       color: #6a6a6a;
+    }
+  }
+}
+
+// Dialogs =================
+
+.exhibit--display,
+.send--feedback {
+  .v-card {
+    background: var(--nav-row-odd) !important;
+    &__title {
+      color: var(--primary) !important;
+
+      .v-icon {
+        color: var(--primary) !important;
+      }
+    }
+
+    &__actions {
+      .v-btn {
+        background: var(--primary) !important;
+        text-transform: capitalize;
+      }
     }
   }
 }

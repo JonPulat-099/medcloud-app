@@ -98,20 +98,33 @@
               </aside>
             </v-flex>
           </v-layout>
-
         </div>
-        <explanation v-if="is_submit && (!isSplitScreen || show_lab_values)" :items="question"></explanation>
+        <explanation
+          v-if="is_submit && (!isSplitScreen || show_lab_values)"
+          :items="question"
+        ></explanation>
       </div>
     </div>
     <div
-      v-show="(show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768"
+      v-show="
+        (show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768
+      "
       class="resize"
       id="mouse-resize"
     ></div>
-    <div v-show="(show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768" class="section__dialog">
+    <div
+      v-show="
+        (show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768
+      "
+      class="section__dialog"
+    >
       <LabValues v-if="show_lab_values" />
-      <explanation v-if="show_lab_values == false && is_submit && isSplitScreen" :items="question"></explanation>
+      <explanation
+        v-if="show_lab_values == false && is_submit && isSplitScreen"
+        :items="question"
+      ></explanation>
     </div>
+    <!-- ================= DIALOGS ================= -->
     <v-dialog
       v-model="dialog"
       scrollable
@@ -133,6 +146,30 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="exhibit__display"
+      scrollable
+      persistent
+      hide-overlay
+      max-width="700px"
+      transition="dialog-transition"
+      content-class="exhibit--display"
+    >
+      <v-card>
+        <v-card-title primary-title>
+          Exhibit Display
+          <v-spacer></v-spacer>
+          <v-btn icon @click="exhibit__display = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <image-viewer :image="image_url"></image-viewer>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+    <!-- ================= DIALOGS ================= -->
   </section>
 </template>
 <script>
@@ -143,7 +180,13 @@ export default {
     LabValues: () =>
       import(/* webpackPrefetchL true */ '@/components/LaunchTest/LabValues'),
     Explanation: () =>
-      import(/* webpackPrefetchL true */ '@/components/LaunchTest/Explanation.vue'),
+      import(
+        /* webpackPrefetchL true */ '@/components/LaunchTest/Explanation.vue'
+      ),
+    ImageViewer: () =>
+      import(
+        /* webpackPrefetchL true */ '@/components/LaunchTest/ImageViewer.vue'
+      ),
   },
   data() {
     return {
@@ -153,6 +196,8 @@ export default {
       windowSize: 0,
       dialog: false,
       is_submit: false,
+      exhibit__display: false,
+      image_url: '',
     }
   },
   computed: {
@@ -160,6 +205,21 @@ export default {
       return this.$store.state.tests.labvalues
     },
     question() {
+      this.$nextTick(() => {
+        if (process.client) {
+          const links = window?.document
+            ?.getElementById('question__text')
+            ?.querySelectorAll('a')
+
+          links.forEach((el) => {
+            el.addEventListener('click', (e) => {
+              e.preventDefault()
+              this.exhibit__display = true
+              this.image_url = el.href
+            })
+          })
+        }
+      })
       return this.$store.getters['tests/get_question']
     },
     answers() {
@@ -195,6 +255,7 @@ export default {
   },
   mounted() {
     // disabled right click
+
     this.disabled_events.forEach((el) => {
       document.addEventListener(
         el,

@@ -304,6 +304,9 @@ $result: #5b5b5b;
 
 #draggable {
   width: 180px;
+  top: 60px;
+  right: 10px;
+
 
   /* Indicate the element draggable */
   cursor: move;
