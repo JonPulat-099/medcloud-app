@@ -113,7 +113,7 @@
                 </aside>
                 <aside>
                   <button
-                    v-for="(t, i) in themes"
+                    v-for="t in themes"
                     :key="t.name"
                     :class="{ active: t.name == parent__class }"
                     @click="changeTheme(t.name)"
@@ -166,13 +166,16 @@
                 </aside>
                 <aside>
                   <button
-                    v-for="(t, i) in highlights"
+                    v-for="t in highlights"
                     :key="t"
                     :class="{ active: t == current_highlight }"
                     @click="changeHighlight(t)"
                   >
                     <v-icon :color="t">mdi-circle</v-icon>
-                    <v-icon v-if="t == current_highlight" color="#000" class="current"
+                    <v-icon
+                      v-if="t == current_highlight"
+                      color="#000"
+                      class="current"
                       >mdi-check</v-icon
                     >
                   </button>
@@ -253,19 +256,40 @@
               :end-text="'Event ended!'"
             >
               <template slot="countdown" slot-scope="scope">
-                <span>{{ scope.props.hours }}</span
-                ><i>{{ scope.props.hourTxt }}</i>
-                <span>{{ scope.props.minutes }}</span
-                ><i>{{ scope.props.minutesTxt }}</i>
-                <span>{{ scope.props.seconds }}</span>
+                <span class="font-weight-bold">{{ scope.props.hours }}</span>
+                <i>{{ scope.props.hourTxt }}</i>
+                <span class="font-weight-bold">{{ scope.props.minutes }}</span>
+                <i>{{ scope.props.minutesTxt }}</i>
+                <span class="font-weight-bold">{{ scope.props.seconds }}</span>
               </template>
             </vue-countdown-timer>
-            <v-btn class="stop" icon>
-              <img class="lab" src="/icons/stop.png" alt="" />
-            </v-btn>
-            <v-btn icon>
-              <img class="lab" src="/icons/pause.png" alt="" />
-            </v-btn>
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  class="stop"
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="endBlockModal = true"
+                >
+                  <img class="lab" src="/icons/stop.png" alt="" />
+                </v-btn>
+              </template>
+              <span>Suspend</span>
+            </v-tooltip>
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="suspendModal = true"
+                >
+                  <img class="lab" src="/icons/pause.png" alt="" />
+                </v-btn>
+              </template>
+              <span>End Block</span>
+            </v-tooltip>
           </v-flex>
           <v-flex xs4 class="center--tools">
             <v-btn
@@ -299,6 +323,28 @@
     >
       <calculator @close="calculator = false"></calculator>
     </v-dialog>
+    <launch-dialog
+      v-if="suspendModal"
+      @cancelAction="suspendModal = false"
+      @confirmAction="suspendModal = false"
+      title="SUSPEND TEST"
+      text="Do you want to suspend this block?"
+      color="#0E4687"
+    ></launch-dialog>
+    <launch-dialog
+      v-if="endBlockModal"
+      @cancelAction="endBlockModal = false"
+      @confirmAction="endBlockModal = false"
+    ></launch-dialog>
+    <v-dialog
+      v-model="feedbackModal"
+      persistent
+      :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <send-feedback></send-feedback>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -308,6 +354,14 @@ export default {
   components: {
     Calculator: () =>
       import(/* webpackPrefetchL true */ '@/components/LaunchTest/Calculator'),
+    LaunchDialog: () =>
+      import(
+        /* webpackPrefetchL true */ '@/components/LaunchTest/LaunchDialog.vue'
+      ),
+    SendFeedback: () =>
+      import(
+        /* webpackPrefetchL true */ '@/components/LaunchTest/SendFeedback.vue'
+      ),
   },
   data() {
     return {
@@ -341,7 +395,10 @@ export default {
       calculator: false,
       windowSize: 0,
       showTimer: true,
-      screen_split: false
+      screen_split: false,
+      suspendModal: false,
+      endBlockModal: false,
+      feedbackModal: true
     }
   },
   computed: {

@@ -27,7 +27,8 @@
             </tr>
             <tr v-for="(v, i) in answers" :key="`vairant_${v.id}`">
               <td class="left__td">
-                <span></span>
+                <!-- <v-icon color="red">mdi-close</v-icon> -->
+                <v-icon color="green">mdi-check</v-icon>
                 <label>
                   <input
                     type="radio"
