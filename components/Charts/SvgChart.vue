@@ -12,7 +12,7 @@
     <g>
       <line
         x1="350"
-        y1="40"
+        y1="45"
         x2="350"
         y2="280"
         stroke="#008DD2"
@@ -23,7 +23,7 @@
     <g>
       <line
         x1="450"
-        y1="40"
+        y1="45"
         x2="450"
         y2="280"
         stroke="#009846"
@@ -50,21 +50,19 @@
       />
     </g>
     <g>
-      <text x="50" y="310">Percentile rank</text>
-      <text x="340" y="310">50</text>
+      <text x="50" y="305" class="rank">Percentile rank</text>
+      <text x="340" y="305" class="avarage">50</text>
     </g>
     <g>
-      <circle cy="25" cx="450" r="15" fill="#009846"></circle>
-      <text x="450" y="30" text-anchor="middle" stroke="#fff" fill="#fff">
+      <circle cy="35" cx="450" r="15" fill="#009846"></circle>
+      <text x="450" y="40" text-anchor="middle" fill="#fff" class="value">
         83
       </text>
       <text
         x="450"
-        y="0"
+        y="13"
         text-anchor="middle"
-        stroke="#000"
-        fill="#000"
-        font-family="Noto Sans, sans-serif"
+        class="youre--score"
       >
         Your Score
       </text>
@@ -74,4 +72,30 @@
 <script>
 export default {}
 </script>
-<style lang=""></style>
+<style lang="scss">
+.svg-content {
+  height: 90% !important;
+  font-family: "Noto Sans", sans-serif !important;
+}
+.rank {
+  fill: var(--text-color) !important;
+  font-size: 10px;
+}
+
+.youre--score {
+  fill: var(--text-color) !important;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.avarage {
+  fill: var(--text-color) !important;
+  font-size: 11px;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 500;
+}
+</style>

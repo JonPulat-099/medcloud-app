@@ -1,6 +1,6 @@
 <template>
   <div class="usmle-switch d-flex align-center">
-    SI References
+    <template v-if="isTitle">SI References</template>
     <label class="switch ml-2">
       <input type="checkbox" v-model="isChecked" @change="changeCheck" />
       <span class="slider round"></span>
@@ -11,6 +11,12 @@
 <script>
 export default {
   name: 'InsetSwitch',
+  props: {
+    isTitle: {
+      typy: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       isChecked: false,

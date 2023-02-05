@@ -9,7 +9,6 @@
       <v-textarea
         v-model="text"
         solo
-        name="input-7-4"
         label="Solo textarea"
         :resize="false"
         hide-details
@@ -17,7 +16,7 @@
     </v-card-text>
     <v-card-actions>
       <v-checkbox
-      v-model="check"
+        v-model="check"
         label="Check here if your concern is for a software/technical issue."
       ></v-checkbox>
       <v-btn color="success" depressed @click="submitFeedback">Submit</v-btn>
@@ -27,20 +26,20 @@
 <script>
 export default {
   name: 'Feedback',
-  data() {
+  data () {
     return {
       text: '',
       check: false,
     }
   },
   methods: {
-    closeModal() {
+    closeModal () {
       this.text = ''
       this.check = false
       this.$emit('close')
     },
 
-    submitFeedback() {
+    submitFeedback () {
       this.$snotify.simple({
         body: 'My Notification Body',
         title: 'Notification Title',
@@ -50,4 +49,6 @@ export default {
   },
 }
 </script>
-<style lang=""></style>
+<style >
+
+</style>

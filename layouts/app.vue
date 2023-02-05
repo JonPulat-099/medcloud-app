@@ -1,7 +1,7 @@
 <template>
   <v-app dark class="courseapp" v-resize="onResize">
     <v-navigation-drawer
-      v-if="$route.path !== '/courseapp'"
+      v-if="!isCabinet"
       v-model="drawer"
       fixed
       :permanent="windowSize >= 1140"
@@ -56,7 +56,7 @@
     </v-navigation-drawer>
     <v-app-bar fixed app flat height="50" class="courseapp__navbar white--text">
       <v-btn
-        v-if="$route.path !== '/courseapp' && windowSize <= 1140"
+        v-if="!isCabinet && windowSize <= 1140"
         icon
         plain
         @click.stop="drawer = !drawer"
@@ -170,7 +170,7 @@ export default {
         },
         {
           title: 'Dashboard',
-          to: '#',
+          to: '/cabinet',
         },
         {
           title: 'Homepage',
@@ -185,6 +185,11 @@ export default {
       right: true,
       rightDrawer: false,
       windowSize: 0,
+    }
+  },
+  computed: {
+    isCabinet() {
+      return this.$route.path.indexOf('cabinet') > -1;
     }
   },
   methods: {

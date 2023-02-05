@@ -10,6 +10,8 @@
   --chip-bg-blue-1: #a2d9f7;
   --chip-bg-green: #7ec291;
   --chip-color: #727271;
+  --switch-track: rgba(0, 0, 0, 0.38);
+  --question-used: #000;
 
   background: var(--bg-color);
   color: var(--text-color);
@@ -25,6 +27,8 @@
   --chip-bg-blue-1: #000;
   --chip-bg-green: #7ec291;
   --chip-color: #9d9e9e;
+  --switch-track: #444444;
+  --question-used: #fff;
 
   background: var(--bg-color);
   color: var(--text-color);

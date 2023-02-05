@@ -1,179 +1,116 @@
 <template>
-  <section class="dashboard d-flex flex-column justify-space-between mx-auto">
-    <v-layout row wrap flex-grow-0 justify-space-around>
-      <v-flex xs12>
-        <h2 class="dashboard__title">Dashboard and Active Subscriptions</h2>
-      </v-flex>
-      <v-flex v-for="(item, i) in items" :key="'item_' + i" xs12 sm6 md4>
-        <div class="dashboard__item">
-          <div
-            class="dashboard__item--title font-weight-medium text-center"
-            :style="`background: ${item.color}`"
-          >
-            {{ item.title }}
+  <v-layout row wrap class="mainpage">
+    <v-flex class="px-2" lg4 md4 sm12>
+      <div
+        class="mainpage__column d-flex flex-row flex-md-column flex-wrap flex-md-nowrap justify-space-around justify-md-start rounded-lg"
+      >
+        <doughnut-chart :isClick="true" style="width: 100%"></doughnut-chart>
+        <div class="stats-container">
+          <div class="stats--title">Qbank Used</div>
+          <div class="stats-row">
+            <div>Total Questions:</div>
+            <div>{{ total_question }}</div>
           </div>
-          <div
-            class="dashboard__item--subtitle font-weight-medium text-center my-3"
-          >
-            {{ item.subtitle }}
+          <div class="stats-row">
+            <div>Used Questions:</div>
+            <div class="blue--chip-1">{{ used_questions }}</div>
           </div>
-          <div class="dashboard__item--content">
-            <div>
-              <doughnut-chart
-                :id="`chart-id-${i}`"
-                :width="95"
-                :values="item.values"
-                :background_color="item.background_color"
-              ></doughnut-chart>
-              <div class="text-center my-2 body-2">Completed</div>
-            </div>
-            <div>
-              <div class="stats-container">
-                <div
-                  v-for="(s, k) in item.stats"
-                  :key="'stats__' + k"
-                  class="stats-row"
-                >
-                  <div>{{ s.name }}</div>
-                  <div :class="{ 'blue--chip-1': k == 1 }">{{ s.value }}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="item.is_demo" class="dashboard__item--actions">
-            <v-btn
-              class="dashboard__item--btn rounded-xl"
-              elevation="0"
-              color="#d9dada"
-              >Buy</v-btn
-            >
-            <v-btn
-              class="dashboard__item--btn rounded-xl"
-              elevation="0"
-              color="#A2D9F7"
-              >Demo</v-btn
-            >
-          </div>
-          <div v-else class="dashboard__item--actions">
-            <v-btn
-              class="dashboard__item--btn rounded-xl"
-              elevation="0"
-              color="#d9dada"
-              >Extend</v-btn
-            >
-            <v-btn
-              class="dashboard__item--btn rounded-xl"
-              elevation="0"
-              :color="item.color"
-              >Resume</v-btn
-            >
+          <div class="stats-row">
+            <div>Unused Questions:</div>
+            <div>{{ unused_question }}</div>
           </div>
         </div>
-      </v-flex>
-    </v-layout>
-    <v-footer class="pa-0 dashboard__bottom">
-      <div class="text-center">
-        <div class="d-flex align-center justify-center">
-          <img
-            class="ma-0 mr-1"
-            width="40px"
-            height="40px"
-            src="/icons/globe.png"
-            alt=""
-          />
-          <dir class="text-left">
-            <p class="caption ma-0">www.medclouded.com</p>
-            <p class="caption ma-0">All rights reserved</p>
-          </dir>
+
+        <div class="stats-container">
+          <div class="stats--title">Tests</div>
+          <div class="stats-row">
+            <div>Created</div>
+            <div>56</div>
+          </div>
+          <div class="stats-row">
+            <div>Completed</div>
+            <div>54</div>
+          </div>
+          <div class="stats-row">
+            <div>Suspended</div>
+            <div>2</div>
+          </div>
         </div>
       </div>
-    </v-footer>
-  </section>
+    </v-flex>
+    <v-flex class="px-2" lg8 md8 sm12>
+      <div class="mainpage__column rounded-lg">
+        <div class="d-flex flex-wrap flex-sm-nowrap justify-space-around">
+          <doughnut-chart
+            id="correct-answers"
+            :width="100"
+            :background_color="['#009846', '#ACB4C0']"
+            :values="[74, 26]"
+            title="Correct"
+          ></doughnut-chart>
+          <doughnut-chart
+            id="incorrect-answers"
+            :width="100"
+            :background_color="['#ACB4C0', '#E31E24']"
+            :values="[74, 26]"
+            title="Incorrect"
+          ></doughnut-chart>
+          <doughnut-chart
+            id="average"
+            :width="100"
+            :background_color="['#008DD2', '#ACB4C0']"
+            :values="[76, 24]"
+            title="Average"
+          ></doughnut-chart>
+        </div>
+        <div class="d-flex">
+          <svg-chart></svg-chart>
+        </div>
+        <div class="d-flex flex-wrap flex-md-nowrap justify-space-around">
+          <aside>
+            <div class="stats-container">
+              <div class="stats-row">
+                <div>Median Score</div>
+                <div class="blue--chip">63 %</div>
+              </div>
+              <div class="stats-row">
+                <div>Your Score</div>
+                <div class="green--chip">74 %</div>
+              </div>
+            </div>
+          </aside>
+          <aside>
+            <div class="stats-container">
+              <div class="stats-row">
+                <div>Your Average Time Spent</div>
+                <div class="static--chip">56 sec</div>
+              </div>
+              <div class="stats-row">
+                <div>Other’s Average Time Spent</div>
+                <div class="static--chip">62 sec</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </v-flex>
+  </v-layout>
 </template>
+
 <script>
 export default {
+  name: 'IndexPage',
   layout: 'app',
   components: {
     DoughnutChart: () => import('@/components/Charts/DoughnutChart.vue'),
+    SvgChart: () => import('@/components/Charts/SvgChart.vue'),
   },
   data() {
     return {
-      items: [
-        {
-          id: 1,
-          is_demo: false,
-          title: 'USMLE Step 1 Question Bank',
-          subtitle: 'Expire on: May 21, 2022',
-          values: [74, 26],
-          background_color: ['#008DD2', '#ACB4C0'],
-          color: '#A2D9F7',
-          stats: [
-            {
-              name: 'Total Questions',
-              value: '3250',
-            },
-            {
-              name: 'Used Questions',
-              value: '551',
-            },
-            {
-              name: 'Unused Questions',
-              value: '3250',
-            },
-          ],
-          chart_color: '#008DD2',
-        },
-        {
-          id: 2,
-          is_demo: false,
-          title: 'Basic Sciences Videolectures',
-          subtitle: 'Expire on: May 21, 2022',
-          values: [74, 26],
-          color: '#D2CDE7',
-          background_color: ['#008DD2', '#ACB4C0'],
-          stats: [
-            {
-              name: 'Lessons',
-              value: '143',
-            },
-            {
-              name: 'Watched',
-              value: '87',
-            },
-            {
-              name: 'Unseen',
-              value: '56',
-            },
-          ],
-          chart_color: '#D2CDE7',
-        },
-        {
-          id: 3,
-          is_demo: true,
-          title: 'Clinical Sciences Videolectures',
-          subtitle: 'Expires on: May 21, 2022',
-          values: [0],
-          color: '#F5B2B6',
-          background_color: ['#8996AC'],
-          stats: [
-            {
-              name: 'Lessons',
-              value: '143',
-            },
-            {
-              name: 'Watched',
-              value: '0',
-            },
-            {
-              name: 'Unseen',
-              value: '143',
-            },
-          ],
-          chart_color: '#8996AC',
-        },
-      ],
+      total_question: 3250,
+      used_questions: 551,
+      unused_question: 2699,
     }
   },
 }
 </script>
-<style lang=""></style>

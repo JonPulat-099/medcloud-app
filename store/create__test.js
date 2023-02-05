@@ -1,3 +1,5 @@
+import { subjects, systems } from './mock_data'
+
 export const state = () => ({
   timed: false,
   is_tutor: false,
@@ -41,99 +43,8 @@ export const state = () => ({
       type: 'all',
     },
   ],
-  subjects: [
-    {
-      id: 1,
-      name: 'Embryology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 2,
-      name: 'Anatomy',
-      available: 344,
-      used: 344,
-      status: true,
-    },
-    {
-      id: 3,
-      name: 'History',
-      available: 545,
-      used: 545,
-      status: false,
-    },
-    {
-      id: 4,
-      name: 'Neuroanatomy',
-      available: 454,
-      used: 454,
-      status: true,
-    },
-    {
-      id: 5,
-      name: 'Physiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 6,
-      name: 'Genetics',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 7,
-      name: 'Immunology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 8,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 9,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 10,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 11,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 12,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-    {
-      id: 13,
-      name: 'Microbiology',
-      available: 223,
-      used: 223,
-      status: true,
-    },
-  ],
+  subjects: JSON.parse(JSON.stringify(subjects)),
+  systems: JSON.parse(JSON.stringify(systems)),
 })
 
 export const mutations = {
@@ -161,6 +72,18 @@ export const mutations = {
     state.subjects.forEach((x) => {
       if (x.id == active_subject) x.status = status
     })
+  },
+  setStatusAllSubjects(state, { type, id, value }) {
+    state.subjects = state.subjects.map((x) => ({
+      ...x,
+      status: type ? value : id && x.id == id ? value : x.status,
+    }))
+  },
+  setStatusAllSystems(state, { type, id, value = true }) {
+    state.systems = state.systems.map((x) => ({
+      ...x,
+      status: type ? value : id && x.id == id ? value : x.status,
+    }))
   },
 }
 

@@ -10,6 +10,8 @@ export const state = () => ({
   tests: tests,
   labvalues: false,
   is_split_screen: false,
+  is_tutor: false,
+  is_timed: false,
 })
 
 export const mutations = {
