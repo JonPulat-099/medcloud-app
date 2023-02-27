@@ -1,0 +1,88 @@
+<template>
+  <div>
+    <v-card-title>
+      <nuxt-link to="/courseapp/previoustest" class="notes">
+        <v-btn color="#2296F3" text>
+          <v-icon size="18">mdi-arrow-left</v-icon>
+          Back
+        </v-btn>
+      </nuxt-link>
+      <v-spacer />
+      <div class="d-flex align-center">
+        <div class="notes">
+          <v-btn color="#2296F3" text>
+            <v-icon size="18">mdi-file-document-outline</v-icon>
+            Notes
+          </v-btn>
+        </div>
+        <div class="notes">
+          <v-btn color="#2296F3" text>
+            <v-icon size="18">mdi-format-list-bulleted</v-icon>
+            Questions
+          </v-btn>
+        </div>
+        <div class="review-btn ml-3">
+          <v-btn class="text-capitalize" elevation="0" color="primary" dark
+            >review test</v-btn
+          >
+        </div>
+      </div>
+    </v-card-title>
+    <div class="d-flex align-center justify-space-between mt-5">
+      <v-tabs v-model="tab" class="tabs">
+        <v-tab
+          v-for="(title, idx) in tabs_list"
+          :key="idx"
+          @click="changeTabs"
+          >{{ title }}</v-tab
+        >
+      </v-tabs>
+      <v-spacer />
+      <div class="text-info black--text d-flex justify-end">
+        Custom Test Id: 200561420
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon
+              v-on="on"
+              v-bind="attrs"
+              size="20"
+              class="ml-2"
+              color="#2296F3"
+              >mdi-information-outline</v-icon
+            >
+          </template>
+          <span class="text-no-wrap"
+            >Unique ID to be used when creating custom test</span
+          >
+        </v-tooltip>
+      </div>
+    </div>
+    <v-divider />
+  </div>
+</template>
+<script>
+export default {
+  name: '',
+  data() {
+    return {
+      tabs_list: ['Test Results', 'Test Analysis'],
+      tab: '',
+    }
+  },
+  methods: {
+    changeTabs() {
+      if (this.tab === 0) {
+        this.$store.commit('test_result/updateCurrentTab', 1)
+      } else {
+        this.$store.commit('test_result/updateCurrentTab', 0)
+      }
+    },
+  },
+}
+</script>
+<style lang="scss">
+
+.tabs {
+  width: 100%;
+}
+</style>

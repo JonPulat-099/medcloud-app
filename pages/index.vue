@@ -229,6 +229,7 @@ import HomeSlider from '@/components/HomeSlider.vue'
 export default {
   name: 'HomePage',
   layout: 'landing',
+  auth: false,
   components: {
     TheHeader: () => import('@/components/TheHeader.vue'),
     VideoPlayer: () =>

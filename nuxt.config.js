@@ -37,23 +37,54 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
-
+  
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next',
   ],
 
   router: {
-    middleware: 'router-middleware',
+    middleware: ['auth', 'router-middleware'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://medcloud.deving.uz',
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access_token',
+          maxAge: 31536000,
+          global: true,
+          // type: 'Bearer'
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30,
+        },
+        // user: {
+        //   property: 'user',
+        //   autoFetch: false,
+        // },
+        endpoints: {
+          login: { url: '/api/login', method: 'post' },
+          refresh: { url: '/api/refresh/token', method: 'post' },
+          user: false,
+          logout: { url: '/api/logout', method: 'post' },
+        },
+        // autoLogout: false
+      },
+    },
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
