@@ -1,254 +1,229 @@
 <template>
-  <div>
-    <v-card flat>
-      <v-card-text>
-        <v-row>
-          <v-col class="text-center" cols="12" md="4">
-            <v-progress-circular
-              :rotate="270"
-              :size="180"
-              :width="15"
-              :value="correct"
-              color="#69C869"
+  <v-card elevation="0" class="mt-6 rounded-lg mb-6">
+    <previous-test-type></previous-test-type>
+    <v-card-text>
+      <v-row>
+        <v-col class="text-center" cols="12" md="4">
+          <v-progress-circular
+            :rotate="270"
+            :size="180"
+            :width="15"
+            :value="correct"
+            color="#69C869"
+          >
+            <div class="text-center">
+              <div class="text-h4 font-weight-medium black--text">
+                {{ correct }}%
+              </div>
+              <div class="grey--text text-body-1">Correct</div>
+            </div>
+          </v-progress-circular>
+        </v-col>
+        <v-col>
+          <div class="font-weight-medium text-h6 mb-5">Your Score</div>
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Total Correct</span
             >
-              <div class="text-center">
-                <div class="text-h4 font-weight-medium black--text">
-                  {{ correct }}%
-                </div>
-                <div class="grey--text text-body-1">Correct</div>
-              </div>
-            </v-progress-circular>
-          </v-col>
-          <v-col>
-            <div class="font-weight-medium text-h6 mb-5">Your Score</div>
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Total Correct</span
-              >
-              <v-chip small color="#E8E8E8">1</v-chip>
+            <v-chip small color="#E8E8E8">1</v-chip>
+          </div>
+          <v-divider class="my-2" />
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Total Incorrect</span
+            >
+            <v-chip small color="#E8E8E8">8</v-chip>
+          </div>
+          <v-divider class="my-2" />
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Total Omitted</span
+            >
+            <v-chip small color="#E8E8E8">1</v-chip>
+          </div>
+          <v-divider class="my-2" />
+        </v-col>
+        <v-col>
+          <div class="font-weight-medium text-h6 mb-5">Answer Changes</div>
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Correct to Incorrect</span
+            >
+            <v-chip small color="#E8E8E8">0</v-chip>
+          </div>
+          <v-divider class="my-2" />
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Incorrect to Correct</span
+            >
+            <v-chip small color="#E8E8E8">0</v-chip>
+          </div>
+          <v-divider class="my-2" />
+          <div class="size d-flex align-center justify-space-between">
+            <span class="text-body-1 font-weight-medium grey--text"
+              >Incorrect to Incorrect</span
+            >
+            <v-chip small color="#E8E8E8">0</v-chip>
+          </div>
+          <v-divider class="my-2" />
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-toolbar elevation="0" class="mt-4">
+          <v-toolbar-title class="show-select d-flex justify-end">
+            <div class="d-flex align-center">
+              <span class="grey--text mr-4">show:</span>
+              <v-select
+                label="None"
+                single-line
+                :items="show_data"
+                v-model="showed_data"
+                multiple
+                dense
+                class="mt-4"
+                style="width: 300px"
+              />
             </div>
-            <v-divider class="my-2" />
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Total Incorrect</span
+          </v-toolbar-title>
+        </v-toolbar>
+        <v-expansion-panels multiple accordion v-model="opened_expand">
+          <v-expansion-panel v-model="opened_expand">
+            <v-expansion-panel-header
+              class="grey--text text--darken-1 px-0 text-h6 font-weight-medium"
+              >Subject</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-data-table
+                :headers="subject_headers"
+                :items="subject_data"
+                :items-per-page="10"
+                hide-default-footer
+                :expanded.sync="expanded"
+                item-key="name"
+                show-expand
               >
-              <v-chip small color="#E8E8E8">8</v-chip>
-            </div>
-            <v-divider class="my-2" />
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Total Omitted</span
-              >
-              <v-chip small color="#E8E8E8">1</v-chip>
-            </div>
-            <v-divider class="my-2" />
-          </v-col>
-          <v-col>
-            <div class="font-weight-medium text-h6 mb-5">Answer Changes</div>
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Correct to Incorrect</span
-              >
-              <v-chip small color="#E8E8E8">0</v-chip>
-            </div>
-            <v-divider class="my-2" />
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Incorrect to Correct</span
-              >
-              <v-chip small color="#E8E8E8">0</v-chip>
-            </div>
-            <v-divider class="my-2" />
-            <div class="size d-flex align-center justify-space-between">
-              <span class="text-body-1 font-weight-medium grey--text"
-                >Incorrect to Incorrect</span
-              >
-              <v-chip small color="#E8E8E8">0</v-chip>
-            </div>
-            <v-divider class="my-2" />
-          </v-col>
-        </v-row>
-        <v-row justify="center">
-          <v-toolbar elevation="0" class="mt-4">
-            <v-toolbar-title class="show-select d-flex justify-end">
-              <div class="d-flex align-center">
-                <span class="grey--text mr-4">show:</span>
-                <v-select
-                  label="None"
-                  single-line
-                  :items="show_data"
-                  v-model="showed_data"
-                  multiple
-                  dense
-                  class="mt-4"
-                  style="width: 300px"
-                />
-              </div>
-            </v-toolbar-title>
-          </v-toolbar>
-          <v-expansion-panels multiple accordion v-model="opened_expand">
-            <v-expansion-panel v-model="opened_expand">
-              <v-expansion-panel-header
-                class="
-                  grey--text
-                  text--darken-1
-                  px-0
-                  text-h6
-                  font-weight-medium
-                "
-                >Subject</v-expansion-panel-header
-              >
-              <v-expansion-panel-content>
-                <v-data-table
-                  :headers="subject_headers"
-                  :items="subject_data"
-                  :items-per-page="10"
-                  hide-default-footer
-                  :expanded.sync="expanded"
-                  item-key="name"
-                  show-expand
-                >
-                  <template v-slot:expanded-item="{ headers, item }">
-                    <td :colspan="headers.length">
-                      More info about {{ item.name }}
-                    </td>
-                  </template>
-                  <template
-                    v-slot:item.data-table-expand="{ item, isExpanded }"
+                <template v-slot:expanded-item="{ headers, item }">
+                  <td :colspan="headers.length">
+                    More info about {{ item.name }}
+                  </td>
+                </template>
+                <template v-slot:item.data-table-expand="{ item, isExpanded }">
+                  <v-icon
+                    @click="handleExpansion(item, isExpanded)"
+                    color="grey"
                   >
-                    <v-icon
-                      @click="handleExpansion(item, isExpanded)"
-                      color="grey"
-                    >
-                      {{ isExpanded ? 'mdi-minus' : 'mdi-plus' }}
-                    </v-icon>
-                  </template>
-                  <template #item.name="{ item }">
-                    <div class="clipboard">
-                      <div class="mb-2">
-                        {{ item.name }}
-                        <v-icon
-                          size="20"
-                          class="icon ml-2"
-                          color="#2296F3"
-                          @click="getName(item)"
-                          >mdi-clipboard-list-outline</v-icon
-                        >
-                      </div>
-                      <div>
-                        <v-progress-linear
-                          rounded
-                          height="8"
-                          :color="item.progress <= 0 ? '#cbcaca' : '#69C869'"
-                          :value="item.progress"
-                        />
-                      </div>
+                    {{ isExpanded ? 'mdi-minus' : 'mdi-plus' }}
+                  </v-icon>
+                </template>
+                <template #item.name="{ item }">
+                  <div class="clipboard">
+                    <div class="mb-2">
+                      {{ item.name }}
+                      <v-icon
+                        size="20"
+                        class="icon ml-2"
+                        color="#2296F3"
+                        @click="getName(item)"
+                        >mdi-clipboard-list-outline</v-icon
+                      >
                     </div>
-                  </template>
-                  <template #item.correct="{ item }">
-                    {{ item.correct }}
-                    <span class="ml-1"
-                      >({{ item.correct > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                  <template #item.incorrect="{ item }">
-                    {{ item.incorrect }}
-                    <span class="ml-1"
-                      >({{ item.incorrect > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                  <template #item.omitted="{ item }">
-                    {{ item.omitted }}
-                    <span class="ml-1"
-                      >({{ item.omitted > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                </v-data-table>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-            <v-expansion-panel>
-              <v-expansion-panel-header
-                class="
-                  grey--text
-                  text--darken-1
-                  px-0
-                  text-h6
-                  font-weight-medium
-                "
-                >System</v-expansion-panel-header
-              >
-              <v-expansion-panel-content>
-                <v-data-table
-                  :headers="subject_headers"
-                  :items="subject_data"
-                  :items-per-page="10"
-                  hide-default-footer
-                  :expanded.sync="expanded"
-                  item-key="name"
-                  show-expand
-                >
-                  <template v-slot:expanded-item="{ headers, item }">
-                    <td :colspan="headers.length">
-                      More info about {{ item.name }}
-                    </td>
-                  </template>
-                  <template
-                    v-slot:item.data-table-expand="{ item, isExpanded }"
+                    <div>
+                      <v-progress-linear
+                        rounded
+                        height="8"
+                        :color="item.progress <= 0 ? '#cbcaca' : '#69C869'"
+                        :value="item.progress"
+                      />
+                    </div>
+                  </div>
+                </template>
+                <template #item.correct="{ item }">
+                  {{ item.correct }}
+                  <span class="ml-1">({{ item.correct > 0 ? 100 : 0 }}%)</span>
+                </template>
+                <template #item.incorrect="{ item }">
+                  {{ item.incorrect }}
+                  <span class="ml-1"
+                    >({{ item.incorrect > 0 ? 100 : 0 }}%)</span
                   >
-                    <v-icon
-                      @click="handleExpansion(item, isExpanded)"
-                      color="grey"
-                      >{{ isExpanded ? 'mdi-minus' : 'mdi-plus' }}</v-icon
-                    >
-                  </template>
-                  <template #item.name="{ item }">
-                    <div class="clipboard">
-                      <div class="mb-2">
-                        {{ item.name }}
-                        <v-icon
-                          size="20"
-                          class="icon ml-2"
-                          color="#2296F3"
-                          @click="getName(item)"
-                          >mdi-clipboard-list-outline</v-icon
-                        >
-                      </div>
-                      <div>
-                        <v-progress-linear
-                          rounded
-                          height="8"
-                          :color="item.progress <= 0 ? '#cbcaca' : '#69C869'"
-                          :value="item.progress"
-                        />
-                      </div>
+                </template>
+                <template #item.omitted="{ item }">
+                  {{ item.omitted }}
+                  <span class="ml-1">({{ item.omitted > 0 ? 100 : 0 }}%)</span>
+                </template>
+              </v-data-table>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
+            <v-expansion-panel-header
+              class="grey--text text--darken-1 px-0 text-h6 font-weight-medium"
+              >System</v-expansion-panel-header
+            >
+            <v-expansion-panel-content>
+              <v-data-table
+                :headers="subject_headers"
+                :items="subject_data"
+                :items-per-page="10"
+                hide-default-footer
+                :expanded.sync="expanded"
+                item-key="name"
+                show-expand
+              >
+                <template v-slot:expanded-item="{ headers, item }">
+                  <td :colspan="headers.length">
+                    More info about {{ item.name }}
+                  </td>
+                </template>
+                <template v-slot:item.data-table-expand="{ item, isExpanded }">
+                  <v-icon
+                    @click="handleExpansion(item, isExpanded)"
+                    color="grey"
+                    >{{ isExpanded ? 'mdi-minus' : 'mdi-plus' }}</v-icon
+                  >
+                </template>
+                <template #item.name="{ item }">
+                  <div class="clipboard">
+                    <div class="mb-2">
+                      {{ item.name }}
+                      <v-icon
+                        size="20"
+                        class="icon ml-2"
+                        color="#2296F3"
+                        @click="getName(item)"
+                        >mdi-clipboard-list-outline</v-icon
+                      >
                     </div>
-                  </template>
-                  <template #item.correct="{ item }">
-                    {{ item.correct }}
-                    <span class="ml-1"
-                      >({{ item.correct > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                  <template #item.incorrect="{ item }">
-                    {{ item.incorrect }}
-                    <span class="ml-1"
-                      >({{ item.incorrect > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                  <template #item.omitted="{ item }">
-                    {{ item.omitted }}
-                    <span class="ml-1"
-                      >({{ item.omitted > 0 ? 100 : 0 }}%)</span
-                    >
-                  </template>
-                </v-data-table>
-              </v-expansion-panel-content>
-              <v-divider />
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-row>
-      </v-card-text>
-    </v-card>
+                    <div>
+                      <v-progress-linear
+                        rounded
+                        height="8"
+                        :color="item.progress <= 0 ? '#cbcaca' : '#69C869'"
+                        :value="item.progress"
+                      />
+                    </div>
+                  </div>
+                </template>
+                <template #item.correct="{ item }">
+                  {{ item.correct }}
+                  <span class="ml-1">({{ item.correct > 0 ? 100 : 0 }}%)</span>
+                </template>
+                <template #item.incorrect="{ item }">
+                  {{ item.incorrect }}
+                  <span class="ml-1"
+                    >({{ item.incorrect > 0 ? 100 : 0 }}%)</span
+                  >
+                </template>
+                <template #item.omitted="{ item }">
+                  {{ item.omitted }}
+                  <span class="ml-1">({{ item.omitted > 0 ? 100 : 0 }}%)</span>
+                </template>
+              </v-data-table>
+            </v-expansion-panel-content>
+            <v-divider />
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-row>
+    </v-card-text>
     <v-dialog max-width="700" v-model="review_dialog">
       <v-card>
         <v-card-title class="text-capitalize text-h5 d-flex">
@@ -315,10 +290,16 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-  </div>
+  </v-card>
 </template>
 <script>
 export default {
+  components: {
+    PreviousTestType: () =>
+      import(
+        /*webpackPrefetch: true*/ '@/components/CourseApp/PreviousTestType.vue'
+      ),
+  },
   layout: 'app',
   data() {
     return {

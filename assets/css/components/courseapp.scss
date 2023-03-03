@@ -15,6 +15,28 @@
 
   background: var(--bg-color);
   color: var(--text-color);
+  span, p, td, th, label, input,
+  .v-select__selections,
+  .v-data-footer {
+    color: var(--text-color) !important;
+  }
+
+  .v-card,
+  .v-tabs-bar {
+    background: var(--bg-column-color) !important;
+  }
+
+  .v-data-table {
+    background: var(--bg-column-color) !important;
+    tbody {
+      tr:hover {
+        background: var(--chip-bg) !important;
+      }
+    }
+    .v-chip {
+      background: var(--chip-bg) !important;
+    }
+  }
 }
 
 .dark-theme {
@@ -32,6 +54,28 @@
 
   background: var(--bg-color);
   color: var(--text-color);
+  span, p, td, th, label, input,
+  .v-select__selections,
+  .v-data-footer {
+    color: var(--text-color) !important;
+  }
+
+  .v-card,
+  .v-tabs-bar {
+    background: var(--bg-column-color) !important;
+  }
+
+  .v-data-table {
+    background: var(--bg-column-color) !important;
+    tbody {
+      tr:hover {
+        background: var(--chip-bg) !important;
+      }
+    }
+    .v-chip {
+      background: var(--chip-bg) !important;
+    }
+  }
 }
 
 .courseapp {
@@ -285,5 +329,13 @@
   &__bottom {
     background: var(--bg-color) !important;
     color: var(--text-color) !important;
+  }
+}
+
+.prevoius__tests {
+  background: var(--bg-column-color) !important;
+
+  .tests__list {
+    background: var(--bg-column-color) !important;
   }
 }

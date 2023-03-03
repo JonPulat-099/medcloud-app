@@ -1,65 +1,69 @@
 <template>
-  <div>
-    <v-card class="mt-4" elevation="0">
-      <v-card-title>
-        <div class="select d-flex align-center">
-          <div class="grey--text text-body-1 font-weight-medium">Show:</div>
-          <v-select
-            class="ml-4"
-            label="Select position"
-            v-model="select_position"
-            :items="position_items"
-            single-line
-          />
-        </div>
-        <v-spacer />
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
+  <v-card class="prevoius__tests" elevation="0">
+    <v-card-title>
+      <div class="select d-flex align-center">
+        <div class="grey--text text-body-1 font-weight-medium">Show:</div>
+        <v-select
+          class="ml-4"
+          label="Select position"
+          v-model="select_position"
+          :items="position_items"
           single-line
-          style="max-width: 300px"
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="previous"
-        :search="search"
-        :items-per-page="10"
-      >
-        <template #item.score="{ item }">
-          <v-chip> {{ item.score }}% </v-chip>
-        </template>
-        <template #item.actions="{ item }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on" @click="$router.push('/courseapp/test-1')">
-                <v-icon color="#0194D6">mdi-play-circle-outline</v-icon>
-              </v-btn>
-            </template>
-            <span>Resume</span>
-          </v-tooltip>
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn icon v-bind="attrs" v-on="on" @click.prevent="goResults">
-                <v-icon color="#0194D6">mdi-format-list-checks</v-icon>
-              </v-btn>
-            </template>
-            <span>Results</span>
-          </v-tooltip>
+        />
+      </div>
+      <v-spacer />
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        style="max-width: 300px"
+      ></v-text-field>
+    </v-card-title>
+    <v-data-table
+      :headers="headers"
+      :items="previous"
+      :search="search"
+      :items-per-page="10"
+      class="tests__list"
+    >
+      <template #item.score="{ item }">
+        <v-chip> {{ item.score }}% </v-chip>
+      </template>
+      <template #item.actions="{ item }">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on"
+              @click="$router.push('/courseapp/test-1')"
+            >
+              <v-icon color="#0194D6">mdi-play-circle-outline</v-icon>
+            </v-btn>
+          </template>
+          <span>Resume</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on" @click.prevent="goResults">
+              <v-icon color="#0194D6">mdi-format-list-checks</v-icon>
+            </v-btn>
+          </template>
+          <span>Results</span>
+        </v-tooltip>
 
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn @click.prevent="goAnalysis" icon v-bind="attrs" v-on="on">
-                <v-icon color="#0194D6">mdi-finance</v-icon>
-              </v-btn>
-            </template>
-            <span>Analysis</span>
-          </v-tooltip>
-        </template>
-      </v-data-table>
-    </v-card>
-  </div>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn @click.prevent="goAnalysis" icon v-bind="attrs" v-on="on">
+              <v-icon color="#0194D6">mdi-finance</v-icon>
+            </v-btn>
+          </template>
+          <span>Analysis</span>
+        </v-tooltip>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 <script>
 export default {
@@ -112,6 +116,37 @@ export default {
           systems: 'Multiple',
           qs: '12',
         },
+        {
+          score: '46',
+          name: 'Li Kim',
+          date: 'Dec 23, 2022',
+          mode: 'Tutor',
+          pool: 'Custom',
+          subjects: 'Multiple',
+          systems: 'Multiple',
+          qs: '12',
+        },
+        {
+          score: '46',
+          name: 'Li Kim',
+          date: 'Dec 23, 2022',
+          mode: 'Tutor',
+          pool: 'Custom',
+          subjects: 'Multiple',
+          systems: 'Multiple',
+          qs: '12',
+        },
+        {
+          score: '46',
+          name: 'Li Kim',
+          date: 'Dec 23, 2022',
+          mode: 'Tutor',
+          pool: 'Custom',
+          subjects: 'Multiple',
+          systems: 'Multiple',
+          qs: '12',
+        },
+
       ],
     }
   },
@@ -130,4 +165,5 @@ export default {
   },
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+</style>

@@ -11,12 +11,6 @@
       <div class="d-flex align-center">
         <div class="notes">
           <v-btn color="#2296F3" text>
-            <v-icon size="18">mdi-file-document-outline</v-icon>
-            Notes
-          </v-btn>
-        </div>
-        <div class="notes">
-          <v-btn color="#2296F3" text>
             <v-icon size="18">mdi-format-list-bulleted</v-icon>
             Questions
           </v-btn>
@@ -73,8 +67,10 @@ export default {
     changeTabs() {
       if (this.tab === 0) {
         this.$store.commit('test_result/updateCurrentTab', 1)
+        this.$router.push("/courseapp/previoustest/analysis")
       } else {
         this.$store.commit('test_result/updateCurrentTab', 0)
+        this.$router.push("/courseapp/previoustest/result")
       }
     },
   },
