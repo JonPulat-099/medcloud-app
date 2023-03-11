@@ -22,7 +22,10 @@
   }
 
   .v-card,
-  .v-tabs-bar {
+  .v-tabs-bar,
+  .v-toolbar,
+  .v-expansion-panel-header,
+  .v-expansion-panel-content {
     background: var(--bg-column-color) !important;
   }
 
@@ -61,7 +64,10 @@
   }
 
   .v-card,
-  .v-tabs-bar {
+  .v-tabs-bar,
+  .v-toolbar,
+  .v-expansion-panel-header,
+  .v-expansion-panel-content {
     background: var(--bg-column-color) !important;
   }
 

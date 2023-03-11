@@ -27,7 +27,7 @@
         <v-tab
           v-for="(title, idx) in tabs_list"
           :key="idx"
-          @click="changeTabs"
+          @click="changeTabs(idx)"
           >{{ title }}</v-tab
         >
       </v-tabs>
@@ -63,9 +63,31 @@ export default {
       tab: '',
     }
   },
+  computed: {
+    curr_type() {
+      return this.$route.path.split("/").slice(-1)[0]
+    },
+    curr_tab() {
+      const id = this.$store.state.test_result.current_tab
+      this.tab = id
+      return id
+    }
+  },
+  watch: {
+    curr_tab(val) {
+      this.tab = val
+    }
+  },
+  beforeMount() {
+    if (this.curr_type == 'result') {
+      this.$store.commit('test_result/updateCurrentTab', 0)
+    } else {
+      this.$store.commit('test_result/updateCurrentTab', 1)
+    }
+  },
   methods: {
-    changeTabs() {
-      if (this.tab === 0) {
+    changeTabs(id) {
+      if (id == 1) {
         this.$store.commit('test_result/updateCurrentTab', 1)
         this.$router.push("/courseapp/previoustest/analysis")
       } else {

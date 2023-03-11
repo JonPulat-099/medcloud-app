@@ -126,7 +126,7 @@ const tests = [
     is_note: false,
     selected: '',
     is_done: false,
-    question: `<p>A 47-year-old woman comes to the office due to an itchy rash.&nbsp; For the last 3 months, she has had a gradual onset of multiple pruritic lesions at her wrists, legs, and ankles.&nbsp; The patient tried treating the lesions with emollients and topical over-the-counter hydrocortisone but had no relief.&nbsp; Examination shows scattered, scaly, pink papules and plaques as shown in the <a href="javascript:void(0)">exhibit</a>.&nbsp; Which of the following is the most likely diagnosis?</p>`,
+    question: `<p>A 47-year-old woman comes to the office due to an itchy rash.&nbsp; For the last 3 months, she has had a gradual onset of multiple pruritic lesions at her wrists, legs, and ankles.&nbsp; The patient tried treating the lesions with emollients and topical over-the-counter hydrocortisone but had no relief.&nbsp; Examination shows scattered, scaly, pink papules and plaques as shown in the <a href="https://www.uworld.com/media/U1154.jpg">exhibit</a>.&nbsp; Which of the following is the most likely diagnosis?</p>`,
     answers: [
       {
         id: 1131,
@@ -251,7 +251,7 @@ const tests = [
     is_note: false,
     selected: '',
     is_done: false,
-    question: `<p>A 46-year-old man experiences burning pain in his left thigh and leg.&nbsp; The next day, he notices groups of erythematous, tender, fluid-filled vesicles in the painful region.&nbsp; The lesions gradually crust over the next several days as shown in the <a href="javascript:void(0)">exhibit</a>.&nbsp; Which of the following dermatomes are most likely involved in this patient's disease process?</p>`,
+    question: `<p>A 46-year-old man experiences burning pain in his left thigh and leg.&nbsp; The next day, he notices groups of erythematous, tender, fluid-filled vesicles in the painful region.&nbsp; The lesions gradually crust over the next several days as shown in the <a href="https://www.uworld.com/media/U1154.jpg">exhibit</a>.&nbsp; Which of the following dermatomes are most likely involved in this patient's disease process?</p>`,
     answers: [
       {
         id: 1151,

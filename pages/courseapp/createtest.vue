@@ -1,7 +1,7 @@
 <template>
   <div class="createtest grid-list-xs">
     <v-layout row wrap justify-space-between>
-      <v-flex lg4 md6 xs12 class="createtest__container">
+      <v-flex lg4 md6 xs12 :shrink="true" :grow="true" class="createtest__container">
         <div class="content">
           <v-layout
             row
@@ -73,11 +73,11 @@
           </v-layout>
         </div>
 
-        <v-btn class="generate__test rounded-lg" @click="goToTest"
+        <v-btn class="d-none d-lg-flex generate__test rounded-lg" @click="goToTest"
           >Generate Test</v-btn
         >
       </v-flex>
-      <v-flex lg4 md6 xs12 class="createtest__container">
+      <v-flex lg4 md6 xs12 :shrink="true" :grow="true" class="createtest__container">
         <div class="content">
           <v-layout
             row
@@ -137,7 +137,7 @@
           </v-layout>
         </div>
       </v-flex>
-      <v-flex lg4 md6 xs12 class="createtest__container">
+      <v-flex lg4 md6 xs12 :shrink="true" :grow="true" class="createtest__container">
         <div class="content">
           <v-layout
             row
@@ -201,6 +201,9 @@
         <v-btn v-if="false" class="launch__tutorial rounded-lg"
           >Launch Tutorial</v-btn
         >
+        <v-btn class="d-flex d-lg-none generate__test rounded-lg" @click="goToTest"
+          >Generate Test</v-btn
+        >
       </v-flex>
     </v-layout>
   </div>
@@ -248,7 +251,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('dashboard/setBlockName', 'Create Test')
+    // this.$store.commit('dashboard/setBlockName', 'Create Test')
   },
   methods: {
     goToTest() {

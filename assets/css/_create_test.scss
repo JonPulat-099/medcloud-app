@@ -117,7 +117,10 @@
       display: block;
       margin: 40px auto;
       background: $color_info !important;
-      color: $color_white;
+      
+      .v-btn__content {
+        color: #fff !important;
+      }
     }
 
     .launch__tutorial {

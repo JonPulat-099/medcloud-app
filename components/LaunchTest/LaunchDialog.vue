@@ -64,7 +64,8 @@ export default {
       text-align: center;
       font-size: 16px;
       max-width: 150px;
-      margin: 0 auto;
+      margin: 0 auto !important;
+      border: none !important;
       font-weight: 400;
     }
 

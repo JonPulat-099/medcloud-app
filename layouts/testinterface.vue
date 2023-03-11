@@ -531,7 +531,6 @@ export default {
       } else if (e.altKey && e.code === 'KeyL') {
         this.toggleLabValues()
       } else if (e.altKey && e.code === 'KeyC') {
-        console.log(1);
         close();
       }
     })

@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('dashboard/setBlockName', 'Feedback')
+    // this.$store.commit('dashboard/setBlockName', 'Feedback')
   },
   methods: {
     submitForm() {

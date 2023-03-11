@@ -140,7 +140,7 @@ export default {
   },
 
   mounted() {
-    this.$store.commit('dashboard/setBlockName', 'Help')
+    // this.$store.commit('dashboard/setBlockName', 'Help')
   },
 }
 </script>

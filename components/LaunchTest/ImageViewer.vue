@@ -48,7 +48,8 @@ export default {
   }
 
   .viewer-container {
-    width: 100%;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 </style>

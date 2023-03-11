@@ -28,7 +28,8 @@
             <tr v-for="(v, i) in answers" :key="`vairant_${v.id}`">
               <td class="left__td">
                 <!-- <v-icon color="red">mdi-close</v-icon> -->
-                <v-icon color="green">mdi-check</v-icon>
+                <!-- <v-icon color="green">mdi-check</v-icon> -->
+                <span></span>
                 <label>
                   <input
                     type="radio"
@@ -296,6 +297,21 @@ export default {
       }
     })
     this.onResize()
+
+    // Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyA') {
+        this.variant_id = this.answers[0].id
+      } else if (e.code === 'KeyB') {
+        this.variant_id = this.answers[1].id
+      } else if (e.code === 'KeyC') {
+        this.variant_id = this.answers[2].id
+      } else if (e.code === 'KeyD') {
+        this.variant_id = this.answers[3].id
+      } else if (e.code === 'KeyE') {
+        this.variant_id = this.answers[4].id
+      }
+    })
   },
   methods: {
     onResize() {

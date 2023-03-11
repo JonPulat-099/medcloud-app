@@ -161,7 +161,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit('dashboard/setBlockName', 'Previous Test')
+    // this.$store.commit('dashboard/setBlockName', 'Previous Test')
   },
 }
 </script>
