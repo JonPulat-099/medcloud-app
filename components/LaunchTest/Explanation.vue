@@ -1,5 +1,5 @@
 <template>
-  <div class="explanation">
+  <div class="explanation" id="explanation__content">
     <h4>Explanation</h4>
     <div
       id="question__text"

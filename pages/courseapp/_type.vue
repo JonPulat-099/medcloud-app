@@ -16,8 +16,8 @@
               <td style="padding: 0 0 0 83px">
                 <tr style="width: 475px">
                   <td
-                    v-for="t in titles"
-                    :key="t"
+                    v-for="(t, i) in titles"
+                    :key="`${t}__${i}--${answers[i].id}`"
                     v-html="t"
                     style="width: 33%"
                     class="text-center font-weight-bold"
@@ -27,9 +27,25 @@
             </tr>
             <tr v-for="(v, i) in answers" :key="`vairant_${v.id}`">
               <td class="left__td">
-                <!-- <v-icon color="red">mdi-close</v-icon> -->
-                <!-- <v-icon color="green">mdi-check</v-icon> -->
-                <span></span>
+                <v-icon
+                  v-if="
+                    isChecked &&
+                    (isChecked.selected == v.id ||
+                      isChecked.selected != v.id) &&
+                    v.is_correct
+                  "
+                  color="green"
+                  >mdi-check</v-icon
+                >
+                <v-icon
+                  v-else-if="
+                    isChecked && isChecked.selected == v.id && !v.is_correct
+                  "
+                  color="red"
+                  >mdi-close</v-icon
+                >
+
+                <span v-else></span>
                 <label>
                   <input
                     type="radio"
@@ -63,66 +79,39 @@
             </tr>
           </table>
         </div>
-        <button class="submit__btn" @click="submitAnswer">Submit</button>
-        <div id="question__stats--bar" class="correct">
-          <v-layout row wrap justify-space-between>
-            <v-flex xs3>
-              <p class="type">Incorrect</p>
-              <small>Correct Answer</small>
-              <p>D</p>
-            </v-flex>
-            <v-flex xs3 class="d-flex align-center">
-              <aside>
-                <v-icon>mdi-chart-box-outline</v-icon>
-              </aside>
-              <aside>
-                <p>70%</p>
-                <small>Answered correctly</small>
-              </aside>
-            </v-flex>
-            <v-flex xs3 class="d-flex align-center">
-              <aside>
-                <v-icon>mdi-clock-time-four-outline</v-icon>
-              </aside>
-              <aside>
-                <p>06 secs</p>
-                <small>Time Spent</small>
-              </aside>
-            </v-flex>
-            <v-flex xs3 class="d-flex align-center">
-              <aside>
-                <v-icon>mdi-calendar-month-outline</v-icon>
-              </aside>
-              <aside>
-                <p>2022</p>
-                <small>Version</small>
-              </aside>
-            </v-flex>
-          </v-layout>
+        <button
+          v-if="isChecked == false"
+          class="submit__btn"
+          @click="submitAnswer"
+        >
+          Submit
+        </button>
+        <div v-if="isChecked" id="question__stats--bar" class="correct my-8">
+          <test-result :is_correct="isCorrect"></test-result>
         </div>
         <explanation
-          v-if="is_submit && (!isSplitScreen || show_lab_values)"
-          :items="question"
+          v-if="isChecked && (!isSplitScreen || show_lab_values)"
+          :items="isChecked.explanation"
         ></explanation>
       </div>
     </div>
     <div
       v-show="
-        (show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768
+        (show_lab_values || (isChecked && isSplitScreen)) && windowSize > 768
       "
       class="resize"
       id="mouse-resize"
     ></div>
     <div
       v-show="
-        (show_lab_values || (is_submit && isSplitScreen)) && windowSize > 768
+        (show_lab_values || (isChecked && isSplitScreen)) && windowSize > 768
       "
       class="section__dialog"
     >
       <LabValues v-if="show_lab_values" />
       <explanation
-        v-if="show_lab_values == false && is_submit && isSplitScreen"
-        :items="question"
+        v-if="show_lab_values == false && isChecked && isSplitScreen"
+        :items="isChecked.explanation"
       ></explanation>
     </div>
     <!-- ================= DIALOGS ================= -->
@@ -188,6 +177,10 @@ export default {
       import(
         /* webpackPrefetchL true */ '@/components/LaunchTest/ImageViewer.vue'
       ),
+    TestResult: () =>
+      import(
+        /* webpackPrefetchL true */ '@/components/LaunchTest/TestResult.vue'
+      ),
   },
   data() {
     return {
@@ -206,6 +199,7 @@ export default {
       return this.$store.state.tests.labvalues
     },
     question() {
+      this.variant_id = ""
       this.$nextTick(() => {
         if (process.client) {
           const links = window?.document
@@ -214,9 +208,9 @@ export default {
 
           links.forEach((el) => {
             el.addEventListener('click', (e) => {
+              this.image_url = el.href
               e.preventDefault()
               this.exhibit__display = true
-              this.image_url = el.href
             })
           })
         }
@@ -242,6 +236,35 @@ export default {
     },
     isSplitScreen() {
       return this.$store.state.tests.is_split_screen
+    },
+    isChecked() {
+      const result = this.$store.getters['tests/isChecked']
+      if (result) {
+        this.variant_id = result.selected
+        this.$nextTick(() => {
+          if (process.client) {
+            console.log(11)
+            const links = document
+              ?.getElementById('explanation__content')
+              ?.querySelectorAll('a')
+            console.log(links)
+            links?.forEach((el) => {
+              el.addEventListener('click', (e) => {
+                e.preventDefault()
+                console.log(el)
+                this.exhibit__display = true
+                this.image_url = el.href
+              })
+            })
+          }
+        })
+      }
+      return result
+    },
+    isCorrect() {
+      return this.isChecked
+        ? this.answers.find((x) => x.id == this.isChecked.selected)?.is_correct
+        : false
     },
   },
   watch: {
@@ -308,8 +331,6 @@ export default {
         this.variant_id = this.answers[2].id
       } else if (e.code === 'KeyD') {
         this.variant_id = this.answers[3].id
-      } else if (e.code === 'KeyE') {
-        this.variant_id = this.answers[4].id
       }
     })
   },
@@ -318,8 +339,10 @@ export default {
       this.windowSize = window.innerWidth
     },
     submitAnswer() {
-      this.$store.commit('tests/setAnswer', this.variant_id)
-      this.is_submit = true
+      if (this.variant_id) {
+        this.$store.commit('tests/setAnswer', this.variant_id)
+        this.is_submit = true
+      }
     },
     closeLabValues() {
       this.$store.commit('tests/setLabvaluesStatus', false)

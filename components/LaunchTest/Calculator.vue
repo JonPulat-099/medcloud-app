@@ -29,7 +29,11 @@
               <td><button data-num class="numbers">4</button></td>
               <td><button data-num class="numbers">5</button></td>
               <td><button data-num class="numbers">6</button></td>
-              <td><button data-del id="delete"><v-icon>mdi-backspace-outline</v-icon></button></td>
+              <td>
+                <button data-del id="delete">
+                  <v-icon>mdi-backspace-outline</v-icon>
+                </button>
+              </td>
             </tr>
             <tr>
               <td><button data-num class="numbers">1</button></td>
@@ -54,7 +58,8 @@ export default {
   name: 'Calculator',
   computed: {
     theme() {
-      return 'light--theme'
+      const theme = this.$store.state.tests.theme
+      return theme == 'theme-dark' ? 'dark--theme-calc' : 'ligth--theme-calc'
     },
   },
   mounted() {
@@ -270,43 +275,140 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// .ligth--theme {
-$bg: #bdc9d4;
-$close: #344159;
-$display: #fff;
-$display-text: #5b5b5b;
-$display-operators: #ae4a84;
-$equal-text: #5b5b5b;
-$btn-text: #5b5b5b;
-$btn-bg: #fff;
-$clear-btn-bg: #f5b2b6;
-$operators-bg: #d2cde7;
-$operators-text: #5b5b5b;
-$prev-text: #5b5b5b;
-$result: #5b5b5b;
-// }
+#draggable {
+  .calculator {
+    width: 100%;
+    background: var(--bg);
+    padding: 12px;
+    border-radius: 20px;
+    &.ligth--theme-calc {
+      --bg: #bdc9d4;
+      --close: #344159;
+      --display: #fff;
+      --display-text: #5b5b5b;
+      --display-operators: #ae4a84;
+      --equal-text: #5b5b5b;
+      --btn-text: #5b5b5b;
+      --btn-bg: #fff;
+      --clear-btn-bg: #f5b2b6;
+      --operators-bg: #d2cde7;
+      --operators-text: #5b5b5b;
+      --prev-text: #5b5b5b;
+      --result: #5b5b5b;
+    }
 
-.dark--theme {
-  $bg: #434242;
-  $close: #acb4c0;
-  $display: #121212;
-  $display-text: #acb4c0;
-  $display-operators: #ae4a84;
-  $equal-text: #d9dada;
-  $btn-text: #acb4c0;
-  $btn-bg: #121212;
-  $clear-btn-bg: #f5b2b6;
-  $operators-bg: #c7cbe6;
-  $operators-text: #264055;
-  $prev-text: #acb4c0;
-  $result: #d9dada;
+    &.dark--theme-calc {
+      --bg: #434242;
+      --close: #acb4c0;
+      --display: #121212;
+      --display-text: #acb4c0;
+      --display-operators: #ae4a84;
+      --equal-text: #d9dada;
+      --btn-text: #acb4c0;
+      --btn-bg: #121212;
+      --clear-btn-bg: #f5b2b6;
+      --operators-bg: #c7cbe6;
+      --operators-text: #264055;
+      --prev-text: #acb4c0;
+      --result: #d9dada;
+    }
+
+    .close-calculator {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .close-calculator button {
+      &::before {
+        display: none;
+      }
+      width: 18px !important;
+      height: 18px !important;
+      background: none;
+      border: none;
+      color: var(--close);
+      i {
+        width: 18px;
+        height: 18px;
+        font-size: 18px !important;
+      }
+    }
+
+    #display {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      background: var(--display);
+      border-radius: 8px;
+      height: 80px;
+      margin: 10px 0;
+      padding: 5px;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    #display-prev,
+    #input {
+      word-break: break-all;
+      text-align: right;
+    }
+
+    #display-prev {
+      color: var(--prev-text) !important;
+    }
+    #input {
+      color: var(--result) !important;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    table tr td {
+      width: 25%;
+    }
+
+    .keypad button {
+      display: block;
+      width: 100%;
+      min-height: 30px;
+      color: var(--btn-text);
+      background: var(--btn-bg);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.25s all;
+
+      i {
+        font-size: 16px;
+      }
+    }
+
+    .equal {
+      height: 66px;
+      background: #008dd2 !important;
+      color: #fff !important;
+    }
+
+    .clear {
+      background: var(--clear-btn-bg) !important;
+      color: var(--operators-text) !important;
+    }
+
+    .operator {
+      background: var(--operators-bg) !important;
+      transition: 0.25s all;
+      color: var(--operators-text) !important;
+    }
+  }
 }
 
 #draggable {
   width: 180px;
   top: 60px;
   right: 10px;
-
 
   /* Indicate the element draggable */
   cursor: move;
@@ -316,102 +418,5 @@ $result: #5b5b5b;
 
   /* Doesn't allow to select the content inside */
   user-select: none;
-}
-
-.calculator {
-  width: 100%;
-  background: $bg;
-  padding: 12px;
-  border-radius: 20px;
-}
-
-.close-calculator {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.close-calculator button {
-  &::before {
-    display: none;
-  }
-  width: 18px !important;
-  height: 18px !important;
-  background: none;
-  border: none;
-  color: $close;
-  i {
-    width: 18px;
-    height: 18px;
-    font-size: 18px !important;
-  }
-}
-
-#display {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  background: $display;
-  border-radius: 8px;
-  height: 80px;
-  margin: 10px 0;
-  padding: 5px;
-  overflow: hidden;
-  cursor: default;
-}
-
-#display-prev,
-#input {
-  word-break: break-all;
-  text-align: right;
-}
-
-#display-prev {
-  color: $prev-text !important;
-}
-#input {
-  color: $result !important;
-}
-
-table {
-  width: 100%;
-}
-
-table tr td {
-  width: 25%;
-}
-
-.keypad button {
-  display: block;
-  width: 100%;
-  min-height: 30px;
-  color: $btn-text;
-  background: $btn-bg;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.25s all;
-
-   i {
-    font-size: 16px;
-   }
-}
-
-.equal {
-  height: 66px;
-  background: #008dd2 !important;
-  color: #fff !important;
-}
-
-.clear {
-  background: $clear-btn-bg !important;
-  color: $operators-text !important;
-}
-
-.operator {
-  background: $operators-bg !important;
-  transition: 0.25s all;
-  color: $operators-text !important;
 }
 </style>

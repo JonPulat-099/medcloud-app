@@ -1,6 +1,6 @@
 <template>
   <div class="image-viewer__modal">
-    <img id="image-viewer" :src="image" alt="Picture" />
+    <img id="image-viewer" :src="image_source" alt="Picture" />
   </div>
 </template>
 u
@@ -16,9 +16,19 @@ export default {
       default: 'https://a.d-cd.net/4acf09u-1920.jpg',
     },
   },
+  watch: {
+    image(val) {
+      console.log(val)
+      this.image_source = val
+      console.log(this.image_source);
+      // this.viewer.reset()
+    },
+  },
   data() {
     return {
       dialog: true,
+      image_source: '',
+      // viewer: null,
     }
   },
   mounted() {

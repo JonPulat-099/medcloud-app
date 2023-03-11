@@ -72,6 +72,7 @@
         nuxt
         elevation="0"
         class="to--dashboard text-capitalize rounded-xl"
+        @click="$router.push('/cabinet')"
       >
         <v-icon color="white" left>mdi-home-circle</v-icon>
         Dashboard

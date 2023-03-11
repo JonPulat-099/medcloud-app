@@ -4,30 +4,35 @@ const tests = [
     is_mark: false,
     is_note: false,
     selected: '',
-    is_done: true,
+    is_done: false,
     question: `<p>A 14-year-old boy comes to the office with his mother due to progressive anterior knee pain affecting the left leg for the past 2 months.&nbsp; The pain started as a mild ache toward the end of a hiking trip.&nbsp; The patient reports no fever, night sweats, or trauma to the knee.&nbsp; On physical examination, he has a normal gait.&nbsp; The hips, knees, and ankles have full range of motion.&nbsp; An area of mild swelling tender to palpation is located about 3 cm below the inferior border of the patella.&nbsp; An x-ray of the left knee is shown in the <a href="https://www.uworld.com/media/U1154.jpg">exhibit</a>.&nbsp; Overuse of which of the following muscles most likely contributed to this patient's condition?</p>`,
     answers: [
       {
         id: 1126,
         text: 'Biceps femoris',
+        average: 5,
+        is_correct: false,
       },
       {
         id: 1127,
         text: 'Popliteus',
+        average: 3,
+        is_correct: false,
       },
       {
         id: 1128,
         text: 'Quadriceps',
+        average: 69,
+        is_correct: true,
       },
       {
         id: 1129,
         text: 'Sartorius',
-      },
-      {
-        id: 1130,
-        text: 'Tibialis anterior',
+        average: 18,
+        is_correct: false,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p><img draggable="false" id="797" src="https://www.uworld.com/media/L7456.jpg"></p><p>This patient has <strong>Osgood-Schlatter disease</strong> (OSD), a common cause of knee pain in adolescents due to overuse of the <strong>quadriceps</strong> muscle group (ie, rectus femoris, vastus intermedius, vastus lateralis, vastus medialis).&nbsp; The quadriceps is located in the anterior thigh and is responsible for <strong>knee extension</strong>.&nbsp; Its tendon initially inserts at the superior pole of the patella.&nbsp; The tendon envelops the patella and continues as the patellar ligament, which then inserts at the <strong>tibial tubercle</strong>.&nbsp; As a result, contraction of the quadriceps (eg, hiking, running) creates traction on the tibial tubercle.</p><p>In skeletally immature children, the tibial tubercle forms as a <strong>secondary ossification center</strong> (apophysis) of the tibia, and the cartilaginous nature of the developing tibial tuberosity makes it more prone to injury compared to fully ossified bone in adults.&nbsp; Repetitive quadriceps contraction results in chronic <a href="https://www.uworld.com/media/L6675.jpg">avulsion/fragmentation of the tubercle</a>, with corresponding tenderness and swelling, as seen in this patient.</p><p><strong>(Choice A)</strong>&nbsp; The biceps femoris, along with the semitendinosus and semimembranosus, forms the <a href="	https://www.uworld.com/media/L62892.jpg">hamstring muscle group</a> in the posterior thigh; it is responsible for hip extension and knee flexion.&nbsp; The long head of the biceps femoris originates from the ischial tuberosity, whereas the short head originates from the inferior third of the linea aspera.&nbsp; Both insert at the head of the fibula.</p><p><strong>(Choice B)</strong>&nbsp; The popliteus originates from the lateral condyle of the femur and lateral meniscus and inserts at the proximal shaft of the tibia.&nbsp; It flexes and medially rotates the leg (unlocks an extended knee).</p><p><strong>(Choice D)</strong>&nbsp; The <a href="https://www.uworld.com/media/L57376.jpg">sartorius</a> originates from the anterior superior iliac spine and inserts at the superomedial surface of the tibia.&nbsp; Because of its oblique orientation across the anterior thigh, the sartorius is responsible for hip flexion, external rotation, and abduction, as well as knee flexion.&nbsp; This combination of movements is needed to sit in a cross-legged position.</p><p><strong>(Choice E)</strong>&nbsp; The <a href="https://www.uworld.com/media/L65075.jpg">tibialis anterior</a> originates from the lateral condyle of the tibia, the upper half of the lateral tibia, and the interosseus membrane.&nbsp; It inserts at the cuneiform and first metatarsal.&nbsp; It is responsible for ankle dorsiflexion and foot inversion.</p><p><strong>Educational objective:</strong><br>Repetitive traction at the tibial tubercle due to quadriceps contraction can lead to avulsion and fragmentation of the tibial tubercle in skeletally immature children, causing Osgood-Schlatter disease.</p></div>`,
   },
   {
     id: 12343,
@@ -41,24 +46,29 @@ const tests = [
       {
         id: 1111,
         text: '5 alpha-reductase',
+        average: 11,
+        is_correct: false,
       },
       {
         id: 1112,
         text: '11 beta-hydroxylase',
+        average: 11,
+        is_correct: false,
       },
       {
         id: 1113,
         text: '17 alpha-hydroxylase',
+        average: 66,
+        is_correct: true,
       },
       {
         id: 1114,
         text: '20,22-desmolase',
-      },
-      {
-        id: 1115,
-        text: '21-hydroxylase',
+        average: 2,
+        is_correct: false,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><div id="div_T63797"><table class="table-default-style" style="width:100.0%"><tbody><tr><td colspan="5" style="width:100.0%;"><p align="center"><strong>Congenital adrenal hyperplasia</strong></p></td></tr><tr><td style="width:15.02%;"><p align="center"><strong>Enzyme deficiency</strong></p></td><td style="width:21.26%;"><p align="center"><strong>Mineralocorticoids</strong></p></td><td style="width:18.94%;"><p align="center"><strong>Glucocorticoids</strong></p></td><td style="width:14.92%;"><p align="center"><strong>Androgens</strong></p></td><td style="width:29.86%;"><p align="center"><strong>Symptoms</strong></p></td></tr><tr><td style="width:15.02%;"><p align="center"><strong>21-hydroxylase</strong></p></td><td style="width:21.26%;"><p align="center">↓</p></td><td style="width:18.94%;"><p align="center">↓</p></td><td style="width:14.92%;"><p align="center">↑</p></td><td style="width:29.86%;"><ul><li>Salt wasting (vomiting, hypotension, ↓ Na<sup>+</sup>, ↑ K<sup>+</sup>)</li><li>Ambiguous genitalia in girls</li></ul></td></tr><tr><td style="width:15.02%;"><p align="center"><strong>11β-hydroxylase</strong></p></td><td style="width:21.26%;"><p align="center">↑<strong>*</strong></p></td><td style="width:18.94%;"><p align="center">↓</p></td><td style="width:14.92%;"><p align="center">↑</p></td><td style="width:29.86%;"><ul><li>Hypertension, ↓ K<sup>+</sup></li><li>Ambiguous genitalia in girls</li></ul></td></tr><tr><td style="width:15.02%;"><p align="center"><strong>17α-hydroxylase</strong></p></td><td style="width:21.26%;"><p align="center">↑</p></td><td style="width:18.94%;"><p align="center">↑<strong>**</strong></p></td><td style="width:14.92%;"><p align="center">↓</p></td><td style="width:29.86%;"><ul><li>Hypertension, ↓ K<sup>+</sup></li><li>Ambiguous genitalia in boys</li><li>Absent puberty</li></ul></td></tr><tr><td colspan="5" style="width:100.0%;"><p>*Low aldosterone but excessive weak mineralocorticoid (11-deoxycorticosterone).</p><p>**Low cortisol but excessive weak glucocorticoid (corticosterone).</p></td></tr></tbody></table></div><p>This patient is genetically male (46,XY) with features suggestive of <a href="javascript:void(0)">17 alpha-hydroxylase deficiency</a>, a rare cause of <strong>congenital adrenal hyperplasia</strong> (CAH).&nbsp; The enzyme 17 alpha-hydroxylase is active in the adrenal glands and gonads and is responsible for converting pregnenolone to 17-hydroxypregnenolone and progesterone to 17-hydroxyprogesterone.&nbsp; Deficiency of this enzyme <strong>impairs synthesis of sex hormones</strong> (eg, testosterone, estradiol) and cortisol but <strong>does not inhibit mineralocorticoid production</strong>.</p><p>Due to the absence of androgens in utero, genetic males (46,XY) with 17 alpha-hydroxylase deficiency have undervirilized, ambiguous genitalia.&nbsp; In severe cases, they appear <strong>phenotypically female</strong> but lack internal female genitalia, as in this case.&nbsp; In contrast, genetic females (46,XX) develop normal internal and external genitalia.&nbsp; At puberty, impaired synthesis of sex hormones in the gonads leads to <strong>absent secondary sexual characteristics</strong> in both sexes and primary amenorrhea in girls.</p><p>Excess mineralocorticoid production results in <strong>hypertension</strong> and <strong>hypokalemia</strong> that are usually detected around the expected time of <strong>puberty</strong>.&nbsp; Low cortisol provides positive feedback to increase ACTH production, further stimulating the mineralocorticoid pathway.&nbsp; This allows for the excess production of weak glucocorticoids (ie, corticosterone), preventing the detrimental effects of low cortisol.</p><p><strong>(Choice A)</strong>&nbsp;&nbsp;<a href="javascript:void(0)">5 alpha-reductase deficiency</a> prevents conversion of testosterone to dihydrotestosterone, the hormone responsible for male external genitalia development.&nbsp; Affected genetic males have ambiguous genitalia at birth but develop normal secondary sexual characteristics (eg, increased muscle mass, phallus enlargement) at puberty because these features are testosterone dependent.&nbsp; Blood pressure and electrolytes are unaffected.</p><p><strong>(Choice B)</strong>&nbsp;&nbsp;<a href="javascript:void(0)">11 beta-hydroxylase deficiency</a> causes decreased glucocorticoid synthesis and increased production of adrenal androgens.&nbsp; Because the production of 11-deoxycorticosterone (weak mineralocorticoid) is also increased, individuals with this deficiency have features of mineralocorticoid excess (eg, hypertension, hypokalemia).&nbsp; However, genetic males appear phenotypically normal.</p><p><strong>(Choice D)</strong>&nbsp; 20,22-desmolase (side chain cleavage enzyme) deficiency results in impaired synthesis of all steroid hormones with accumulation of cholesterol esters in the adrenal glands and gonads.&nbsp; Complete deficiency is lethal, and partial deficiency typically presents in infancy with signs of adrenal insufficiency (eg, hypotension, hyperkalemia).</p><p><strong>(Choice E)</strong>&nbsp; The most common form of CAH is <a href="javascript:void(0)">21-hydroxylase deficiency</a>.&nbsp; It causes decreased glucocorticoid and mineralocorticoid synthesis and increased adrenal androgen production.&nbsp; In contrast to this patient, genetic males with 21-hydroxylase deficiency appear phenotypically normal.</p><p><strong>Educational objective:</strong><br>Deficiency of 17 alpha-hydroxylase is a rare form of congenital adrenal hyperplasia characterized by impaired synthesis of androgens, estrogens, and cortisol with excess production of mineralocorticoids.&nbsp; Genetic males with this deficiency may have phenotypically female external genitalia and present with hypertension and hypokalemia around the expected time of puberty.</p></div>`,
   },
   {
     id: 12344,
@@ -71,24 +81,29 @@ const tests = [
       {
         id: 1116,
         text: 'Excess granulation tissue formation',
+        average: 26,
+        is_correct: false,
       },
       {
         id: 1117,
         text: 'Malignant transformation',
+        average: 0,
+        is_correct: false,
       },
       {
         id: 1118,
         text: 'Normal wound remodeling',
-      },
-      {
-        id: 1119,
-        text: 'Persistent neutrophil activity',
+        average: 4,
+        is_correct: false,
       },
       {
         id: 1120,
         text: 'Reaction to a foreign body',
+        average: 54,
+        is_correct: true,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p><img draggable="false" id="29848" src="https://www.uworld.com/media/L55615.jpg"></p><p><strong>Foreign bodies</strong> (eg, retained sutures) can elicit a granulomatous response, seen clinically as a tender, erythematous, brown or purple papule, nodule, or plaque.&nbsp; <strong>Granulomas</strong> are characterized microscopically by aggregates of <strong>activated macrophages</strong> that assume an epithelioid appearance.&nbsp; They are often surrounded by a rim of lymphocytes that synthesize the cytokines responsible for granuloma maintenance.&nbsp; Multinucleated giant cells, derived from the fusion of several macrophages, can also be found in granulomas.</p><p>Granuloma formation is a complex process that occurs over several <strong>days to weeks</strong> in response to an antigen that cannot be eradicated by more acute inflammatory mechanisms (eg, killing by neutrophils).&nbsp; As infiltrating macrophages engulf the antigenic debris, material resistant to digestion persists in the cytoplasm and causes macrophage&nbsp;activation.&nbsp; This results&nbsp;in further macrophage maturation and formation of a granuloma, which <strong>walls off</strong> the offending agent.</p><p><strong>(Choice A)</strong>&nbsp; Excess <a href="javascript:void(0)">granulation tissue</a> formation (hypergranulation) usually occurs in a wound left to heal by secondary intention.&nbsp; Light microscopy would show proliferation of fibroblasts, collagen deposition, inflammatory cells, and numerous capillaries.</p><p><strong>(Choice B)</strong>&nbsp; Marjolin ulcer is an aggressive, ulcerating squamous cell carcinoma that presents in an area of previously traumatized, chronically inflamed, or scarred skin.&nbsp; Malignant transformation often occurs long after the initial trauma, usually &gt;10 years later.&nbsp; Histology would show dysplastic keratinocytes and keratinization.</p><p><strong>(Choice C)</strong>&nbsp; The remodeling phase of wound healing is characterized by fibrosis (scar formation) and starts the second week after injury.&nbsp; During this phase, active fibroblasts synthesize collagen, elastin, and other components of the connective tissue matrix.</p><p><strong>(Choice D)</strong>&nbsp; The inflammatory phase of wound healing consists of the movement of neutrophils (within the first 24 hours) and macrophages (within 2-3 days) to the damaged area, with phagocytosis of necrotic debris and bacterial contaminants.&nbsp; Persistent neutrophil activity in a wound would result in an abscess and/or pus drainage rather than granuloma formation.</p><p><strong>Educational objective:</strong><br>Granulomatous inflammation is a form of chronic inflammation characterized by aggregates of activated macrophages that assume an epithelioid appearance.&nbsp; Persistent granulomatous inflammation with subsequent fibrosis can cause organ dysfunction, which is seen in a number of granulomatous diseases.</p></div>`,
   },
   {
     id: 12345,
@@ -101,24 +116,29 @@ const tests = [
       {
         id: 1121,
         text: 'δ-aminolevulinic acid dehydratase',
+        average: 19,
+        is_correct: false,
       },
       {
         id: 1122,
         text: 'δ-aminolevulinic acid synthase',
+        average: 60,
+        is_correct: true,
       },
       {
         id: 1123,
         text: 'Cystathionine synthase',
+        average: 5,
+        is_correct: false,
       },
       {
         id: 1124,
         text: 'Glucose-6-phosphate dehydrogenase',
-      },
-      {
-        id: 1125,
-        text: 'Pyruvate kinase',
+        average: 11,
+        is_correct: false,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p><img draggable="false" id="38171" src="https://www.uworld.com/media/L63678.jpg"></p><p>This patient with <strong>latent tuberculosis</strong> has laboratory values and bone marrow aspirate findings consistent with <strong>sideroblastic anemia</strong> due to isoniazid use.</p><p>Sideroblastic anemia is caused by <strong>impaired heme production</strong> within red blood cells.&nbsp; When iron is transported to developing erythrocytes that cannot form heme, <strong>iron granules</strong> accumulate in mitochondria <a href="https://www.uworld.com/media/L25815.jpg">circumferentially around the nucleus</a>, forming <strong>ring sideroblasts</strong> that can be seen on Prussian blue–stained bone marrow aspirate.&nbsp; Etiologies include X-linked sideroblastic anemia (due to an δ-aminolevulinic acid synthase mutation), myelodysplastic syndrome, alcohol use disorder, copper deficiency, and certain medications (eg, isoniazid, chloramphenicol, linezolid).</p><p><strong>Isoniazid</strong> directly inhibits the enzyme pyridoxine phosphokinase, which normally converts <strong>pyridoxine</strong> (vitamin B<font size="2"><sub>6</sub></font>) to its active form, pyridoxal 5' phosphate.&nbsp; Pyridoxine is a cofactor for <strong>δ-aminolevulinic acid (ALA) synthase</strong>, the enzyme that catalyzes the rate-limiting step in heme synthesis.&nbsp; Inhibition of this enzyme impairs heme production and erythroid development to produce a <strong>microcytic anemia</strong>.&nbsp; Pyridoxine deficiency can also lead to seborrheic dermatitis, glossitis, and peripheral neuropathy.&nbsp; Therefore, pyridoxine is typically prescribed with isoniazid.</p><p><strong>(Choice A)</strong>&nbsp; δ-aminolevulinic acid dehydratase is another enzyme involved in heme synthesis.&nbsp; Lead poisoning can cause anemia by directly inhibiting this enzyme.&nbsp; However, pyridoxine is not a cofactor for this step; therefore, isoniazid would not affect its activity.</p><p><strong>(Choice C)</strong>&nbsp; Cystathionine synthase catalyzes the formation of cystathionine from homocysteine.&nbsp; Deficiency results in homocystinuria, an autosomal recessive disorder characterized by a marfanoid body habitus and hypercoagulability.&nbsp; Although cystathionine synthase is a pyridoxine-dependent enzyme, impairment does not result in sideroblastic anemia.</p><p><strong>(Choice D)</strong>&nbsp; Glucose-6-phosphate dehydrogenase (G6PD) deficiency results in increased red blood cell susceptibility to oxidative stress (eg, infection, medication, fava beans), which triggers hemolysis.&nbsp; This results in a normocytic, normochromic, hemolytic anemia without ring sideroblasts.</p><p><strong>(Choice E)</strong>&nbsp; Pyruvate kinase deficiency, an autosomal recessive disorder, results in a normocytic, normochromic, hemolytic anemia without ring sideroblasts.</p><p><strong>Educational objective:</strong><br>Isoniazid inhibits pyridoxine phosphokinase, leading to impaired activation of pyridoxine (vitamin B<font size="2"><sub>6</sub></font>).&nbsp; Pyridoxine is a cofactor for δ-aminolevulinic acid synthase, the enzyme that catalyzes the rate-limiting step of heme synthesis.&nbsp; Inhibition of this step can result in sideroblastic anemia.</p></div>`,
   },
   {
     id: 12347,
@@ -131,24 +151,29 @@ const tests = [
       {
         id: 1131,
         text: 'Actinic keratosis',
+        average: 3,
+        is_correct: false,
       },
       {
         id: 1132,
         text: 'Atopic dermatitis',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1133,
         text: 'Irritant contact dermatitis',
+        average: 8,
+        is_correct: false,
       },
       {
         id: 1134,
         text: 'Lichen planus',
-      },
-      {
-        id: 1135,
-        text: 'Psoriasis',
+        average: 68,
+        is_correct: true,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><div id="div_T55010"><div align="center"><table class="table-default-style"><tbody><tr><td colspan="2"><p align="center"><strong>Lichen planus</strong></p></td></tr><tr><td><p align="center"><strong>Clinical findings</strong></p></td><td><ul><li><strong>5 "Ps":</strong> pruritic, purple/pink, polygonal, papules &amp; plaques</li><li>Lacy, white network of lines (Wickham striae)</li><li><strong>Locations:</strong><ul style="list-style-type:circle;"><li>Skin (eg, ankles, wrists)</li><li>Oral mucosa (white papules &amp; plaques ± erythema, mucosal atrophy, ulcers)</li><li>Genitalia</li></ul></li></ul></td></tr><tr><td><p align="center"><strong>Pathologic findings</strong></p></td><td><ul><li>Hyperkeratosis</li><li>Lymphocytic interface dermatitis</li><li>Eosinophilic colloid (Civatte) bodies</li><li>Thickened stratum granulosum, sawtooth rete ridges</li></ul></td></tr><tr><td><p align="center"><strong>Natural history</strong></p></td><td><ul><li>Chronic symptoms</li><li>Formation of lesions at sites of trauma (Köbner phenomenon)</li><li>Resolution within 2 yr (mucosal lesions may persist/recur)</li></ul></td></tr></tbody></table></div></div><p>This patient has <a href="https://www.uworld.com/media/L50717.jpg">lichen planus (LP)</a>, an immune-mediated condition that typically presents with <strong>pruritic</strong>, <strong>pink papules</strong> and plaques.&nbsp; LP lesions often have lacy, scaly, <strong>white markings</strong> (<a href="https://www.uworld.com/media/L9936.jpg">Wickham striae</a>) and can form at sites of minor trauma (Köbner phenomenon).&nbsp; The skin lesions typically occur symmetrically on the flexural surfaces of the wrists and ankles but can also involve the nails, oral mucous membranes, and genitalia.</p><p>The pathologic process in LP is characterized by a (CD8<font size="2"><sup>+</sup></font>) <strong>T cell–mediated response</strong> against cells along the <a href="https://www.uworld.com/media/L3893.jpg">dermal-epidermal junction</a>.&nbsp; Although the etiology is unknown, the risk may be increased in patients with hepatitis C and those taking certain medications (eg, ACE inhibitors, thiazide diuretics).&nbsp; LP typically follows a chronic course with gradual, spontaneous remission within 2 years.</p><p><strong>(Choice A)</strong>&nbsp; <a href="https://www.uworld.com/media/L11631.jpg">Actinic keratosis</a> presents with small, hyperkeratotic plaques in sun-exposed areas (eg, forehead, cheeks).&nbsp; It is most common in patients age &gt;60, and itching is atypical.</p><p><strong>(Choice B)</strong>&nbsp; <a href="https://www.uworld.com/media/L46093.jpg">Atopic dermatitis</a> typically occurs in large patches at the flexural surfaces of the extremities, especially the elbows; it usually presents in childhood, and most patients have a history of other atopic disorders (eg, allergic rhinitis, asthma).</p><p><strong>(Choice C)</strong>&nbsp; <a href="https://www.uworld.com/media/L34230.jpg">Irritant contact dermatitis</a> is due to repeated exposure to irritants (eg, detergents, solvents, oxidizing agents).&nbsp; It presents as hyperkeratotic patches with fissuring and scaling, most commonly on the hands.</p><p><strong>(Choice E)</strong>&nbsp; <a href="https://www.uworld.com/media/L49231.jpg">Psoriasis</a> is an immune-mediated inflammatory disease that usually presents with thick, erythematous plaques with silvery scales on the extensor surfaces of the knees and elbows, scalp, or neck.</p><p><strong>Educational objective:</strong><br>Lichen planus is an immune-mediated condition that presents with pruritic, pink papules and plaques, often with lacy, scaly, white markings (Wickham striae).&nbsp; The lesions typically occur on the flexural surfaces of the wrists and ankles but can also involve the nails, oral mucous membranes, and genitalia.</p></div>`,
   },
   {
     id: 12348,
@@ -161,24 +186,29 @@ const tests = [
       {
         id: 1136,
         text: 'Inadequate childhood vaccination',
+        average: 17,
+        is_correct: false,
       },
       {
         id: 1137,
         text: 'Increased gonadal venous pressure',
+        average: 11,
+        is_correct: false,
       },
       {
         id: 1138,
         text: 'Lack of normal testicular fixation',
+        average: 11,
+        is_correct: false,
       },
       {
         id: 1139,
         text: 'Unprotected sexual intercourse',
-      },
-      {
-        id: 1140,
-        text: 'Urethral colonization by coliforms',
+        average: 53,
+        is_correct: true,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><div id="div_T46306"><table class="table-default-style table-header-footer-style"><tbody><tr><td colspan="2"><p align="center"><strong>Acute epididymitis</strong></p></td></tr><tr><td><p align="center"><strong>Epidemiology</strong></p></td><td><ul><li>Age &lt;35: <strong>sexually transmitted</strong> (chlamydia, gonorrhea)</li><li>Age &gt;35: bladder outlet obstruction (<strong>coliform bacteria</strong>)</li></ul></td></tr><tr><td><p align="center"><strong>Symptoms</strong></p></td><td><ul><li>Unilateral testicular <strong>pain</strong></li><li>Epididymal <strong>edema</strong></li><li>Dysuria, frequency (with coliform infection)</li></ul></td></tr><tr><td><p align="center"><strong>Diagnosis</strong></p></td><td><ul><li>NAAT for chlamydia and gonorrhea</li><li>Urinalysis/culture</li></ul></td></tr><tr><td colspan="2"><p><strong>NAAT</strong> = nucleic acid amplification test; <strong>STI</strong> = sexually transmitted infection.</p></td></tr></tbody></table></div><p>This patient's acute testicular pain, <strong>posterior testicle tenderness</strong>, and pyuria raises suspicion for <strong>acute epididymitis</strong>.&nbsp; Most cases occur when genitourinary pathogens travel in a retrograde fashion from the urethra via the ejaculatory duct to the vas deferens.&nbsp; The most likely underlying organism can often be inferred based upon the age of the patient:</p><ul><li><p>Young men (age &lt;35) usually develop acute epididymitis due to <em><strong>Chlamydia trachomatis</strong></em> or <em><strong>Neisseria gonorrhoeae</strong></em>, sexually transmitted pathogens acquired during <strong>unprotected sexual intercourse</strong>.&nbsp; Although these organisms often cause asymptomatic urethritis (no dysuria), <strong>pyuria</strong> is typically seen on urinalysis.&nbsp; Nucleic acid amplification testing is required for diagnosis because urine culture is generally negative.</p></li><li><p>Older men (age &gt;35) are less likely to have sexually transmitted infections due to fewer sexual partners and increased rates of monogamy.&nbsp; Acute epididymitis in these patients is generally due to gram-negative colonic flora (eg, <em>Escherichia coli</em>), which contaminate the urethra, ascend into the urinary system, and subsequently invade the ejaculatory duct and vas deferens.&nbsp; Most cases arise in the setting of urethral obstruction (eg, benign prostatic hypertrophy) and are characterized by urinary tract symptoms (eg, dysuria, urinary frequency), bacteruria on urinalysis, and positive urine culture <strong>(Choice E)</strong>.</p></li></ul><p><strong>(Choice A)</strong>&nbsp; Mumps can occur in those who did not receive appropriate childhood vaccinations and usually presents with a nonspecific prodrome (fever, malaise, myalgias) followed by parotitis.&nbsp; Complications include orchitis, with high fever and severe diffuse testicular pain, which are not seen in this patient.</p><p><strong>(Choice B)</strong>&nbsp; Varicocele is characterized by distension of the pampiniform plexus due to elevated gonadal venous pressure.&nbsp; It presents as a soft scrotal mass that feels like a "bag of worms" on palpation.&nbsp; Pain is mild or absent.</p><p><strong>(Choice C)</strong>&nbsp; Testicular torsion is the result of inadequate fixation of the lower pole of the testis to the tunica vaginalis.&nbsp; It is usually characterized by sudden-onset, severe, unilateral testicular pain; nausea; a high-riding testis; and loss of the cremasteric reflex (elevation of testis on pinching of the skin at the upper thigh).</p><p><strong>Educational objective:</strong><br>Epididymitis presents with acute testicular pain, tenderness, and pyuria.&nbsp; It is caused by retrograde passage of organisms from the urethra into the ejaculatory duct and vas deferens.&nbsp; The microbiology is largely influenced by patient age: epididymitis in young men is usually due to sexually acquired infections (eg, <em>Chlamydia trachomatis</em>, <em>Neisseria gonorrhoeae</em>), whereas in older men (age &gt;35) it is usually due to gram-negative colonic flora.</p></div>`,
   },
   {
     id: 12349,
@@ -191,52 +221,61 @@ const tests = [
       {
         id: 1141,
         text: 'Bacterial endocarditis',
+        average: 1,
+        is_correct: false,
       },
       {
         id: 1142,
         text: 'Granulomatosis with polyangiitis',
+        average: 13,
+        is_correct: false,
       },
       {
         id: 1143,
         text: 'Inherited thrombophilia',
+        average: 1,
+        is_correct: false,
       },
       {
         id: 1144,
         text: 'Polyarteritis nodosa',
-      },
-      {
-        id: 1145,
-        text: 'Thromboangiitis obliterans',
+        average: 70,
+        is_correct: true,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p><img draggable="false" id="38619" src="https://www.uworld.com/media/L64151.jpg"></p><p>This patient's systemic symptoms, renal/small-bowel infarctions, and biopsy findings are consistent with <strong>polyarteritis nodosa</strong> (PAN), a systemic vasculitis of <strong>medium-sized muscular arteries</strong>.&nbsp; PAN is generally marked by the following:</p><ul><li><p>Segmental, transmural inflammation of the arterial wall with invasion of neutrophils and monocytes</p></li><li><p>Destruction of the inner portion of the arterial wall; the normal architecture is replaced with <strong>necrotic fibrinoid material</strong> and <strong>loose connective tissue</strong>, which <strong>narrows the vessel lumen</strong> and increases the risk of <strong>thrombosis</strong> and tissue infarction.</p></li><li><p>Destruction of the internal and external elastic laminae, which increases the risk of <strong>microaneurysms</strong> and subsequent rupture</p></li></ul><p>Patients with PAN generally present with weeks or months of nonspecific <strong>constitutional symptoms</strong> (eg, weight loss, fatigue, low-grade fever, arthralgias) and signs of tissue ischemia in the kidneys (eg, <strong>renal infarction</strong>), gastrointestinal tract (eg, <strong>small-bowel infarction</strong>, mesenteric ischemia), peripheral nerves, and/or skin.&nbsp; Because PAN is not associated with antineutrophilic cytoplasmic antibodies or significant elevation in antinuclear antibodies, diagnostic confirmation usually requires tissue biopsy.</p><p><strong>(Choices A and C)</strong>&nbsp; Bacterial endocarditis can cause embolic septic infarctions in the kidneys and intestines.&nbsp; Inherited coagulation disorders can also cause thrombosis with tissue infarctions.&nbsp; However, biopsy would show a clot/embolism in the arterial lumen (during acute infarction), not transmural inflammation and connective tissue proliferation.</p><p><strong>(Choice B)</strong>&nbsp; Granulomatosis with polyangiitis usually causes manifestations in the upper/lower airways (eg, rhinosinusitis, hemoptysis) and kidneys (eg, glomerulonephritis).&nbsp; The gastrointestinal tract is not typically affected.&nbsp; Furthermore, biopsy generally reveals a leukocytoclastic vasculitis with minimal or no luminal narrowing or fibrinoid necrosis.</p><p><strong>(Choice E)</strong>&nbsp; Thromboangiitis obliterans occurs primarily in young smokers.&nbsp; It is marked by inflammatory thrombi in the small- and medium-sized vessels of the extremities.&nbsp; Patients usually have digital ulcers, ischemia, gangrene, or limb claudication.&nbsp; Mesenteric and renal infarction would be atypical.&nbsp; In addition, transmural inflammation/connective tissue proliferation would not be seen during the acute stage of infarction.</p><p><strong>Educational objective:</strong><br>Polyarteritis nodosa is a systemic vasculitis of medium-sized muscular arteries marked by segmental, transmural, arterial wall inflammation with fibrinoid necrosis.&nbsp; This narrows the arterial lumen and increases risk of thrombosis and tissue ischemia/infarction.&nbsp; Damage to the internal and external elastic laminae also increases the risk of microaneurysm.&nbsp; Tissue damage primarily occurs in the kidneys, gastrointestinal tract, neurologic system, and skin; the lungs are usually spared.</p></div>`,
   },
   {
     id: 12350,
     is_mark: false,
     is_note: false,
     selected: '',
-    is_done: true,
+    is_done: false,
     question: `<p>A previously healthy 15-year-old <h-tag id="highlight-1000" class="textHighlight highlight-color-1">girl</h-tag> is brought to the emergency department due to respiratory distress and continuous cough after eating at a buffet in a local restaurant.&nbsp; Blood pressure is 80/40 mm Hg, pulse is 130/min, and respirations are 32/min.&nbsp; She is in marked respiratory distress but is able to speak.&nbsp; Diffuse wheezing and erythematous skin rash are present.&nbsp; Which of the following hemodynamic changes are most likely present in this patient?</p>`,
     answers: [
       {
         id: 1146,
         text: ['Decreased', 'Decreased', 'Decreased'],
+        average: 65,
+        is_correct: true,
       },
       {
         id: 1147,
         text: ['Decreased', 'Decreased', 'Increased'],
+        average: 9,
+        is_correct: false,
       },
       {
         id: 1148,
         text: ['Increased', 'Decreased', 'Increased'],
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1149,
         text: ['Increased', 'Increased', 'Decreased'],
-      },
-      {
-        id: 1150,
-        text: ['Increased', 'Increased', 'Increased'],
+        average: 12,
+        is_correct: false,
       },
     ],
     answers__title: [
@@ -244,6 +283,7 @@ const tests = [
       'Pulmonary capillary<br>wedge pressure',
       'Systemic vascular resistance',
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><div id="div_t40474"><table class="table-default-style table-header-footer-style" style="width:582px"><tbody><tr><td colspan="5"><p align="center"><strong>Hemodynamic measurements in shock</strong></p></td></tr><tr><td style="width: 20%;"><p align="center"><strong>Parameter</strong></p></td><td style="width: 20%;"><p align="center"><strong>Hypovolemic<br>shock</strong></p></td><td style="width: 20%;"><p align="center"><strong>Cardiogenic<br>shock</strong></p></td><td style="width: 20%;"><p align="center"><strong>Obstructive<br>shock</strong></p></td><td style="width: 20%;"><p style="text-align: center;"><strong>Distributive</strong></p><p align="center"><strong>shock</strong></p></td></tr><tr><td><p align="center"><strong>CVP<br>(right-sided<br>preload)</strong></p></td><td><p align="center">↓</p></td><td><p align="center">↑</p></td><td><p align="center">↑</p></td><td><p align="center">↓</p></td></tr><tr><td><p align="center"><strong>PCWP<br>(left-sided<br>preload)</strong></p></td><td><p align="center">↓</p></td><td><p align="center">↑</p></td><td><p align="center">↓*</p></td><td><p align="center">↓</p></td></tr><tr><td><p align="center"><strong>Cardiac index<br>(LV output)</strong></p></td><td><p align="center">↓</p></td><td><p align="center">↓</p></td><td><p align="center">↓</p></td><td><p align="center">↑**</p></td></tr><tr><td><p align="center"><strong>SVR<br>(afterload)</strong></p></td><td><p align="center">↑</p></td><td><p align="center">↑</p></td><td><p align="center">↑</p></td><td><p align="center">↓</p></td></tr><tr><td><p align="center"><strong>SvO<sub>2</sub></strong></p></td><td><p align="center">↓</p></td><td><p align="center">↓</p></td><td><p align="center">↓</p></td><td><p align="center">↑**</p></td></tr><tr><td colspan="5"><p>*In tamponade, left-sided preload is decreased, but measured PCWP is paradoxically increased due to external compression by pericardial fluid.</p><p>**Cardiac index &amp; SvO<sub>2</sub> are usually decreased in neurogenic shock due to impaired sympathetic reflexes.</p><strong>CVP&nbsp;</strong>=&nbsp;central venous pressure; <strong>LV&nbsp;</strong>=&nbsp;left ventricular; <strong>PCWP&nbsp;</strong>=&nbsp;pulmonary capillary wedge pressure; <strong>SvO<sub>2</sub>&nbsp;</strong>=&nbsp;mixed venous oxygen saturation;<strong> SVR&nbsp;</strong>= systemic vascular resistance.</td></tr></tbody></table></div><p>This patient with respiratory distress, wheezing, and erythematous skin rash following food exposure likely has anaphylaxis; her severe hypotension and tachycardia indicate&nbsp;<strong>anaphylactic shock</strong>.</p><p>The primary disturbance in <a href="https://www.uworld.com/media/L42671.jpg">distributive shock</a> (eg, septic shock, anaphylactic shock) is profound <strong>peripheral vasodilation</strong> which, in anaphylactic shock, results from widespread IgE-mediated release of inflammatory mediators (eg, histamine).&nbsp; This has the following effects:</p><ul><li><p>Arteriolar vasodilation causes <strong>decreased systemic vascular resistance</strong> (SVR) and consequent <strong>hypotension</strong>.</p></li><li><p>Venular vasodilation causes <strong>decreased central venous pressure</strong> (CVP) and reduces venous return to the right atrium <strong>(Choice D)</strong>.</p></li><li><p>The vasculature becomes leaky, resulting in loss of intravascular volume that further contributes to both hypotension and decreased CVP.</p></li></ul><p>With reduced venous return to the right atrium, there is reduced right ventricular output and reduced blood delivery to the left atrium and left ventricle.&nbsp; This leads to <strong>decreased pulmonary capillary wedge pressure</strong> (PCWP), a reflection of left atrial pressure.&nbsp; Despite the reduced left ventricular preload, cardiac output is commonly normal or increased in early distributive shock due to both the large decrease in SVR and a baroreceptor reflex–mediated increase in heart rate (ie, tachycardia).&nbsp; The increased cardiac output leads to increased mixed venous oxygen saturation due to rapid blood transit through the peripheral capillaries and incomplete oxygen uptake by the tissues.</p><p><strong>(Choice B)</strong>&nbsp; <a href="https://www.uworld.com/media/L42669.jpg">Hypovolemic shock</a> involves massive intravascular volume depletion, leading to decreased CVP and PCWP.&nbsp; SVR is reflexively increased in response to reduced cardiac output and hypotension.</p><p><strong>(Choice C)</strong>&nbsp; <a href="https://www.uworld.com/media/L42669.jpg">Obstructive shock</a> most commonly involves an obstruction to blood flow between the right atrium and the pulmonary capillaries (eg, pulmonary embolism).&nbsp; CVP is increased, PCWP is decreased, and there is a reflexive increase in SVR.</p><p><strong>(Choice E)</strong>&nbsp; <a href="https://www.uworld.com/media/L42669.jpg">Cardiogenic shock</a> results from left ventricular failure.&nbsp; PCWP and CVP are increased due to backward transmission of increased pressure, and there is a reflexive increase in SVR.</p><p><strong>Educational objective:</strong><br>Anaphylaxis can cause distributive shock due to widespread release of inflammatory mediators (eg, histamine) that leads to massive peripheral vasodilation.&nbsp; Arteriolar vasodilation decreases systemic vascular resistance to cause hypotension, and venular vasodilation decreases central venous pressure and pulmonary capillary wedge pressure.&nbsp; Cardiac output is often increased in early distributive shock due to reduced SVR and a baroreceptor reflex–mediated increase in heart rate.</p></div>`,
   },
   {
     id: 12351,
@@ -256,24 +296,35 @@ const tests = [
       {
         id: 1151,
         text: 'L1-L2',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1152,
         text: 'L3-L4',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1153,
         text: 'L5-S1',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1154,
         text: 'S2-S3',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1155,
         text: 'No specific dermatome pattern',
+        average: 6,
+        is_correct: false,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p><img draggable="false" id="37650" src="https://www.uworld.com/media/L62891.jpg"></p><p>This patient has single and grouped vesicles in various stages of ulceration and crusting, which is consistent with <strong>herpes zoster</strong> (ie, shingles).&nbsp; Following primary VZV infection (ie, chickenpox), the virus migrates via sensory nerves to the <strong>dorsal spinal ganglia</strong>, where it lies dormant for years.&nbsp; <a href="https://www.uworld.com/media/L40928.jpg">Reactivation</a> of the virus typically occurs in a single (or multiple-adjacent) ganglion.&nbsp; This causes hemorrhagic inflammation involving the entire peripheral nerve associated with that ganglion and eruption of a painful, vesicular rash on the skin supplied by that sensory nerve (ie, <a href="	https://www.uworld.com/media/L1878.jpg">dermatome</a>).</p><p>This patient's vesicular rash primarily involves the <strong>anteromedial thigh</strong> and <strong>medial leg</strong>, which is consistent with the dermatomal distribution of <strong>L3 and L4</strong>.</p><p><strong>(Choice A)</strong>&nbsp; The L1 dermatome is at the level of the inguinal ligament.&nbsp; The L2 dermatome covers the upper anteromedial thigh but does not extend downward into the leg.</p><p><strong>(Choice C)</strong>&nbsp; The L5 dermatome covers the lateral thigh and anterolateral leg along with the dorsum/sole of the foot.&nbsp; The S1 dermatome includes the posterior thigh and leg and the lateral portion of the foot.</p><p><strong>(Choice D)</strong>&nbsp; The S2 dermatome supplies portions of the posterior thigh and leg as well as the perineum.&nbsp; S3 primarily supplies the perineum.</p><p><strong>(Choice E)</strong>&nbsp; Primary VZV infection (ie, chickenpox) produces a generalized vesicular rash.&nbsp; However, reactivation typically occurs in a single (or multiple-adjacent) spinal ganglia, leading to a rash confined to the distribution of those nerves (ie, dermatome).</p><p><strong>Educational objective:</strong><br>Herpes zoster reactivation typically occurs in a single or multiple-adjacent dorsal spinal ganglia, leading to a vesicular rash in a dermatomal distribution.&nbsp; The L3 and L4 dermatomes supply the anteromedial thigh and medial leg.</p></div>`,
   },
   {
     id: 12352,
@@ -286,24 +337,29 @@ const tests = [
       {
         id: 1156,
         text: '0.1',
+        average: 2,
+        is_correct: false,
       },
       {
         id: 1157,
         text: '0.7',
+        average: 7,
+        is_correct: false,
       },
       {
         id: 1158,
         text: '0.8',
-      },
-      {
-        id: 1159,
-        text: '1.2',
+        average: 6,
+        is_correct: false,
       },
       {
         id: 1160,
         text: '1.5',
+        average: 70,
+        is_correct: true,
       },
     ],
+    explanation: `<div id="first-explanation" class="tab-pane active"><p>The odds of an event are related to the probability P of that event, with odds = P / (1 − P).&nbsp; For example, the probability of <a href="javascript:void(0)">rolling a die</a> and getting a 1 is 1/6, but the odds of rolling a 1 is 1/5.&nbsp; The <strong>odds ratio (OR)</strong> is a measure of association used in case-control studies to compare the <strong>odds of exposure</strong> in <strong>cases</strong> (ie, individuals with disease) relative to <strong>controls</strong> (ie, individuals without disease):</p><div style="margin-left: 3em;"><p><strong>OR</strong> = (odds of exposure in cases) / (odds of exposure in controls)</p></div><p>A shortcut to calculate the OR when a contingency table has a <a href="javascript:void(0)">standard format</a> (ie, exposure of interest in the first row of exposure status and cases in the first column of disease status) is the following:</p><div style="margin-left: 3em;"><p><strong>OR</strong> = (a/c) / (b/d)</p></div><p>In this study, the <strong>disease</strong> of interest is <strong>systemic lupus erythematosus</strong> (SLE), so cases are women with SLE, and controls are women without SLE.&nbsp; The <strong>exposure</strong> of interest is a <strong>history of endometriosis</strong>.&nbsp; Given that 240 of 1,040 women with SLE had a history of endometriosis, 1,040 − 240 = 800 of women with SLE had no history of endometriosis.&nbsp; Given that 210 of 1,260 without SLE had a history of endometriosis, 1,260 − 210 = 1,050 of women without SLE had no history of endometriosis.&nbsp; Based on these data, the standard contingency table is as follows:</p><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td></td><td style="border-right:1px solid"></td><td style="text-align:center;border-top:1px solid;border-right:1px solid;border-bottom:1px solid"><strong>SLE +</strong></td><td style="text-align:center;border-top:1px solid;border-right:1px solid;border-bottom:1px solid"><strong>SLE −</strong></td></tr><tr><td rowspan="2" style="text-align:center"><strong>History of<br>endometriosis</strong></td><td style="text-align:center;border-left:1px solid;border-top:1px solid;border-right:1px solid;border-bottom:1px solid;padding-left:2em;padding-right:2em"><strong>Yes</strong></td><td style="text-align:center;border-right:1px solid;border-bottom:1px solid;padding-left:2em;padding-right:2em">240<br>(a)</td><td style="text-align:center;border-right:1px solid;border-bottom:1px solid;padding-left:2em;padding-right:2em">210<br>(b)</td></tr><tr><td style="text-align:center;border-left:1px solid;border-right:1px solid;border-bottom:1px solid"><strong>No</strong></td><td style="border-right:1px solid;border-bottom:1px solid;text-align:center">800<br>(c)</td><td style="text-align:center;border-right:1px solid;border-bottom:1px solid">1,050<br>(d)</td></tr><tr><td></td><td style="border-left:1px solid;border-right:1px solid;border-bottom:1px solid;text-align:center"><em>Total</em></td><td style="border-right:1px solid;border-bottom:1px solid;text-align:center">1,040</td><td style="border-right:1px solid;border-bottom:1px solid;text-align:center">1,260</td></tr></tbody></table><p>The odds of endometriosis in women with SLE and women without SLE are:</p><ul><li><p><strong>Odds</strong> of endometriosis in <strong>cases</strong>: a/c = 240/800 = 0.3</p></li><li><p><strong>Odds</strong> of endometriosis in <strong>controls</strong>: b/d = 210/1,050 = 0.2</p></li></ul><p>Therefore, the OR of endometriosis in women with SLE compared to women without SLE is:</p><div style="margin-left: 3em;"><p><strong>OR</strong> = (odds of endometriosis in cases) / (odds of endometriosis in controls) = (a/c) / (b/d) = 0.3/0.2 = <strong>1.5</strong></p></div><p>The estimated <strong>OR = 1.5</strong> is &gt;1 (ie, the null value for the OR); this indicates that a history of endometriosis acts as a <strong>risk factor</strong> for SLE.</p><p>This example calculated the OR of exposure (ie, odds of exposure among cases relative to controls).&nbsp; The OR is sometimes described as the odds of disease among exposed individuals relative to nonexposed individuals, given by (a/b) / (c/d).&nbsp; Both OR definitions are mathematically equivalent and reduce to OR = (ad) / (bc).</p><p><strong>Educational objective:</strong><br>The odds ratio (OR) is a measure of association calculated as: OR = (odds of exposure in cases) / (odds of exposure in controls).&nbsp; For a contingency table in the standard format: OR = (ad) / (bc).</p></div>`,
   },
 ]
 

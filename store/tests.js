@@ -36,7 +36,6 @@ export const mutations = {
   prevTest(state) {
     state.test_numb--
     if (!state.test_numb) {
-      alert('error')
       state.test_numb = 1
     }
     mutations.setTestId(state)
@@ -47,7 +46,6 @@ export const mutations = {
 
     if (state.test_count < state.test_numb) {
       state.test_numb = state.test_count
-      console.log('finish')
     }
     mutations.setTestId(state)
   },
@@ -62,7 +60,8 @@ export const mutations = {
 
   setAnswer(state, id) {
     state.tests[state.test_numb - 1].selected = id
-    mutations.nextTest(state)
+    state.tests[state.test_numb - 1].is_done = true
+    // mutations.nextTest(state)
   },
 
   setHighlightColor(state, color) {
@@ -75,6 +74,19 @@ export const mutations = {
 
   setSplitScreen(state, status) {
     state.is_split_screen = status
+  },
+
+  submitTest(state, { id, answers }) {
+    state.tests = state.tests.map((x) => {
+      if (x.id === id) {
+        return {
+          ...x,
+          is_done: true,
+          selected: answers,
+        }
+      }
+      return x
+    })
   },
 }
 
@@ -97,4 +109,15 @@ export const getters = {
   get_answers: (state) => state.tests[state.test_numb - 1].answers,
   get_answers_title: (state) => state.tests[state.test_numb - 1].answers__title,
   get_selected_variant: (state) => state.tests[state.test_numb - 1].selected,
+  isChecked: (state) => {
+    const current_test = state.tests[state.test_numb - 1]
+    const is_done = current_test.is_done
+    if (is_done) {
+      return {
+        selected: current_test.selected,
+        explanation: current_test.explanation,
+      }
+    }
+    return false
+  },
 }

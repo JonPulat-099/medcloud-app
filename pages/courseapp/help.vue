@@ -2,7 +2,7 @@
   <v-container grid-list-xs class="help container pa-0">
     <v-row>
       <v-col cols="12" md="6" class="help__content pa-3">
-        <v-layout row wrap class="white pa-4">
+        <v-layout row wrap class="pa-4">
           <h3 class="text-grey font-weight-regular mb-4">How to use</h3>
           <v-expansion-panels accordion>
             <v-expansion-panel
@@ -26,7 +26,7 @@
         </v-layout>
       </v-col>
       <v-col cols="12" md="6" class="help__content pa-3">
-        <v-layout row wrap class="white pa-4">
+        <v-layout row wrap class="pa-4">
           <h3 class="text-grey font-weight-regular mb-4">FAQs</h3>
           <v-expansion-panels accordion>
             <v-expansion-panel

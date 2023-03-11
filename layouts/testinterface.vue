@@ -4,7 +4,7 @@
       <v-navigation-drawer
         v-model="drawer"
         clipped
-        absolute
+        fixed
         app
         width="60"
         :permanent="windowSize >= 960"

@@ -32,12 +32,14 @@ export default {
     port: '8080',
   },
 
+  buildDir: '/dist',
+
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
-  
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -49,8 +51,8 @@ export default {
 
   router: {
     middleware: [
-      // 'auth', 
-      'router-middleware'
+      // 'auth',
+      'router-middleware',
     ],
   },
 

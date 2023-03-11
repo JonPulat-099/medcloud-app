@@ -40,11 +40,13 @@ export default {
     },
 
     submitFeedback () {
-      this.$snotify.simple({
-        body: 'My Notification Body',
-        title: 'Notification Title',
-        config: {},
-      })
+      // this.$notify.simple({
+      //   body: 'My Notification Body',
+      //   title: 'Notification Title',
+      //   config: {},
+      // })
+      this.closeModal()
+      alert("Succesfully send")
     },
   },
 }

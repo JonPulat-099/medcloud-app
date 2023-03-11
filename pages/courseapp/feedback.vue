@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-xs class="white feedback py-4 px-6">
+  <v-container grid-list-xs class="feedback py-4 px-6">
     <v-form ref="feedbackForm">
       <v-layout row wrap>
         <v-flex xs12 md7 lg7>
