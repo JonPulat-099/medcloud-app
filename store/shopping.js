@@ -2,8 +2,8 @@ import { products as Products } from './products_data'
 
 export const state = () => ({
   products: Products,
-  current_product: [],
   selected: [],
+  item_tariffs: [],
 })
 
 export const getters = {
@@ -22,14 +22,26 @@ export const mutations = {
     })
   },
 
-  setCurrentProduct(state, product) {
-    state.current_product = product
-  },
-
   removeSelectedProduct(state, id) {
     const selected = state.selected
-    state.selected = selected.filter(x => x.id != id)
+    state.selected = selected.filter((x) => x.id != id)
+  },
+
+  setItemTariffs(state, list) {
+    state.item_tariffs = list
   },
 }
 
-export const actions = {}
+export const actions = {
+  async getProductItemTariffs({ commit }, id) {
+    await this.$axios
+      .$get('/api/product/item/get/' + id)
+      .then((res) => {
+        if (Array.isArray(res)) commit('setItemTariffs', res)
+      })
+      .catch((err) => {
+        // do nothing
+        console.log(err)
+      })
+  },
+}

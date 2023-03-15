@@ -15,37 +15,31 @@
 
           <v-divider></v-divider>
 
-          <v-stepper-step step="3" color="primary">
-            Profile
-          </v-stepper-step>
+          <v-stepper-step step="3" color="primary"> Profile </v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
           <v-stepper-content step="1">
             <v-card v-if="!show_price" class="mb-12 step__tab--1" elevation="0">
               <v-layout row wrap>
-                <v-flex
-                  v-for="p in products"
-                  :key="`product__${p.id}`"
-                  xs12
-                  md4
-                  pa-2
-                >
-                  <h4 class="text-h5 mb-6">{{ p.title }}</h4>
-                  <ul>
-                    <li
-                      v-for="t in p.types"
-                      :key="t.name"
-                      class="grey--text pa-1 d-flex justify-space-between align-center rounded-lg"
-                      @click="openPriceTab(t)"
-                    >
-                      <span> {{ t.name }} </span>
-                      <v-btn color="primary" icon>
-                        <v-icon>mdi-chevron-right</v-icon>
-                      </v-btn>
-                    </li>
-                  </ul>
-                </v-flex>
+                <template v-for="p in products">
+                  <v-flex v-if="p.status == 'active'" :key="`product__${p.id}`" xs12 md4 pa-2>
+                    <h4 class="text-h5 mb-6">{{ p.title }}</h4>
+                    <ul>
+                      <li
+                        v-for="t in p.items"
+                        :key="t.name"
+                        class="grey--text pa-1 d-flex justify-space-between align-center rounded-lg"
+                        @click="openPriceTab(t)"
+                      >
+                        <span> {{ t.title }} </span>
+                        <v-btn color="primary" icon>
+                          <v-icon>mdi-chevron-right</v-icon>
+                        </v-btn>
+                      </li>
+                    </ul>
+                  </v-flex>
+                </template>
               </v-layout>
             </v-card>
 
@@ -61,6 +55,7 @@
               </v-btn>
               <v-layout row wrap>
                 <v-flex
+                v-if="false"
                   v-for="t in current__product.list"
                   :key="`curr__product__${t.id}`"
                   xs12
@@ -207,24 +202,28 @@ export default {
         .reduce((x, y) => x + y, 0)
     },
     products() {
-      return this.$store.state.shopping.products
+      return this.$store.state.dashboard.all_products
     },
     current__product() {
-      return this.$store.state.shopping.current_product
+      return this.$store.state.shopping.item_tariffs
     },
     selected() {
       return this.$store.state.shopping.selected
     },
   },
+
+  async beforeMount() {
+    this.$store.dispatch('dashboard/getAllProducts')
+  },
+
   mounted() {
     const query = this.$route.query
     console.log(query)
     if (query.step) this.step = query.step
   },
   methods: {
-
-    openPriceTab(product) {
-      this.$store.commit('shopping/setCurrentProduct', product)
+    async openPriceTab(product) {
+      await this.$store.dispatch('shopping/getProductItemTariffs', product.id)
       this.show_price = true
     },
 

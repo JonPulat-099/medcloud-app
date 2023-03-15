@@ -11,8 +11,8 @@
         <v-col cols="12" lg="5" md="6" class="mb-16">
           <h3>Login</h3>
           <span class="d-block mb-10">Sign in using MedCloud account</span>
-          <v-text-field name="name" label="Email" type="email"></v-text-field>
-          <v-text-field
+          <v-text-field v-model="user_data.phone" name="name" label="Email" type="email"></v-text-field>
+          <v-text-field v-model="user_data.password"
             name="name"
             label="Password"
             type="password"
@@ -21,7 +21,7 @@
             <v-btn color="primary" @click="forgot = !forgot"
               >Forgot password ?</v-btn
             >
-            <v-btn color="primary">Login</v-btn>
+            <v-btn color="primary" @click="signIn">Login</v-btn>
           </div>
 
           <div v-if="forgot" class="mt-16">
@@ -100,10 +100,15 @@
 export default {
   name: 'LoginPage',
   layout: 'landing',
+  auth: false,
   data() {
     return {
       forgot: false,
       national: 'uzb',
+      user_data: {
+        phone: "",
+        password: ""
+      }
     }
   },
   computed: {
@@ -112,6 +117,25 @@ export default {
       return seleted?.length
     },
   },
+  methods: {
+    async signIn() {
+      console.log(1);
+      try {
+        if (this.user_data.phone && this.user_data.password) {
+          let resp = await this.$auth.loginWith('local', {
+            data: this.user_data
+          })
+          if (resp.status === 200) {
+            const token = resp.data
+            this.$auth.setUserToken(token?.access_token, token?.refresh_token)
+            this.$router.push('/cabinet')
+          }
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  }
 }
 </script>
 <style lang="scss">

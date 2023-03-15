@@ -176,6 +176,9 @@ export default {
       ],
     }
   },
+  async beforeMount() {
+    this.$store.dispatch("dashboard/getProducts")
+  },
 }
 </script>
 <style lang=""></style>
