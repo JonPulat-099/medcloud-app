@@ -112,5 +112,8 @@ export default {
       unused_question: 2699,
     }
   },
+  beforeMount() {
+    this.$store.dispatch('performance/getStats')
+  },
 }
 </script>
