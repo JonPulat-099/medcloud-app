@@ -11,9 +11,13 @@
         <v-col cols="12" lg="5" md="6" class="mb-16">
           <h3>Login</h3>
           <span class="d-block mb-10">Sign in using MedCloud account</span>
-          <v-text-field v-model="user_data.phone" name="name" label="Email" type="email"></v-text-field>
-          <v-text-field v-model="user_data.password"
-            name="name"
+          <v-text-field
+            v-model="user_data.phone"
+            label="Email"
+            type="email"
+          ></v-text-field>
+          <v-text-field
+            v-model="user_data.password"
             label="Password"
             type="password"
           ></v-text-field>
@@ -27,11 +31,7 @@
           <div v-if="forgot" class="mt-16">
             <h3>Forgot Password</h3>
             <div class="d-flex">
-              <v-text-field
-                name="name"
-                label="Email"
-                type="email"
-              ></v-text-field>
+              <v-text-field label="Email" type="email"></v-text-field>
               <v-btn color="primary">Submit</v-btn>
             </div>
           </div>
@@ -61,26 +61,41 @@
           <v-layout row wrap>
             <v-flex xs12 md6>
               <v-text-field
-                name="name"
-                label="First Name"
+                v-model="registration.name"
+                label="Name"
                 class="pr-6"
               ></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field name="name" label="Last Name"></v-text-field>
+              <v-text-field
+                v-model="registration.surname"
+                label="Surname"
+              ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field name="name" label="Email"></v-text-field>
+              <v-text-field
+                v-model="registration.phone"
+                label="Phone"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-text-field
+                v-model="registration.email"
+                label="Email"
+              ></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
               <v-text-field
-                name="name"
+                v-model="registration.password"
                 label="Password"
                 class="pr-6"
               ></v-text-field>
             </v-flex>
             <v-flex xs12 md6>
-              <v-text-field name="name" label="Confirm Password"></v-text-field>
+              <v-text-field
+                v-model="registration.password_confirmation"
+                label="Confirm Password"
+              ></v-text-field>
             </v-flex>
           </v-layout>
           <p class="mt-5 mb-10">
@@ -90,7 +105,7 @@
             and
             <a href="/resources" target="_blank">Privacy Policy.</a>
           </p>
-          <v-btn color="primary">Register</v-btn>
+          <v-btn color="primary" @click="registrationClien()">Register</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -106,9 +121,18 @@ export default {
       forgot: false,
       national: 'uzb',
       user_data: {
-        phone: "",
-        password: ""
-      }
+        phone: '',
+        password: '',
+      },
+      registration: {
+        name: '',
+        surname: '',
+        patronym: 'xxx',
+        email: '',
+        phone: '',
+        password: '',
+        password_confirmation: '',
+      },
     }
   },
   computed: {
@@ -119,11 +143,10 @@ export default {
   },
   methods: {
     async signIn() {
-      console.log(1);
       try {
         if (this.user_data.phone && this.user_data.password) {
           let resp = await this.$auth.loginWith('local', {
-            data: this.user_data
+            data: this.user_data,
           })
           if (resp.status === 200) {
             const token = resp.data
@@ -135,7 +158,23 @@ export default {
         console.log(err)
       }
     },
-  }
+    registrationClien() {
+      // rules
+      const payload = {
+        data: this.registration,
+        isCompleted: (res) => {
+          console.log(res)
+          if (res?.success) {
+            this.$toast.success(res.success?.message)
+          } else {
+            this.$toast.error(res?.message)
+          }
+        },
+      }
+
+      this.$store.dispatch('client/clientRegistrations', payload)
+    },
+  },
 }
 </script>
 <style lang="scss">

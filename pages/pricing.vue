@@ -10,7 +10,7 @@
           <v-divider></v-divider>
 
           <v-stepper-step :complete="step > 2" step="2" color="primary">
-            Cart
+            <v-btn text @click="step = 2">text</v-btn>
           </v-stepper-step>
 
           <v-divider></v-divider>
@@ -55,29 +55,27 @@
               </v-btn>
               <v-layout row wrap>
                 <v-flex
-                v-if="false"
-                  v-for="t in current__product.list"
-                  :key="`curr__product__${t.id}`"
+                  v-if="current__product"
                   xs12
                   md4
                   pa-2
                 >
-                  <h4 class="text-h6 mb-6">{{ t.name }}</h4>
+                  <h4 class="text-h6 mb-6">{{ current__product.title }}</h4>
                   <ul>
                     <li
-                      v-for="p in t.plans"
-                      :key="p.name"
+                      v-for="p in current__product.tariff"
+                      :key="p.title"
                       class="grey--text pa-1 d-flex justify-space-between align-center rounded-lg"
-                      @click="selectProduct(t, p)"
+                      @click="selectProduct(current__product, p)"
                     >
-                      <span> {{ p.name }} </span>
+                      <span> {{ p.title }} </span>
                       <v-spacer></v-spacer>
                       <span v-if="p.sale" class="text-decoration-line-through">
-                        {{ p.price }}
+                        {{ p.amount }}
                       </span>
-                      <span v-else class="blue--text"> {{ p.price }} </span>
+                      <span v-else class="blue--text"> {{ p.amount }} UZS </span>
                       <span v-if="p.sale" class="red--text ml-1">
-                        {{ p.sale }}
+                        {{ p.amount }}
                       </span>
                       <v-btn color="primary" icon>
                         <v-icon>mdi-chevron-right</v-icon>
@@ -101,16 +99,16 @@
                     >
                       <h4 class="black--text">{{ p.name }}</h4>
                       <div class="d-flex align-center">
-                        <span> {{ p.product.name }} </span>
+                        <span> {{ p.product.title }} </span>
                         <v-spacer></v-spacer>
                         <span
                           v-if="p.product.sale"
                           class="text-decoration-line-through"
                         >
-                          {{ p.product.price }}
+                          {{ p.product.amount }}
                         </span>
                         <span v-else class="blue--text">
-                          {{ p.product.price }}
+                          {{ p.product.amount }} UZS
                         </span>
                         <span v-if="p.product.sale" class="red--text ml-1">
                           {{ p.product.sale }}
@@ -127,9 +125,9 @@
                   <div
                     class="checkout__card d-flex flex-column grey lighten-3 mb-6"
                   >
-                    <h4 class="pt-5">Total (USD)</h4>
+                    <h4 class="pt-5">Total (UZS)</h4>
                     <div class="my-3">
-                      <h1><sup>$</sup>{{ total }}</h1>
+                      <h1><sup>UZS</sup>{{ total }}</h1>
                     </div>
                     <v-btn
                       color="primary rounded-0"
@@ -192,12 +190,12 @@ export default {
   computed: {
     total() {
       return this.selected
-        .filter((x) => x.product.type == 'nofree')
+        // .filter((x) => x.product.type == 'nofree')
         .map((x) => {
           let price = ''
           if (x.product.sale) price = x.product.sale
-          else price = x.product.price
-          return Number(price.slice(1))
+          else price = x.product.amount
+          return Number(price)
         })
         .reduce((x, y) => x + y, 0)
     },

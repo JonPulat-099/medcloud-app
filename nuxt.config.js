@@ -20,6 +20,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/mixins.js',
+    '@/plugins/axios.js',
     { src: '@/plugins/countdown-timer.js', ssr: false },
     // { src: '@/plugins/chart.js', mode: "client"}
   ],
@@ -47,13 +48,11 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/auth-next',
+    '@nuxtjs/toast',
   ],
 
   router: {
-    middleware: [
-      'auth',
-      'router-middleware',
-    ],
+    middleware: ['auth', 'router-middleware'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -90,6 +89,12 @@ export default {
         // autoLogout: false
       },
     },
+  },
+
+  toast: {
+    position: 'top-right',
+    duration: 5000,
+    theme: 'bubble',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

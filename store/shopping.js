@@ -3,7 +3,7 @@ import { products as Products } from './products_data'
 export const state = () => ({
   products: Products,
   selected: [],
-  item_tariffs: [],
+  item_tariffs: {},
 })
 
 export const getters = {
@@ -17,7 +17,7 @@ export const mutations = {
     const { type, product } = data
     state.selected.push({
       id: type.id,
-      name: type.name,
+      name: type.title,
       product,
     })
   },
@@ -37,7 +37,7 @@ export const actions = {
     await this.$axios
       .$get('/api/product/item/get/' + id)
       .then((res) => {
-        if (Array.isArray(res)) commit('setItemTariffs', res)
+        if (Array.isArray(res && res?.tariff)) commit('setItemTariffs', res)
       })
       .catch((err) => {
         // do nothing
