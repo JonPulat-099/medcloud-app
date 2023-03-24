@@ -44,4 +44,14 @@ export const actions = {
         console.log(err)
       })
   },
+
+  async buyProductTariff(_, payload) {
+    const { tariff_id, isCompleted } = payload
+    this.$axios.$post("/api/product/item/subscribe", { tariff_id })
+    .then((res) => {
+      isCompleted(res)
+    }).catch((err) => {
+      isCompleted(err)
+    });
+  }
 }

@@ -4,6 +4,9 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setUserProducts(state, products) {
+    state.user_products = products
+  },
   setAllProducts(state, list) {
     state.all_products = list
   },
@@ -14,7 +17,9 @@ export const actions = {
     this.$axios
       .$get('/api/product/by/user')
       .then((res) => {
-        console.log(res)
+        if (res?.success && res?.success?.data) {
+          commit('setUserProducts', res.success.data)
+        }
       })
       .catch((err) => {
         // do nothing

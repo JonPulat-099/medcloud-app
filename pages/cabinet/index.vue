@@ -4,25 +4,25 @@
       <v-flex xs12>
         <h2 class="dashboard__title">Dashboard and Active Subscriptions</h2>
       </v-flex>
-      <v-flex v-for="(item, i) in items" :key="'item_' + i" xs12 sm6 md4>
+      <v-flex v-for="(item, i) in user_products" :key="'item_' + i" xs12 sm6 md4>
         <div class="dashboard__item">
           <div
             class="dashboard__item--title font-weight-medium text-center"
             :style="`background: ${item.color}`"
           >
-            {{ item.title }}
+            {{ item.name }}
           </div>
           <div
             class="dashboard__item--subtitle font-weight-medium text-center my-3"
           >
-            {{ item.subtitle }}
+          Expire on: {{ item.expiry | prettyDate }}
           </div>
           <div class="dashboard__item--content">
             <div>
               <doughnut-chart
                 :id="`chart-id-${i}`"
                 :width="95"
-                :values="item.values"
+                :values="item.values || [74, 26]"
                 :background_color="item.background_color"
               ></doughnut-chart>
               <div class="text-center my-2 body-2">Completed</div>
@@ -30,7 +30,7 @@
             <div>
               <div class="stats-container">
                 <div
-                  v-for="(s, k) in item.stats"
+                  v-for="(s, k) in items[0].stats"
                   :key="'stats__' + k"
                   class="stats-row"
                 >
@@ -62,11 +62,12 @@
               color="#d9dada"
               >Extend</v-btn
             >
+             <!-- item_id -->
             <v-btn
               class="dashboard__item--btn rounded-xl"
               elevation="0"
               :color="item.color"
-              @click="$router.push('/courseapp/')"
+              @click="$router.push('/courseapp/welcome/' + 2)"
               >Resume</v-btn
             >
           </div>
@@ -126,30 +127,6 @@ export default {
           chart_color: '#008DD2',
         },
         {
-          id: 2,
-          is_demo: false,
-          title: 'Basic Sciences Videolectures',
-          subtitle: 'Expire on: May 21, 2022',
-          values: [74, 26],
-          color: '#D2CDE7',
-          background_color: ['#008DD2', '#ACB4C0'],
-          stats: [
-            {
-              name: 'Lessons',
-              value: '143',
-            },
-            {
-              name: 'Watched',
-              value: '87',
-            },
-            {
-              name: 'Unseen',
-              value: '56',
-            },
-          ],
-          chart_color: '#D2CDE7',
-        },
-        {
           id: 3,
           is_demo: true,
           title: 'Clinical Sciences Videolectures',
@@ -174,6 +151,17 @@ export default {
           chart_color: '#8996AC',
         },
       ],
+    }
+  },
+  filters: {
+    prettyDate(val) {
+      if (val) return new Date(val)?.toString()?.split(" ")?.slice(1, 4)?.join(" ") || val
+      return val
+    }
+  },
+  computed: {
+    user_products() {
+      return this.$store.state.dashboard.user_products
     }
   },
   async beforeMount() {

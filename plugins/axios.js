@@ -16,7 +16,7 @@ export default function ({ $axios, app, redirect, store }) {
   })
   $axios.onError(async (error) => {
     const response = error?.response
-    console.log(2, response)
+    // console.log(2, response)
     if (response?.status === 400) {
       if (response?.data?.error) {
         const { message } = response?.data?.error
@@ -30,7 +30,7 @@ export default function ({ $axios, app, redirect, store }) {
 
       // console.log(response?.data?.error)
     } else if (response?.status === 401) {
-      console.log(3)
+      // console.log(3)
       store.state.auth.loggedIn = false
       deleteAllCookies()
       redirect('/login')

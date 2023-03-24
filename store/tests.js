@@ -12,6 +12,9 @@ export const state = () => ({
   is_split_screen: false,
   is_tutor: false,
   is_timed: false,
+
+  /**new dates */
+  user_score: {},
 })
 
 export const mutations = {
@@ -88,6 +91,11 @@ export const mutations = {
       return x
     })
   },
+
+  /**====================== */
+  setWelcomeScore(state, scores) {
+    state.user_score = scores
+  }
 }
 
 export const actions = {
@@ -99,6 +107,20 @@ export const actions = {
     }).then((res) => {
       commit('setTests', res)
     })
+  },
+
+  getClientWelcomeScore({ commit }, item_id) {
+    this.$axios
+      .$get(`/api/test/welcome/${item_id}`)
+      .then((res) => {
+        if (res?.success && res?.success?.data) {
+          commit('setWelcomeScore', res.success.data)
+        }
+      })
+      .catch((err) => {
+        // do nothing
+
+      })
   },
 }
 

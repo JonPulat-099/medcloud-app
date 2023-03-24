@@ -23,7 +23,7 @@
             <v-card v-if="!show_price" class="mb-12 step__tab--1" elevation="0">
               <v-layout row wrap>
                 <template v-for="p in products">
-                  <v-flex v-if="p.status == 'active'" :key="`product__${p.id}`" xs12 md4 pa-2>
+                  <v-flex v-if="p.status == 'active' && p.items.length" :key="`product__${p.id}`" xs12 md4 pa-2>
                     <h4 class="text-h5 mb-6">{{ p.title }}</h4>
                     <ul>
                       <li
@@ -212,6 +212,7 @@ export default {
 
   async beforeMount() {
     this.$store.dispatch('dashboard/getAllProducts')
+    this.$store.dispatch("client/getClientInfo")
   },
 
   mounted() {
@@ -243,7 +244,24 @@ export default {
     },
 
     nextStep() {
-      this.$router.push('/login')
+      console.log(1);
+      const isAuth = this.$auth.loggedIn
+      if (isAuth) {
+        const payload = {
+          tariff_id: this.selected[0]?.product?.id ?? 2,
+          isCompleted: (res) => {
+            if (res?.success) {
+              this.$toast.success(res.success?.message)
+            }
+            console.log(res
+            );
+          }
+        }
+
+        this.$store.dispatch("shopping/buyProductTariff", payload)
+      } else {
+        this.$router.push('/login')
+      }
     },
   },
 }
